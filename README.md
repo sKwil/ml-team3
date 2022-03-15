@@ -1,3 +1,3 @@
 # ml-team3
 
-Authors: Trenton Metcalfe, Sean Maher, Simon Kwilinski
+Authors: Trenton Metcalfe, Sean Maher, Simon Kwilinski, Jermaine Presbery
