@@ -1,3 +1,3 @@
 # ml-team3
 
-Authors: Sean Maher
+Authors: Trenton Metcalfe
