@@ -29,6 +29,17 @@ def install():
             conn.executescript(script.read())
 
 
+def getDataFile(fileName: str) -> IO:
+    """
+    Open a csv data file from the raw data directory.
+
+    :param fileName: the full name of the file to load (with the extension)
+    :return: the opened file
+    """
+
+    return open(os.path.join(re.DATA_RAW_DIR, fileName))
+
+
 def loadCities():
     """
     Load the cities from the city_attributes.csv file and put them in the
@@ -57,12 +68,18 @@ def loadCities():
             print('Added', c, 'cities to SQL database')
 
 
-def getDataFile(fileName: str) -> IO:
+def loadWeatherData():
     """
-    Open a csv data file from the raw data directory.
+    Load all the weather data for each city from the csv files. Send this
+    data to the sqlite database in the Weather table.
 
-    :param fileName: the full name of the file to load (with the extension)
-    :return: the opened file
+    Warning: This overwrites any existing data by first clearing the Weather
+    table.
     """
 
-    return open(os.path.join(re.DATA_RAW_DIR, fileName))
+    # Open a connection to the sqlite database
+    with getConn() as conn:
+        # Clear any existing city data
+        conn.execute(sql.CLEAR_WEATHER_TABLE)
+
+
