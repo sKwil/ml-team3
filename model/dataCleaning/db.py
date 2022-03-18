@@ -1,6 +1,7 @@
 import csv
 import os
 import sqlite3
+from datetime import datetime as dt
 from typing import IO
 
 import resources as re
@@ -75,6 +76,37 @@ def loadWeatherData():
 
     Warning: This overwrites any existing data by first clearing the Weather
     table.
+
+    The goal of this method is to take data in this format (in this case for
+    temperature):
+    +---------------------+-----------+----------+---------------+-----+
+    | datetime            | Vancouver | Portland | San Francisco | ... |
+    | 2012-10-01 13:00:00 | 284.63    | 282.08   | 289.48        | ... |
+    | 2012-10-01 14:00:00 | 284.6290  | 282.0832 | 289.4749      | ... |
+    | 2012-10-01 15:00:00 | 284.6269  | 282.0918 | 289.4606      | ... |
+    | ...                 | ...       | ...      | ...           | ... |
+    +---------------------+-----------+----------+---------------+-----+
+
+    And convert it into this format:
+    +---------------------+---------------+-------------+-----+
+    | datetime            | city          | temperature | ... |
+    | 2012-10-01 13:00:00 | Vancouver     | 284.63      | ... |
+    | 2012-10-01 13:00:00 | Portland      | 282.08      | ... |
+    | 2012-10-01 13:00:00 | San Francisco | 289.48      | ... |
+    | 2012-10-01 14:00:00 | Vancouver     | 284.6290    | ... |
+    | 2012-10-01 14:00:00 | Portland      | 282.0832    | ... |
+    | 2012-10-01 14:00:00 | San Francisco | 289.4749    | ... |
+    | 2012-10-01 15:00:00 | Vancouver     | 284.6269    | ... |
+    | 2012-10-01 15:00:00 | Portland      | 282.0918    | ... |
+    | 2012-10-01 15:00:00 | San Francisco | 289.4606    | ... |
+    | ...                 | ...           | ...         | ... |
+    +---------------------+---------------+-------------+-----+
+
+    The reason for this is that variables should never be spread across
+    columns. In this case, each city has its own column, which violates
+    principles of data management. Even though the contents is the same, the
+    second data format is far easier to analyze with something like Pandas
+    than the first.
     """
 
     # Open a connection to the sqlite database
@@ -82,4 +114,18 @@ def loadWeatherData():
         # Clear any existing city data
         conn.execute(sql.CLEAR_WEATHER_TABLE)
 
+        # Start by adding each city with just its temperature data
+        with getDataFile('temperature.csv') as file:
+            # Read and parse the temperature csv
+            r = csv.reader(file)
+            header = next(r)
 
+            # For each row in the csv (except the header), get the timestamp.
+            # Then iterate over the rest of the cells in the row, matching them
+            # with the column name in the header and sending to the database.
+            for row in r:
+                timestamp = dt.strptime(row[0], re.DATE_TIME_FORMAT)
+
+                for i in range(1, len(row)):
+                    conn.execute(sql.ADD_WEATHER_TEMPERATURE,
+                                 (timestamp, header[i], row[i]))

@@ -6,3 +6,5 @@ ADD_CITY = 'INSERT INTO Cities (name, country, latitude, longitude) ' \
            'VALUES (?,?,?,?);'
 
 
+ADD_WEATHER_TEMPERATURE = 'INSERT INTO Weather (datetime, city, temperature) ' \
+                          'VALUES (?,?,?);'

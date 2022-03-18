@@ -4,4 +4,7 @@ import db
 # db.install()
 
 # Load the Cities data
-db.loadCities()
+#db.loadCities()
+
+# Load the weather data
+db.loadWeatherData()
