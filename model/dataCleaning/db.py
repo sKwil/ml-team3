@@ -106,7 +106,9 @@ def loadWeatherData():
     columns. In this case, each city has its own column, which violates
     principles of data management. Even though the contents is the same, the
     second data format is far easier to analyze with something like Pandas
-    than the first.
+    than the first. The new format also allows all the weather data to be
+    stored in one table, rather than the raw weather data which is spread
+    across multiple csvs for each type of data (temperature, humidity, etc.)
     """
 
     # Open a connection to the sqlite database
@@ -129,3 +131,6 @@ def loadWeatherData():
                 for i in range(1, len(row)):
                     conn.execute(sql.ADD_WEATHER_TEMPERATURE,
                                  (timestamp, header[i], row[i]))
+
+        # Load each of the remaining weather data types and update the
+        # Weather table accordingly.
