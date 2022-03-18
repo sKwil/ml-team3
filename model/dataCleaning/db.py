@@ -132,5 +132,16 @@ def loadWeatherData():
                     conn.execute(sql.ADD_WEATHER_TEMPERATURE,
                                  (timestamp, header[i], row[i]))
 
+        with getDataFile('humidity.csv') as file:
+            r = csv.reader(file)
+            header = next(r)
+
+            for row in r:
+                timestamp = dt.strptime(row[0], re.DATE_TIME_FORMAT)
+
+                for i in range(1, len(row)):
+                    conn.execute(sql.UPDATE_WEATHER_HUMIDITY,
+                                 (row[i], timestamp, header[i]))
+
         # Load each of the remaining weather data types and update the
         # Weather table accordingly.
