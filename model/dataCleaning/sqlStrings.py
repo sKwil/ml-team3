@@ -10,5 +10,10 @@ ADD_WEATHER_TEMPERATURE = 'INSERT INTO Weather (datetime, city, temperature) ' \
 
 UPDATE_WEATHER_HUMIDITY = 'UPDATE Weather ' \
                           'SET humidity = ? ' \
-                          'WHERE datetime = strftime(\'%Y-%m-%d %H:%M:%S\', ?) AND ' \
+                          'WHERE datetime = ? AND ' \
                           'city = ?;'
+
+ADD_WEATHER_DATA = 'INSERT INTO Weather ' \
+                   '(datetime, city, temperature, humidity, pressure, ' \
+                   'weather_description, wind_direction, wind_speed) ' \
+                   'VALUES (?, ?, ?, ?, ?, ?, ?, ?);'

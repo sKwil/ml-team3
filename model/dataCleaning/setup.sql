@@ -9,7 +9,7 @@ CREATE TABLE Cities (
 );
 
 CREATE TABLE Weather (
-    datetime TIMESTAMP NOT NULL,
+    datetime TIMESTAMP,
     city TEXT NOT NULL,
     temperature REAL,
     humidity REAL,
@@ -17,5 +17,6 @@ CREATE TABLE Weather (
     weather_description TEXT,
     wind_direction REAL,
     wind_speed REAL,
+    PRIMARY KEY (datetime, city),
     FOREIGN KEY (city) REFERENCES Cities (name)
 );

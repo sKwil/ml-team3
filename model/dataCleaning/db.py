@@ -1,11 +1,9 @@
 import csv
-import os
 import sqlite3
-from datetime import datetime as dt
-from typing import IO
 
 import resources as re
 import sqlStrings as sql
+import util as ut
 
 
 def getConn() -> sqlite3.Connection:
@@ -30,17 +28,6 @@ def install():
             conn.executescript(script.read())
 
 
-def getDataFile(fileName: str) -> IO:
-    """
-    Open a csv data file from the raw data directory.
-
-    :param fileName: the full name of the file to load (with the extension)
-    :return: the opened file
-    """
-
-    return open(os.path.join(re.DATA_RAW_DIR, fileName))
-
-
 def loadCities():
     """
     Load the cities from the city_attributes.csv file and put them in the
@@ -55,7 +42,7 @@ def loadCities():
         # Clear any existing city data
         conn.execute(sql.CLEAR_CITIES_TABLE)
 
-        with getDataFile('city_attributes.csv') as file:
+        with ut.getDataFile('city_attributes.csv') as file:
             # Skip the first row (the column headers)
             next(file)
 
@@ -116,32 +103,38 @@ def loadWeatherData():
         # Clear any existing city data
         conn.execute(sql.CLEAR_WEATHER_TABLE)
 
-        # Start by adding each city with just its temperature data
-        with getDataFile('temperature.csv') as file:
-            # Read and parse the temperature csv
-            r = csv.reader(file)
-            header = next(r)
+        # Open each of the data files as a csv reader
+        readers = [csv.reader(ut.getDataFile(file)) for file in re.DATA_FILES]
 
-            # For each row in the csv (except the header), get the timestamp.
-            # Then iterate over the rest of the cells in the row, matching them
-            # with the column name in the header and sending to the database.
-            for row in r:
-                timestamp = dt.strptime(row[0], re.DATE_TIME_FORMAT)
+        # Get the headers from each csv file to omit the first row
+        headers = [next(r) for r in readers]
 
-                for i in range(1, len(row)):
-                    conn.execute(sql.ADD_WEATHER_TEMPERATURE,
-                                 (timestamp, header[i], row[i]))
+        # Confirm that all the headers are the same between the various data
+        # files. If not, log a warning
+        if not ut.isHomogeneous(headers):
+            print("Warning: headers don't match:", headers)
 
-        with getDataFile('humidity.csv') as file:
-            r = csv.reader(file)
-            header = next(r)
+        # Iterate through each data file simultaneously
+        for temp, hum, pre, w_desc, w_dir, w_spd in zip(*readers):
+            rows = (temp, hum, pre, w_desc, w_dir, w_spd)
 
-            for row in r:
-                timestamp = dt.strptime(row[0], re.DATE_TIME_FORMAT)
+            # Get the timestamp from the temperature file
+            timestamp = ut.formatTime(temp[0])
 
-                for i in range(1, len(row)):
-                    conn.execute(sql.UPDATE_WEATHER_HUMIDITY,
-                                 (row[i], timestamp, header[i]))
+            # Check to make sure that the data lines up between all the
+            # different data files.
 
-        # Load each of the remaining weather data types and update the
-        # Weather table accordingly.
+            # If all the timestamps aren't the same, log a warning and continue
+            if not ut.isHomogeneous([ut.formatTime(t[0]) for t in rows]):
+                print("Warning: timestamps don't match:", rows)
+            # If the rows don't have the same number of columns, log a warning
+            if not ut.isHomogeneous([len(r) for r in rows]):
+                print("Warning: rows have inconsistent column counts:", rows)
+
+            # Assuming the data lined up and is good, send the data point for
+            # each city to the database.
+            for i in range(1, len(rows[0])):
+                conn.execute(
+                    sql.ADD_WEATHER_DATA,
+                    (timestamp, headers[0][i]) + tuple([r[i] for r in rows])
+                )
