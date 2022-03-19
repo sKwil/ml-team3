@@ -48,3 +48,16 @@ def formatTime(time_str: str) -> dt:
     """
 
     return dt.strptime(time_str, re.DATE_TIME_FORMAT)
+
+
+def getDataFileLines(file: str) -> int:
+    """
+    Count the number of lines in the given data file. The file is opened with
+    util.getDataFile().
+
+    :param file: the name of the data file to count
+    :return: the number of lines in the file
+    """
+
+    with getDataFile(file) as f:
+        return sum(1 for _ in f)

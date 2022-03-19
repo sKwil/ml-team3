@@ -1,5 +1,6 @@
 import csv
 import sqlite3
+from tqdm import tqdm
 
 import resources as re
 import sqlStrings as sql
@@ -98,13 +99,18 @@ def loadWeatherData():
     across multiple csvs for each type of data (temperature, humidity, etc.)
     """
 
+    print('Loading weather data...')
+    print('Importing data files...')
+
     # Open a connection to the sqlite database
     with getConn() as conn:
         # Clear any existing city data
         conn.execute(sql.CLEAR_WEATHER_TABLE)
 
-        # Open each of the data files as a csv reader
-        readers = [csv.reader(ut.getDataFile(file)) for file in re.DATA_FILES]
+        # Open each of the data files
+        files = [ut.getDataFile(file) for file in re.DATA_FILES]
+        # Create csv readers for each file
+        readers = [csv.reader(f) for f in files]
 
         # Get the headers from each csv file to omit the first row
         headers = [next(r) for r in readers]
@@ -113,6 +119,14 @@ def loadWeatherData():
         # files. If not, log a warning
         if not ut.isHomogeneous(headers):
             print("Warning: headers don't match:", headers)
+
+        # Create progress bar based on the expected number of rows that will
+        # be added. (This is the number of rows in one of the data files,
+        # sans the header row, times the number of cities)
+        expected_rows = (ut.getDataFileLines('temperature.csv') - 1) * \
+                        (len(headers[0]) - 1)
+        print('Expected rows:', expected_rows)
+        progress_bar = tqdm(total=expected_rows, desc='Reading data...')
 
         # Iterate through each data file simultaneously
         for temp, hum, pre, w_desc, w_dir, w_spd in zip(*readers):
@@ -134,7 +148,16 @@ def loadWeatherData():
             # Assuming the data lined up and is good, send the data point for
             # each city to the database.
             for i in range(1, len(rows[0])):
+                progress_bar.update(1)
                 conn.execute(
                     sql.ADD_WEATHER_DATA,
                     (timestamp, headers[0][i]) + tuple([r[i] for r in rows])
                 )
+
+        # Close each of the data files
+        for f in files:
+            f.close()
+
+        progress_bar.close()
+
+        print('Successfully loaded weather data')
