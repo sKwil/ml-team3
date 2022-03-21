@@ -29,6 +29,18 @@ def install():
             conn.executescript(script.read())
 
 
+def createViews():
+    """
+    Run the create views SQL script, creating views to help easily access
+    relevant data. This also involves replacing the empty cells in the Weather
+    table with null.
+    """
+
+    with getConn() as conn:
+        with open(re.DATABASE_CREATE_VIEWS_SCRIPT) as script:
+            conn.executescript(script.read())
+
+
 def loadCities():
     """
     Load the cities from the city_attributes.csv file and put them in the

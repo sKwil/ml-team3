@@ -8,3 +8,6 @@ db.loadCities()
 
 # Load the weather data
 db.loadWeatherData()
+
+# Create views for easily accessing data
+db.createViews()
