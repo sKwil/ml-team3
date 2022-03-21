@@ -36,6 +36,8 @@ def createViews():
     table with null.
     """
 
+    print('Creating views for Weather table')
+
     with getConn() as conn:
         with open(re.DATABASE_CREATE_VIEWS_SCRIPT) as script:
             conn.executescript(script.read())
