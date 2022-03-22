@@ -2,7 +2,7 @@ import csv
 import sqlite3
 from tqdm import tqdm
 
-import resources as re
+from .. import resources as re
 import sqlStrings as sql
 import util as ut
 

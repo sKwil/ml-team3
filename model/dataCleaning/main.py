@@ -1,4 +1,4 @@
-import db
+import dbSetup
 
 # Install the database (ONLY CALL THIS ONCE)
 db.install()
