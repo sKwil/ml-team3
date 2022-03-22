@@ -5,7 +5,7 @@ from datetime import datetime as dt
 from .. import resources as re
 
 
-def getDataFile(fileName: str) -> IO:
+def get_data_file(fileName: str) -> IO:
     """
     Open a csv data file from the raw data directory.
 
@@ -16,7 +16,7 @@ def getDataFile(fileName: str) -> IO:
     return open(os.path.join(re.DATA_RAW_DIR, fileName))
 
 
-def isHomogeneous(items: List) -> bool:
+def is_homogeneous(items: List) -> bool:
     """
     Return whether the given list is homogeneous (meaning it contains only
     one item repeated an arbitrary number of times, rather than separate
@@ -38,7 +38,7 @@ def isHomogeneous(items: List) -> bool:
     return True
 
 
-def formatTime(time_str: str) -> dt:
+def format_time(time_str: str) -> dt:
     """
     Format some string into a datetime object based on the format specified
     in resources.DATE_TIME_FORMAT.
@@ -50,7 +50,7 @@ def formatTime(time_str: str) -> dt:
     return dt.strptime(time_str, re.DATE_TIME_FORMAT)
 
 
-def getDataFileLines(file: str) -> int:
+def get_data_file_lines(file: str) -> int:
     """
     Count the number of lines in the given data file. The file is opened with
     util.getDataFile().
@@ -59,5 +59,5 @@ def getDataFileLines(file: str) -> int:
     :return: the number of lines in the file
     """
 
-    with getDataFile(file) as f:
+    with get_data_file(file) as f:
         return sum(1 for _ in f)

@@ -1,5 +1,5 @@
 import loader
 
-df = loader.getDataFrame()
+df = loader.get_data_frame()
 
 print(df.tail())

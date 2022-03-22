@@ -1,13 +1,13 @@
-import dbSetup as db
+import db_setup as db
 
 # Install the database (ONLY CALL THIS ONCE)
 db.install()
 
 # Load the Cities data
-db.loadCities()
+db.load_cities()
 
 # Load the weather data
-db.loadWeatherData()
+db.load_weather_data()
 
 # Create views for easily accessing data
-db.createViews()
+db.create_views()

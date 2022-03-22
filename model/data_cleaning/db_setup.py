@@ -1,21 +1,10 @@
 import csv
-import sqlite3
 from tqdm import tqdm
 
 from .. import resources as re
-import sqlStrings as sql
+from .. import db
+import sql_strings as sql
 import util as ut
-
-
-def getConn() -> sqlite3.Connection:
-    """
-    Get a connection to the sqlite database where all the weather data is
-    stored.
-
-    :return: a sqlite connection
-    """
-
-    return sqlite3.connect(re.DATABASE)
 
 
 def install():
@@ -24,12 +13,12 @@ def install():
     that will be used later.
     """
 
-    with getConn() as conn:
+    with db.get_conn() as conn:
         with open(re.DATABASE_SETUP_SCRIPT) as script:
             conn.executescript(script.read())
 
 
-def createViews():
+def create_views():
     """
     Run the create views SQL script, creating views to help easily access
     relevant data. This also involves replacing the empty cells in the Weather
@@ -38,12 +27,12 @@ def createViews():
 
     print('Creating views for Weather table')
 
-    with getConn() as conn:
+    with db.get_conn() as conn:
         with open(re.DATABASE_CREATE_VIEWS_SCRIPT) as script:
             conn.executescript(script.read())
 
 
-def loadCities():
+def load_cities():
     """
     Load the cities from the city_attributes.csv file and put them in the
     Cities table.
@@ -53,11 +42,11 @@ def loadCities():
     """
 
     # Open a connection to the sqlite database
-    with getConn() as conn:
+    with db.get_conn() as conn:
         # Clear any existing city data
         conn.execute(sql.CLEAR_CITIES_TABLE)
 
-        with ut.getDataFile('city_attributes.csv') as file:
+        with ut.get_data_file('city_attributes.csv') as file:
             # Skip the first row (the column headers)
             next(file)
 
@@ -71,7 +60,7 @@ def loadCities():
             print('Added', c, 'cities to SQL database')
 
 
-def loadWeatherData():
+def load_weather_data():
     """
     Load all the weather data for each city from the csv files. Send this
     data to the sqlite database in the Weather table.
@@ -117,12 +106,12 @@ def loadWeatherData():
     print('Importing data files...')
 
     # Open a connection to the sqlite database
-    with getConn() as conn:
+    with db.get_conn() as conn:
         # Clear any existing city data
         conn.execute(sql.CLEAR_WEATHER_TABLE)
 
         # Open each of the data files
-        files = [ut.getDataFile(file) for file in re.DATA_FILES]
+        files = [ut.get_data_file(file) for file in re.DATA_FILES]
         # Create csv readers for each file
         readers = [csv.reader(f) for f in files]
 
@@ -131,13 +120,13 @@ def loadWeatherData():
 
         # Confirm that all the headers are the same between the various data
         # files. If not, log a warning
-        if not ut.isHomogeneous(headers):
+        if not ut.is_homogeneous(headers):
             print("Warning: headers don't match:", headers)
 
         # Create progress bar based on the expected number of rows that will
         # be added. (This is the number of rows in one of the data files,
         # sans the header row, times the number of cities)
-        expected_rows = (ut.getDataFileLines('temperature.csv') - 1) * \
+        expected_rows = (ut.get_data_file_lines('temperature.csv') - 1) * \
                         (len(headers[0]) - 1)
         print('Expected rows:', expected_rows)
         progress_bar = tqdm(total=expected_rows, desc='Reading data...')
@@ -147,16 +136,16 @@ def loadWeatherData():
             rows = (temp, hum, pre, w_desc, w_dir, w_spd)
 
             # Get the timestamp from the temperature file
-            timestamp = ut.formatTime(temp[0])
+            timestamp = ut.format_time(temp[0])
 
             # Check to make sure that the data lines up between all the
             # different data files.
 
             # If all the timestamps aren't the same, log a warning and continue
-            if not ut.isHomogeneous([ut.formatTime(t[0]) for t in rows]):
+            if not ut.is_homogeneous([ut.format_time(t[0]) for t in rows]):
                 print("Warning: timestamps don't match:", rows)
             # If the rows don't have the same number of columns, log a warning
-            if not ut.isHomogeneous([len(r) for r in rows]):
+            if not ut.is_homogeneous([len(r) for r in rows]):
                 print("Warning: rows have inconsistent column counts:", rows)
 
             # Assuming the data lined up and is good, send the data point for
