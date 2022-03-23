@@ -1,16 +1,71 @@
 import csv
+import os
+
 from tqdm import tqdm
 
-from .. import resources as re
-from .. import db
-import sql_strings as sql
-import util as ut
+import model.resources as re
+from model import db
+from model.data_import import loader
+from model.data_cleaning import sql_strings as sql
+from model.data_cleaning import util as ut
 
 
 def install():
     """
+    Run each of the setup methods within this file, thereby deleting the
+    existing sqlite database and then recreating it from the raw data. The
+    setup is performed in this order:
+
+    1. The existing database is cleared, dropping all the tables.
+    2. The database is recreated and configured with two tables called
+       Cities and Weather
+    3. Import the city data into the database
+    4. Import the weather data into the database
+    5. Create SQL views to filter the dat
+    """
+
+    print('Deleting existing database...')
+    try:
+        delete_db()
+    except OSError:
+        print('Installation failed.')
+        print('The database file may be in use by another program.')
+        return
+
+    print('Configuring weather database...')
+    configure()
+
+    print('Loading cities...')
+    load_cities()
+    print('Added', loader.get_cities_rows(), 'cities to SQL database')
+
+    print('Loading weather data...')
+    load_weather_data()
+    print('Successfully loaded', loader.get_weather_rows(), 'weather rows')
+
+    print('Creating SQL views...')
+    create_views()
+
+    print('Finished SQLite installation')
+
+
+def delete_db():
+    """
+    Delete the sqlite database file, if it exists. If it does not exist,
+    nothing happens.
+
+    If the file is currently in use, an exception will be thrown which must
+    be caught.
+    """
+
+    if os.path.exists(re.DATABASE):
+        os.remove(re.DATABASE)
+
+
+def configure():
+    """
     Run the initial setup for the sqlite database, creating the basic tables
-    that will be used later.
+    that will be used later. Note that this clears any existing tables.
     """
 
     with db.get_conn() as conn:
@@ -24,8 +79,6 @@ def create_views():
     relevant data. This also involves replacing the empty cells in the Weather
     table with null.
     """
-
-    print('Creating views for Weather table')
 
     with db.get_conn() as conn:
         with open(re.DATABASE_CREATE_VIEWS_SCRIPT) as script:
@@ -50,14 +103,16 @@ def load_cities():
             # Skip the first row (the column headers)
             next(file)
 
+            rows = ut.get_data_file_lines('city_attributes.csv') - 1
+            progress_bar = tqdm(total=rows, desc='Reading data...')
+
             # Read the csv data one row at a time, sending it to the database
             r = csv.reader(file)
-            c = 0
             for row in r:
                 conn.execute(sql.ADD_CITY, (row[0], row[1], row[2], row[3]))
-                c += 1
+                progress_bar.update(1)
 
-            print('Added', c, 'cities to SQL database')
+            progress_bar.close()
 
 
 def load_weather_data():
@@ -101,9 +156,6 @@ def load_weather_data():
     stored in one table, rather than the raw weather data which is spread
     across multiple csvs for each type of data (temperature, humidity, etc.)
     """
-
-    print('Loading weather data...')
-    print('Importing data files...')
 
     # Open a connection to the sqlite database
     with db.get_conn() as conn:
@@ -162,5 +214,3 @@ def load_weather_data():
             f.close()
 
         progress_bar.close()
-
-        print('Successfully loaded weather data')

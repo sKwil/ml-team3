@@ -2,7 +2,7 @@ import os
 from typing import IO, List
 from datetime import datetime as dt
 
-from .. import resources as re
+import model.resources as re
 
 
 def get_data_file(fileName: str) -> IO:
