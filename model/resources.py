@@ -11,10 +11,10 @@ SQL_DIR = os.path.join(DATA_DIR, 'sql')
 DATABASE = os.path.join(SQL_DIR, 'weather.db')
 
 # SQL scripts for data cleaning
-DATA_CLEANING_DIR = os.path.join(MODEL_DIR, 'data_cleaning')
-DATABASE_SETUP_SCRIPT = os.path.join(DATA_CLEANING_DIR, 'setup.sql')
+DATA_CLEANING_SQL_DIR = os.path.join(MODEL_DIR, 'data_cleaning', 'sql')
+DATABASE_SETUP_SCRIPT = os.path.join(DATA_CLEANING_SQL_DIR, 'setup.sql')
 DATABASE_CREATE_VIEWS_SCRIPT = os.path.join(
-    DATA_CLEANING_DIR, 'create_views.sql')
+    DATA_CLEANING_SQL_DIR, 'create_views.sql')
 
 # The standard time format for the database
 DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'

@@ -180,7 +180,6 @@ def load_weather_data():
         # sans the header row, times the number of cities)
         expected_rows = (ut.get_data_file_lines('temperature.csv') - 1) * \
                         (len(headers[0]) - 1)
-        print('Expected rows:', expected_rows)
         progress_bar = tqdm(total=expected_rows, desc='Reading data...')
 
         # Iterate through each data file simultaneously
