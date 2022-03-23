@@ -1,49 +1,74 @@
 import csv
-import sqlite3
+import os
+
 from tqdm import tqdm
 
-import resources as re
-import sqlStrings as sql
-import util as ut
-
-
-def getConn() -> sqlite3.Connection:
-    """
-    Get a connection to the sqlite database where all the weather data is
-    stored.
-
-    :return: a sqlite connection
-    """
-
-    return sqlite3.connect(re.DATABASE)
+import model.resources as re
+from model import db
+from model.data_import import loader
+from model.data_cleaning import sql_strings as sql
+from model.data_cleaning import util as ut
 
 
 def install():
     """
-    Run the initial setup for the sqlite database, creating the basic tables
-    that will be used later.
+    Run each of the setup methods within this file, thereby deleting the
+    existing sqlite database and then recreating it from the raw data. The
+    setup is performed in this order:
+
+    1. The existing database is cleared, dropping all the tables.
+    2. The database is recreated and configured with two tables called
+       Cities and Weather
+    3. Import the city data into the database
+    4. Import the weather data into the database
+    5. Create SQL views to filter the dat
     """
 
-    with getConn() as conn:
-        with open(re.DATABASE_SETUP_SCRIPT) as script:
-            conn.executescript(script.read())
+    print('Deleting existing database...')
+    try:
+        delete_db()
+    except OSError:
+        print('Installation failed.')
+        print('  The database file may be in use by another program.')
+        return
+
+    print('Configuring weather database...')
+    ut.run_script(re.DATABASE_SETUP_SCRIPT)
+
+    print('Loading Cities...')
+    load_cities()
+    print('  Added', loader.get_cities_rows(), 'cities to SQL database')
+
+    print('Loading Weather data...')
+    load_weather_data()
+    print('  Successfully loaded', loader.get_weather_rows(), 'weather rows')
+
+    print('Creating DayPhase table...')
+    ut.run_script(re.DATABASE_DAY_PHASE_SCRIPT)
+
+    print('Cleaning weather data...')
+    ut.run_script(re.DATABASE_CLEAN_DATA_SCRIPT)
+
+    print('Creating SQL views...')
+    ut.run_script(re.DATABASE_CREATE_VIEWS_SCRIPT)
+
+    print('Finished SQLite installation')
 
 
-def createViews():
+def delete_db():
     """
-    Run the create views SQL script, creating views to help easily access
-    relevant data. This also involves replacing the empty cells in the Weather
-    table with null.
+    Delete the sqlite database file, if it exists. If it does not exist,
+    nothing happens.
+
+    If the file is currently in use, an exception will be thrown which must
+    be caught.
     """
 
-    print('Creating views for Weather table')
-
-    with getConn() as conn:
-        with open(re.DATABASE_CREATE_VIEWS_SCRIPT) as script:
-            conn.executescript(script.read())
+    if os.path.exists(re.DATABASE):
+        os.remove(re.DATABASE)
 
 
-def loadCities():
+def load_cities():
     """
     Load the cities from the city_attributes.csv file and put them in the
     Cities table.
@@ -53,25 +78,27 @@ def loadCities():
     """
 
     # Open a connection to the sqlite database
-    with getConn() as conn:
+    with db.get_conn() as conn:
         # Clear any existing city data
         conn.execute(sql.CLEAR_CITIES_TABLE)
 
-        with ut.getDataFile('city_attributes.csv') as file:
+        with ut.get_data_file('city_attributes.csv') as file:
             # Skip the first row (the column headers)
             next(file)
 
+            rows = ut.get_data_file_lines('city_attributes.csv') - 1
+            progress_bar = tqdm(total=rows, desc='Reading data...')
+
             # Read the csv data one row at a time, sending it to the database
             r = csv.reader(file)
-            c = 0
             for row in r:
                 conn.execute(sql.ADD_CITY, (row[0], row[1], row[2], row[3]))
-                c += 1
+                progress_bar.update(1)
 
-            print('Added', c, 'cities to SQL database')
+            progress_bar.close()
 
 
-def loadWeatherData():
+def load_weather_data():
     """
     Load all the weather data for each city from the csv files. Send this
     data to the sqlite database in the Weather table.
@@ -113,16 +140,13 @@ def loadWeatherData():
     across multiple csvs for each type of data (temperature, humidity, etc.)
     """
 
-    print('Loading weather data...')
-    print('Importing data files...')
-
     # Open a connection to the sqlite database
-    with getConn() as conn:
+    with db.get_conn() as conn:
         # Clear any existing city data
         conn.execute(sql.CLEAR_WEATHER_TABLE)
 
         # Open each of the data files
-        files = [ut.getDataFile(file) for file in re.DATA_FILES]
+        files = [ut.get_data_file(file) for file in re.DATA_FILES]
         # Create csv readers for each file
         readers = [csv.reader(f) for f in files]
 
@@ -131,15 +155,14 @@ def loadWeatherData():
 
         # Confirm that all the headers are the same between the various data
         # files. If not, log a warning
-        if not ut.isHomogeneous(headers):
+        if not ut.is_homogeneous(headers):
             print("Warning: headers don't match:", headers)
 
         # Create progress bar based on the expected number of rows that will
         # be added. (This is the number of rows in one of the data files,
         # sans the header row, times the number of cities)
-        expected_rows = (ut.getDataFileLines('temperature.csv') - 1) * \
+        expected_rows = (ut.get_data_file_lines('temperature.csv') - 1) * \
                         (len(headers[0]) - 1)
-        print('Expected rows:', expected_rows)
         progress_bar = tqdm(total=expected_rows, desc='Reading data...')
 
         # Iterate through each data file simultaneously
@@ -147,16 +170,16 @@ def loadWeatherData():
             rows = (temp, hum, pre, w_desc, w_dir, w_spd)
 
             # Get the timestamp from the temperature file
-            timestamp = ut.formatTime(temp[0])
+            timestamp = ut.format_time(temp[0])
 
             # Check to make sure that the data lines up between all the
             # different data files.
 
             # If all the timestamps aren't the same, log a warning and continue
-            if not ut.isHomogeneous([ut.formatTime(t[0]) for t in rows]):
+            if not ut.is_homogeneous([ut.format_time(t[0]) for t in rows]):
                 print("Warning: timestamps don't match:", rows)
             # If the rows don't have the same number of columns, log a warning
-            if not ut.isHomogeneous([len(r) for r in rows]):
+            if not ut.is_homogeneous([len(r) for r in rows]):
                 print("Warning: rows have inconsistent column counts:", rows)
 
             # Assuming the data lined up and is good, send the data point for
@@ -173,5 +196,3 @@ def loadWeatherData():
             f.close()
 
         progress_bar.close()
-
-        print('Successfully loaded weather data')
