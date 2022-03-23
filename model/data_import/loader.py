@@ -1,5 +1,5 @@
 import pandas as pd
-from .. import db
+from model import db
 
 
 def get_data_frame(table: str) -> pd.DataFrame:

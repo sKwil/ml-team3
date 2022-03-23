@@ -1,5 +1,5 @@
 import sqlite3
-import resources as re
+from model import resources as re
 
 
 def get_conn() -> sqlite3.Connection:
