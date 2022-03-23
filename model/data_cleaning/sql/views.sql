@@ -6,6 +6,8 @@ It creates views for more easily accessing often used data.
 -- Create a view with all the information for all cities
 CREATE VIEW DataAll AS
 SELECT W.datetime,
+       strftime('%m', W.datetime) as month,
+       D.phase,
        W.city,
        C.country,
        C.latitude,
@@ -17,7 +19,8 @@ SELECT W.datetime,
        W.wind_direction,
        W.wind_speed
 FROM Weather as W
-         LEFT JOIN Cities C on C.name = W.city;
+         LEFT JOIN Cities C on C.name = W.city
+         LEFT JOIN DayPhase D on D.hour = strftime('%H', W.datetime);
 
 -- Create a view for US data with null entries removed
 CREATE VIEW USWeather AS
