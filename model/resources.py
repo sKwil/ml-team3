@@ -14,6 +14,7 @@ DATABASE = os.path.join(SQL_DIR, 'weather.db')
 CLEANING_SQL_DIR = os.path.join(MODEL_DIR, 'data_cleaning', 'sql')
 DATABASE_SETUP_SCRIPT = os.path.join(CLEANING_SQL_DIR, 'setup.sql')
 DATABASE_CLEAN_DATA_SCRIPT = os.path.join(CLEANING_SQL_DIR, 'clean_data.sql')
+DATABASE_DAY_PHASE_SCRIPT = os.path.join(CLEANING_SQL_DIR, 'day_phase.sql')
 DATABASE_CREATE_VIEWS_SCRIPT = os.path.join(CLEANING_SQL_DIR, 'views.sql')
 
 # The standard time format for the database

@@ -35,13 +35,16 @@ def install():
     print('Configuring weather database...')
     ut.run_script(re.DATABASE_SETUP_SCRIPT)
 
-    print('Loading cities...')
+    print('Loading Cities...')
     load_cities()
     print('  Added', loader.get_cities_rows(), 'cities to SQL database')
 
-    print('Loading weather data...')
+    print('Loading Weather data...')
     load_weather_data()
     print('  Successfully loaded', loader.get_weather_rows(), 'weather rows')
+
+    print('Creating DayPhase table...')
+    ut.run_script(re.DATABASE_DAY_PHASE_SCRIPT)
 
     print('Cleaning weather data...')
     ut.run_script(re.DATABASE_CLEAN_DATA_SCRIPT)
