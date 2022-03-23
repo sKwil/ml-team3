@@ -29,7 +29,7 @@ def install():
         delete_db()
     except OSError:
         print('Installation failed.')
-        print('The database file may be in use by another program.')
+        print('  The database file may be in use by another program.')
         return
 
     print('Configuring weather database...')
@@ -37,11 +37,11 @@ def install():
 
     print('Loading cities...')
     load_cities()
-    print('Added', loader.get_cities_rows(), 'cities to SQL database')
+    print('  Added', loader.get_cities_rows(), 'cities to SQL database')
 
     print('Loading weather data...')
     load_weather_data()
-    print('Successfully loaded', loader.get_weather_rows(), 'weather rows')
+    print('  Successfully loaded', loader.get_weather_rows(), 'weather rows')
 
     print('Cleaning weather data...')
     ut.run_script(re.DATABASE_CLEAN_DATA_SCRIPT)
