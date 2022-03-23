@@ -2,15 +2,23 @@ import pandas as pd
 from .. import db
 
 
-def get_data_frame():
+def get_data_frame(table: str) -> pd.DataFrame:
     """
     convert the weather sqlite table into pandas data frame Get the
-    connection to the table of interest. Currently, set as the USWeather view.
+    connection to the table of interest. Currently, set as the view from 'table' parameter.
     """
     with db.get_conn() as conn:
-        df = pd.read_sql_query("SELECT * FROM USWeather;", conn)
+        df = pd.read_sql_query("SELECT * FROM {t};".format(t=table), conn)
 
     return df
+
+
+def get_US_Weather_data() -> pd.DataFrame:
+    """
+    Get the USWeather SQL view as a Panda's DataFrame.
+    :return: the dataframe
+    """
+    return get_data_frame('USWeather')
 
 
 def get_weather_rows() -> int:
