@@ -14,5 +14,4 @@ def create_app():
     from . import user
     app.register_blueprint(user.bp)
 
-
     return app
