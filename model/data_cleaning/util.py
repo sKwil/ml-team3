@@ -3,6 +3,7 @@ from typing import IO, List
 from datetime import datetime as dt
 
 import model.resources as re
+from model import db
 
 
 def get_data_file(fileName: str) -> IO:
@@ -61,3 +62,14 @@ def get_data_file_lines(file: str) -> int:
 
     with get_data_file(file) as f:
         return sum(1 for _ in f)
+
+
+def run_script(script_file: str):
+    """
+    Execute an arbitrary .sql file script on the weather database.
+    :param script_file: the path to the file to execute
+    """
+
+    with db.get_conn() as conn:
+        with open(script_file) as script:
+            conn.executescript(script.read())

@@ -33,7 +33,7 @@ def install():
         return
 
     print('Configuring weather database...')
-    configure()
+    ut.run_script(re.DATABASE_SETUP_SCRIPT)
 
     print('Loading cities...')
     load_cities()
@@ -43,8 +43,11 @@ def install():
     load_weather_data()
     print('Successfully loaded', loader.get_weather_rows(), 'weather rows')
 
+    print('Cleaning weather data...')
+    ut.run_script(re.DATABASE_CLEAN_DATA_SCRIPT)
+
     print('Creating SQL views...')
-    create_views()
+    ut.run_script(re.DATABASE_CREATE_VIEWS_SCRIPT)
 
     print('Finished SQLite installation')
 
@@ -60,29 +63,6 @@ def delete_db():
 
     if os.path.exists(re.DATABASE):
         os.remove(re.DATABASE)
-
-
-def configure():
-    """
-    Run the initial setup for the sqlite database, creating the basic tables
-    that will be used later. Note that this clears any existing tables.
-    """
-
-    with db.get_conn() as conn:
-        with open(re.DATABASE_SETUP_SCRIPT) as script:
-            conn.executescript(script.read())
-
-
-def create_views():
-    """
-    Run the create views SQL script, creating views to help easily access
-    relevant data. This also involves replacing the empty cells in the Weather
-    table with null.
-    """
-
-    with db.get_conn() as conn:
-        with open(re.DATABASE_CREATE_VIEWS_SCRIPT) as script:
-            conn.executescript(script.read())
 
 
 def load_cities():
