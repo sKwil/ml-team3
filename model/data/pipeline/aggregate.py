@@ -15,15 +15,18 @@ def get_agg_data_frame() -> pd.DataFrame:
     :return: a Pandas data frame
     """
 
-    cm_pairs = __get_city_month_pairs().set_index(['city', 'month'])
-    temperature = __get_aggregate_temperature()
+    df = __get_city_month_pairs().set_index(['city', 'month'])
+    temp = __get_aggregate_temperature()
     humidity = __get_aggregate_humidity()
     pressure = __get_aggregate_pressure()
     wind = __get_aggregate_wind_speed()
     descriptions = __get_aggregate_weather_descriptions()
 
-    df = pd.merge(cm_pairs, descriptions, left_index=True, right_index=True,
-                  how='inner')
+    df = pd.merge(df, temp.to_frame(), left_index=True, right_index=True)
+    df = pd.merge(df, humidity.to_frame(), left_index=True, right_index=True)
+    df = pd.merge(df, pressure.to_frame(), left_index=True, right_index=True)
+    df = pd.merge(df, wind.to_frame(), left_index=True, right_index=True)
+    df = pd.merge(df, descriptions, left_index=True, right_index=True)
 
     return df
 
@@ -58,15 +61,15 @@ def __get_aggregate_temperature() -> pd.Series:
 
 def __get_aggregate_humidity() -> pd.Series:
     """
-        Get a series with aggregated humidity, indexed by unique city-month
-        pairs.
+    Get a series with aggregated humidity, indexed by unique city-month
+    pairs.
 
-        The aggregation strategy used here is to compute the mean of the
-        humidity values for all hours at the midday phase only. This is done
-        across all days in each month for each city.
+    The aggregation strategy used here is to compute the mean of the
+    humidity values for all hours at the midday phase only. This is done
+    across all days in each month for each city.
 
-        :return: the indexed series of humidity data
-        """
+    :return: the indexed series of humidity data
+    """
 
     # Get a data frame with city, month, and humidity columns
     df = ut.load_sql_as_df(sql.AGG_HUMIDITY)
@@ -76,15 +79,15 @@ def __get_aggregate_humidity() -> pd.Series:
 
 def __get_aggregate_pressure() -> pd.Series:
     """
-        Get a series with aggregated pressure, indexed by unique city-month
-        pairs.
+    Get a series with aggregated pressure, indexed by unique city-month
+    pairs.
 
-        The aggregation strategy used here is to compute the mean of the
-        pressure values for all hours at the midday phase only. This is done
-        across all days in each month for each city.
+    The aggregation strategy used here is to compute the mean of the
+    pressure values for all hours at the midday phase only. This is done
+    across all days in each month for each city.
 
-        :return: the indexed series of pressure data
-        """
+    :return: the indexed series of pressure data
+    """
 
     # Get a data frame with city, month, and pressure columns
     df = ut.load_sql_as_df(sql.AGG_PRESSURE)
@@ -94,15 +97,15 @@ def __get_aggregate_pressure() -> pd.Series:
 
 def __get_aggregate_wind_speed() -> pd.Series:
     """
-        Get a series with aggregated wind speed data, indexed by unique
-        city-month pairs.
+    Get a series with aggregated wind speed data, indexed by unique
+    city-month pairs.
 
-        The aggregation strategy used here is to compute the mean of the
-        wind speed values for all hours at the midday phase only. This is done
-        across all days in each month for each city.
+    The aggregation strategy used here is to compute the mean of the
+    wind speed values for all hours at the midday phase only. This is done
+    across all days in each month for each city.
 
-        :return: the indexed series of wind speed data
-        """
+    :return: the indexed series of wind speed data
+    """
 
     # Get a data frame with city, month, and wind speed columns
     df = ut.load_sql_as_df(sql.AGG_WIND_SPEED)
@@ -111,6 +114,16 @@ def __get_aggregate_wind_speed() -> pd.Series:
 
 
 def __get_aggregate_weather_descriptions() -> pd.DataFrame:
+    """
+    Get a data frame with aggregated data for each of the weather description
+    types, indexed by unique city-month pairs.
+
+    The aggregation strategy used here is a relative frequency, returning the
+    proportion of hours within the specified city-month group that have a
+    weather_description matching each label (rain, snow, cloud, etc.)
+    :return: the indexed data frame of weather description data
+    """
+
     # Get a data frame with city, month, and relative frequencies for each
     # of the weather description types
     df = ut.load_sql_as_df(sql.AGG_WEATHER_DESCRIPTION)
