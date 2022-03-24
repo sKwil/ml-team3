@@ -34,10 +34,77 @@ def __get_aggregate_temperature() -> pd.Series:
     """
     Get a series with aggregated temperatures, indexed by unique city-month
     pairs.
-    :return: the indexed series of temperatures
+
+    The aggregation strategy used here is to compute the mean of the
+    temperatures for all hours at the midday phase only. This is done across
+    all days in each month for each city.
+
+    :return: the indexed series of temperatures data
     """
 
-    # Get a data frame with city, month, and temperature rows
+    # Get a data frame with city, month, and temperature columns
     df = ut.load_sql_as_df(sql.AGG_TEMPERATURE)
     # Return a series with city and month as indices and temperature as value
     return df.set_index(['city', 'month'])['temperature']
+
+
+def __get_aggregate_humidity() -> pd.Series:
+    """
+        Get a series with aggregated humidity, indexed by unique city-month
+        pairs.
+
+        The aggregation strategy used here is to compute the mean of the
+        humidity values for all hours at the midday phase only. This is done
+        across all days in each month for each city.
+
+        :return: the indexed series of humidity data
+        """
+
+    # Get a data frame with city, month, and humidity columns
+    df = ut.load_sql_as_df(sql.AGG_HUMIDITY)
+    # Return a series with city and month as indices and humidity as value
+    return df.set_index(['city', 'month'])['humidity']
+
+
+def __get_aggregate_pressure() -> pd.Series:
+    """
+        Get a series with aggregated pressure, indexed by unique city-month
+        pairs.
+
+        The aggregation strategy used here is to compute the mean of the
+        pressure values for all hours at the midday phase only. This is done
+        across all days in each month for each city.
+
+        :return: the indexed series of pressure data
+        """
+
+    # Get a data frame with city, month, and pressure columns
+    df = ut.load_sql_as_df(sql.AGG_PRESSURE)
+    # Return a series with city and month as indices and pressure as value
+    return df.set_index(['city', 'month'])['pressure']
+
+
+def __get_aggregate_wind_speed() -> pd.Series:
+    """
+        Get a series with aggregated wind speed data, indexed by unique
+        city-month pairs.
+
+        The aggregation strategy used here is to compute the mean of the
+        wind speed values for all hours at the midday phase only. This is done
+        across all days in each month for each city.
+
+        :return: the indexed series of wind speed data
+        """
+
+    # Get a data frame with city, month, and wind speed columns
+    df = ut.load_sql_as_df(sql.AGG_WIND_SPEED)
+    # Return a series with city and month as indices and wind speed as value
+    return df.set_index(['city', 'month'])['wind_speed']
+
+
+def __get_aggregate_weather_descriptions():
+    # Get a data frame with city, month, and relative frequencies for each
+    # of the weather description types
+    df = ut.load_sql_as_df(sql.AGG_WEATHER_DESCRIPTION)
+    # Return a series with city and month as indices and wind speed as value
+    return df.set_index(['city', 'month'])['wind_speed']

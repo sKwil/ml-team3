@@ -4,8 +4,7 @@ aggregate.py file.
 """
 import pandas as pd
 
-from model.data.pipeline import resources as re
-from model import db
+from model.data import db
 
 
 def load_sql_as_df(query: str) -> pd.DataFrame:

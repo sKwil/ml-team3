@@ -2,7 +2,7 @@ import os.path
 
 # Top level project directories
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
+DATA_DIR = os.path.join(PROJECT_ROOT, '')
 MODEL_DIR = os.path.join(PROJECT_ROOT, 'model')
 
 # Database references
@@ -11,7 +11,7 @@ SQL_DIR = os.path.join(DATA_DIR, 'sql')
 DATABASE = os.path.join(SQL_DIR, 'weather.db')
 
 # SQL scripts for data cleaning
-CLEANING_SQL_DIR = os.path.join(MODEL_DIR, 'data/cleaning', 'sql')
+CLEANING_SQL_DIR = os.path.join(MODEL_DIR, 'cleaning', 'sql')
 DATABASE_SETUP_SCRIPT = os.path.join(CLEANING_SQL_DIR, 'setup.sql')
 DATABASE_CLEAN_DATA_SCRIPT = os.path.join(CLEANING_SQL_DIR, 'clean_data.sql')
 DATABASE_DAY_PHASE_SCRIPT = os.path.join(CLEANING_SQL_DIR, 'day_phase.sql')

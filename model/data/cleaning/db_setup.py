@@ -3,8 +3,8 @@ import os
 
 from tqdm import tqdm
 
-import model.resources as re
-from model import db
+import model.data.resources as re
+from model.data import db
 from model.data.data_import import loader
 from model.data.cleaning import sql_strings as sql
 from model.data.cleaning import util as ut

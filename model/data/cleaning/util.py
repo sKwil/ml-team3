@@ -2,8 +2,8 @@ import os
 from typing import IO, List
 from datetime import datetime as dt
 
-import model.resources as re
-from model import db
+import model.data.resources as re
+from model.data import db
 
 
 def get_data_file(fileName: str) -> IO:
