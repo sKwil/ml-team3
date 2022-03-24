@@ -15,7 +15,7 @@ def get_agg_data_frame() -> pd.DataFrame:
     :return: a Pandas data frame
     """
 
-    cm_pairs = __get_city_month_pairs()
+    cm_pairs = __get_city_month_pairs().set_index(['city', 'month'])
     temperature = __get_aggregate_temperature()
     humidity = __get_aggregate_humidity()
     pressure = __get_aggregate_pressure()
