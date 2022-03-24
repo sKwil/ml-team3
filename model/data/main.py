@@ -1,4 +1,4 @@
-from model.data.cleaning import db_setup
+from model.data.setup import db_setup
 
 # Install and set up the SQLite database
 db_setup.install()
