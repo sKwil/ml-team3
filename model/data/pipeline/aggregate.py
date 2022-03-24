@@ -16,8 +16,16 @@ def get_agg_data_frame() -> pd.DataFrame:
     """
 
     cm_pairs = __get_city_month_pairs()
+    temperature = __get_aggregate_temperature()
+    humidity = __get_aggregate_humidity()
+    pressure = __get_aggregate_pressure()
+    wind = __get_aggregate_wind_speed()
+    descriptions = __get_aggregate_weather_descriptions()
 
-    return cm_pairs
+    df = pd.merge(cm_pairs, descriptions, left_index=True, right_index=True,
+                  how='inner')
+
+    return df
 
 
 # noinspection SqlResolve
@@ -102,9 +110,10 @@ def __get_aggregate_wind_speed() -> pd.Series:
     return df.set_index(['city', 'month'])['wind_speed']
 
 
-def __get_aggregate_weather_descriptions():
+def __get_aggregate_weather_descriptions() -> pd.DataFrame:
     # Get a data frame with city, month, and relative frequencies for each
     # of the weather description types
     df = ut.load_sql_as_df(sql.AGG_WEATHER_DESCRIPTION)
-    # Return a series with city and month as indices and wind speed as value
-    return df.set_index(['city', 'month'])['wind_speed']
+
+    # Return the dataframe with the city and month moved to indices
+    return df.set_index(['city', 'month'])

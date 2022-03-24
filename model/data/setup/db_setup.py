@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 import model.data.resources as re
 from model.data import db
-from model.data.data_import import loader
+from model.data.load import loader
 from model.data.setup import sql_strings as sql
 from model.data.setup import util as ut
 
@@ -33,7 +33,7 @@ def install():
         return
 
     print('Configuring weather database...')
-    ut.run_script(re.DATABASE_SETUP_SCRIPT)
+    ut.run_script(re.DB_SETUP_SCRIPT)
 
     print('Loading Cities...')
     load_cities()
@@ -44,16 +44,16 @@ def install():
     print('  Successfully loaded', loader.get_weather_rows(), 'weather rows')
 
     print('Creating DayPhase table...')
-    ut.run_script(re.DATABASE_DAY_PHASE_SCRIPT)
+    ut.run_script(re.DB_DAY_PHASE_SCRIPT)
 
     print('Creating WeatherDesc table...')
-    ut.run_script(re.DATABASE_WEATHER_DESC_SCRIPT)
+    ut.run_script(re.DB_WEATHER_DESC_SCRIPT)
 
     print('Cleaning weather data...')
-    ut.run_script(re.DATABASE_CLEAN_DATA_SCRIPT)
+    ut.run_script(re.DB_CLEAN_DATA_SCRIPT)
 
     print('Creating SQL views...')
-    ut.run_script(re.DATABASE_CREATE_VIEWS_SCRIPT)
+    ut.run_script(re.DB_CREATE_VIEWS_SCRIPT)
 
     print('Finished SQLite installation')
 
