@@ -6,8 +6,8 @@ from tqdm import tqdm
 import model.resources as re
 from model import db
 from model.data.data_import import loader
-from model.data.data_cleaning import sql_strings as sql
-from model.data.data_cleaning import util as ut
+from model.data.cleaning import sql_strings as sql
+from model.data.cleaning import util as ut
 
 
 def install():
