@@ -12,6 +12,7 @@ def get_agg_data_frame() -> pd.DataFrame:
     """
     This is the master aggregation method. It assembles and returns a Pandas
     dataframe containing the aggregate Weather data.
+
     :return: a Pandas data frame
     """
 
@@ -35,6 +36,7 @@ def get_agg_data_frame() -> pd.DataFrame:
 def __get_city_month_pairs() -> pd.DataFrame:
     """
     Get a set of all the unique city-month pairs by grouping the data.
+
     :return: the city-month pairs as a Pandas Data Frame
     """
 
@@ -121,6 +123,7 @@ def __get_aggregate_weather_descriptions() -> pd.DataFrame:
     The aggregation strategy used here is a relative frequency, returning the
     proportion of hours within the specified city-month group that have a
     weather_description matching each label (rain, snow, cloud, etc.)
+
     :return: the indexed data frame of weather description data
     """
 
