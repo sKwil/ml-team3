@@ -46,6 +46,9 @@ def install():
     print('Creating DayPhase table...')
     ut.run_script(re.DATABASE_DAY_PHASE_SCRIPT)
 
+    print('Creating WeatherDesc table...')
+    ut.run_script(re.DATABASE_WEATHER_DESC_SCRIPT)
+
     print('Cleaning weather data...')
     ut.run_script(re.DATABASE_CLEAN_DATA_SCRIPT)
 
