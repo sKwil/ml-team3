@@ -34,7 +34,6 @@ def get_agg_data_frame() -> pd.DataFrame:
     return df.reset_index(__INDEX)
 
 
-# noinspection SqlResolve
 def __get_city_month_pairs() -> pd.DataFrame:
     """
     Get a set of all the unique city-month pairs by grouping the data.
