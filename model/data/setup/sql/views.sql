@@ -6,6 +6,7 @@ It creates views for more easily accessing often used data.
 -- Create a view with all the information for all cities
 CREATE VIEW DataAll AS
 SELECT W.datetime,
+       strftime('%Y', W.datetime) as year,
        strftime('%m', W.datetime) as month,
        D.phase,
        W.city,
