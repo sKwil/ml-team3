@@ -7,6 +7,8 @@ import pandas as pd
 from model.data.pipeline import utils as ut
 from model.data.pipeline import sql_strings as sql
 
+__INDEX = ['city', 'year', 'month']
+
 
 def get_agg_data_frame() -> pd.DataFrame:
     """
@@ -16,7 +18,7 @@ def get_agg_data_frame() -> pd.DataFrame:
     :return: a Pandas data frame
     """
 
-    df = __get_city_month_pairs().set_index(['city', 'month'])
+    df = __get_city_month_pairs().set_index(__INDEX)
     temp = __get_aggregate_temperature()
     humidity = __get_aggregate_humidity()
     pressure = __get_aggregate_pressure()
@@ -29,7 +31,7 @@ def get_agg_data_frame() -> pd.DataFrame:
     df = pd.merge(df, wind.to_frame(), left_index=True, right_index=True)
     df = pd.merge(df, descriptions, left_index=True, right_index=True)
 
-    return df
+    return df.reset_index(__INDEX)
 
 
 # noinspection SqlResolve
@@ -40,7 +42,7 @@ def __get_city_month_pairs() -> pd.DataFrame:
     :return: the city-month pairs as a Pandas Data Frame
     """
 
-    return ut.load_sql_as_df(sql.CITY_MONTH_PAIRS)
+    return ut.load_sql_as_df(sql.AGG_INDICES)
 
 
 def __get_aggregate_temperature() -> pd.Series:
@@ -58,7 +60,7 @@ def __get_aggregate_temperature() -> pd.Series:
     # Get a data frame with city, month, and temperature columns
     df = ut.load_sql_as_df(sql.AGG_TEMPERATURE)
     # Return a series with city and month as indices and temperature as value
-    return df.set_index(['city', 'month'])['temperature']
+    return df.set_index(__INDEX)['temperature']
 
 
 def __get_aggregate_humidity() -> pd.Series:
@@ -76,7 +78,7 @@ def __get_aggregate_humidity() -> pd.Series:
     # Get a data frame with city, month, and humidity columns
     df = ut.load_sql_as_df(sql.AGG_HUMIDITY)
     # Return a series with city and month as indices and humidity as value
-    return df.set_index(['city', 'month'])['humidity']
+    return df.set_index(__INDEX)['humidity']
 
 
 def __get_aggregate_pressure() -> pd.Series:
@@ -94,7 +96,7 @@ def __get_aggregate_pressure() -> pd.Series:
     # Get a data frame with city, month, and pressure columns
     df = ut.load_sql_as_df(sql.AGG_PRESSURE)
     # Return a series with city and month as indices and pressure as value
-    return df.set_index(['city', 'month'])['pressure']
+    return df.set_index(__INDEX)['pressure']
 
 
 def __get_aggregate_wind_speed() -> pd.Series:
@@ -112,7 +114,7 @@ def __get_aggregate_wind_speed() -> pd.Series:
     # Get a data frame with city, month, and wind speed columns
     df = ut.load_sql_as_df(sql.AGG_WIND_SPEED)
     # Return a series with city and month as indices and wind speed as value
-    return df.set_index(['city', 'month'])['wind_speed']
+    return df.set_index(__INDEX)['wind_speed']
 
 
 def __get_aggregate_weather_descriptions() -> pd.DataFrame:
@@ -132,4 +134,4 @@ def __get_aggregate_weather_descriptions() -> pd.DataFrame:
     df = ut.load_sql_as_df(sql.AGG_WEATHER_DESCRIPTION)
 
     # Return the dataframe with the city and month moved to indices
-    return df.set_index(['city', 'month'])
+    return df.set_index(__INDEX)
