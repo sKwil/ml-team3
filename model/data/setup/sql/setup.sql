@@ -22,6 +22,6 @@ CREATE TABLE Weather
     weather_description TEXT,
     wind_direction      REAL,
     wind_speed          REAL,
-    PRIMARY KEY (datetime, city),
+    PRIMARY KEY (dateitime, cty),
     FOREIGN KEY (city) REFERENCES Cities (name)
 );
