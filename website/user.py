@@ -7,19 +7,22 @@ bp = Blueprint('user', __name__)
 def index():
     return render_template('user/simon.html')
 
+
 @bp.route('/simon')
-def index():
+def simon_index():
     return render_template('user/simon.html')
 
+
 @bp.route('/trenton')
-def index():
+def trenton_index():
     return render_template('user/trenton.html')
 
+
 @bp.route('/sean')
-def index():
+def sean_index():
     return render_template('user/sean.html')
 
-@bp.route('/jermaine')
-def index():
-    return render_template('user/jermaine.html')
 
+@bp.route('/jermaine')
+def jermaine_index():
+    return render_template('user/jermaine.html')
