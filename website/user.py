@@ -5,7 +5,7 @@ bp = Blueprint('user', __name__)
 
 @bp.route('/')
 def index():
-    return render_template('user/simon.html')
+    return render_template('user/home.html')
 
 
 @bp.route('/simon')
