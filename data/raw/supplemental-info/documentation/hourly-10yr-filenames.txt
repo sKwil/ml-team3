@@ -1,0 +1,32 @@
+Complete alphabetical listing of Files in Subdirectory supplemental/products/hourly-10yr
+
+The below list provides a synopsis of each hourly normals file. For a more general
+description of the file naming conventions used for all normals files, see the 
+readme.txt file in the main directory. 
+
+hly-cldh-normal.txt  2001-2010 hourly normals of cooling degree hours
+hly-clod-pctbkn.txt  2001-2010 hourly normals of clouds broken percentage
+hly-clod-pctclr.txt  2001-2010 hourly normals of clouds clear percentage
+hly-clod-pctfew.txt  2001-2010 hourly normals of clouds few percentage
+hly-clod-pctovc.txt  2001-2010 hourly normals of clouds overcast percentage
+hly-clod-pctsct.txt  2001-2010 hourly normals of clouds scattered percentage
+hly-dewp-10pctl.txt  2001-2010 hourly normals of dew point 10th percentile
+hly-dewp-90pctl.txt  2001-2010 hourly normals of dew point 90th percentile 
+hly-dewp-normal.txt  2001-2010 hourly normals of dew point mean
+hly-hidx-normal.txt  2001-2010 hourly normals of heat index mean
+hly-htdh-normal.txt  2001-2010 hourly normals of heating degree hours
+hly-pres-10pctl.txt  2001-2010 hourly normals of sea level pressure 10th percentile
+hly-pres-90pctl.txt  2001-2010 hourly normals of sea level pressure 90th percentile
+hly-pres-normal.txt  2001-2010 hourly normals of sea level pressure mean
+hly-temp-10pctl.txt  2001-2010 hourly normals of temperature 10th percentile
+hly-temp-90pctl.txt  2001-2010 hourly normals of temperature 90th percentile
+hly-temp-normal.txt  2001-2010 hourly normals of temperature mean
+hly-wchl-normal.txt  2001-2010 hourly normals of wind chill mean
+hly-wind-1stdir.txt  2001-2010 hourly normals of prevailing wind direction (1-8)
+hly-wind-1stpct.txt  2001-2010 hourly normals of prevailing wind percentage
+hly-wind-2nddir.txt  2001-2010 hourly normals of secondary wind direction (1-8)
+hly-wind-2ndpct.txt  2001-2010 hourly normals of secondary wind percentage
+hly-wind-avgspd.txt  2001-2010 hourly normals of average wind speed
+hly-wind-pctclm.txt  2001-2010 hourly normals of percentage calm
+hly-wind-vctdir.txt  2001-2010 hourly normals of mean wind vector direction
+hly-wind-vctspd.txt  2001-2010 hourly normals of mean wind vector magnitude
