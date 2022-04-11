@@ -42,7 +42,7 @@ CREATE TABLE Stations
  * tables. It combines the monthly weather data for each station into one large
  * table that will later be used for training a model.
  */
-CREATE TABLE MonthlyData
+CREATE TABLE MonthlyDataRaw
 (
     station_id           VARCHAR(11),
     month                INTEGER,

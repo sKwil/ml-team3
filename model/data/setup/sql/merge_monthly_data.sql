@@ -4,7 +4,7 @@
  * table with monthly data for each station.
  */
 
-INSERT INTO MonthlyData
+INSERT INTO MonthlyDataRaw
 SELECT S.id        as station,
        M.num       as month,
        PN.normal   as precipitation_median,
