@@ -21,3 +21,27 @@ ADD_WEATHER_DATA = 'INSERT INTO Weather ' \
 
 ADD_PRECIPITATION_MEDIAN = 'INSERT INTO MonthlyPrecipitationMedians ' \
                            '(id, month, inches, flag) VALUES (?, ?, ?, ?);'
+
+ADD_PRECIPITATION_DAYS_H = 'INSERT INTO MonthlyPrecipitationDaysH ' \
+                           '(id, month, days, flag) VALUES (?, ?, ?, ?);'
+
+ADD_PRECIPITATION_DAYS_T = 'INSERT INTO MonthlyPrecipitationDaysT ' \
+                           '(id, month, days, flag) VALUES (?, ?, ?, ?);'
+
+ADD_PRECIPITATION_NORMALS = 'INSERT INTO MonthlyPrecipitationNormals ' \
+                            '(id, month, normal, flag) VALUES (?, ?, ?, ?);'
+
+ADD_SNOWFALL_MEDIAN = 'INSERT INTO MonthlySnowfallMedians ' \
+                      '(id, month, inches, flag) VALUES (?, ?, ?, ?);'
+
+ADD_SNOWFALL_DAYS_T = 'INSERT INTO MonthlySnowfallDaysT ' \
+                      '(id, month, days, flag) VALUES (?, ?, ?, ?);'
+
+ADD_SNOWFALL_DAYS_I = 'INSERT INTO MonthlySnowfallDaysI ' \
+                      '(id, month, days, flag) VALUES (?, ?, ?, ?);'
+
+ADD_SNOW_DEPTH_DAYS = 'INSERT INTO MonthlySnowDepthDays ' \
+                      '(id, month, days, flag) VALUES (?, ?, ?, ?);'
+
+ADD_SNOWFALL_NORMALS = 'INSERT INTO MonthlySnowfallNormals ' \
+                       '(id, month, normal, flag) VALUES (?, ?, ?, ?);'

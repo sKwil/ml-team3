@@ -121,22 +121,45 @@ def load_precipitation_data():
     Load all the weather data from products/precipitation/* files.
     """
 
-    with db.get_conn() as conn:
-        rows = ut.get_data_file_lines(df.MLY_PRCP_MEDIANS)
-        with open(df.MLY_PRCP_MEDIANS) as file:
-            progress_bar = tqdm(total=rows * 12, desc='Reading data...')
+    # List the data files and their corresponding SQL statements (and the
+    # multiplying factor for correcting the units)
+    files = [
+        ('mly-prcp-50pctl.txt', sql.ADD_PRECIPITATION_MEDIAN, 0.01),
+        ('mly-prcp-avgnds-ge001hi.txt', sql.ADD_PRECIPITATION_DAYS_H, 1),
+        ('mly-prcp-avgnds-ge010hi.txt', sql.ADD_PRECIPITATION_DAYS_T, 1),
+        ('mly-prcp-normal.txt', sql.ADD_PRECIPITATION_NORMALS, 0.01),
+        ('mly-snow-50pctl.txt', sql.ADD_SNOWFALL_MEDIAN, 0.1),
+        ('mly-snow-avgnds-ge001ti.txt', sql.ADD_SNOWFALL_DAYS_T, 1),
+        ('mly-snow-avgnds-ge010ti.txt', sql.ADD_SNOWFALL_DAYS_I, 1),
+        ('mly-snow-normal.txt', sql.ADD_SNOWFALL_NORMALS, 0.1),
+        ('mly-snwd-avgnds-ge001wi.txt', sql.ADD_SNOW_DEPTH_DAYS, 1)
+    ]
 
-            # Read the data one row at a time, sending it to the database
-            for row in file:
-                # The substring character ranges here come from the readme.txt
-                station_id = row[0:11].strip()
-                # Add the data for each month from this station
-                for i in range(1, 13):
-                    progress_bar.update(1)
-                    value = float(row[11 + 7 * i:16 + 7 * i]) / 100
-                    flag = row[16 + 7 * i].strip()
-                    conn.execute(sql.ADD_PRECIPITATION_MEDIAN,
-                                 (station_id, i, value, flag))
+    # Total iterations is the total number of lines in every file, times 12
+    # (for each month)
+    total_iterations = sum([
+        ut.get_data_file_lines(os.path.join(df.__PRECIPITATION_DIR, f)) for
+        f, s, u in files
+    ]) * 12
+
+    progress_bar = tqdm(total=total_iterations,
+                        desc='Reading precipitation data...')
+
+    # Connect to the SQLite database
+    with db.get_conn() as conn:
+        # Iterate for each data file in the precipitation folder
+        for file_name, sql_script, factor in files:
+            # Open the file
+            with open(os.path.join(df.__PRECIPITATION_DIR, file_name)) as file:
+                # Process each row in the file
+                for row in file:
+                    # Get the station id, and process the data for each month
+                    station_id = row[0:11].strip()
+                    for i in range(1, 13):
+                        progress_bar.update(1)
+                        value = float(row[11 + 7 * i:16 + 7 * i]) * factor
+                        flag = row[16 + 7 * i].strip()
+                        conn.execute(sql_script, (station_id, i, value, flag))
 
 
 def load_weather_data():
