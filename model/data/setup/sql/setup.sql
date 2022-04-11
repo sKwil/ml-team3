@@ -37,6 +37,52 @@ CREATE TABLE Stations
     wmo_id    VARCHAR(5)
 );
 
+/*
+ * The MonthlyData table is an aggregate of all of the other monthly data
+ * tables. It combines the monthly weather data for each station into one large
+ * table that will later be used for training a model.
+ */
+CREATE TABLE MonthlyData
+(
+    station_id           VARCHAR(11),
+    month                INTEGER,
+    prcp_median          REAL,
+    prcp_median_flag     VARCHAR(1),
+    prcp_days_h          REAL,
+    prcp_days_h_flag     VARCHAR(1),
+    prcp_days_t          REAL,
+    prcp_days_t_flag     VARCHAR(1),
+    prcp_normals         REAL,
+    prcp_normals_flag    VARCHAR(1),
+    snow_median          REAL,
+    snow_median_flag     VARCHAR(1),
+    snow_days_t          REAL,
+    snow_days_t_flag     VARCHAR(1),
+    snow_days_i          REAL,
+    snow_days_i_flag     VARCHAR(1),
+    snow_depth_days      REAL,
+    snow_depth_days_flag VARCHAR(1),
+    snow_normals         REAL,
+    snow_normals_flag    VARCHAR(1),
+    temp_min_normal      REAL,
+    temp_min_normal_flag VARCHAR(1),
+    temp_min_stdev       REAL,
+    temp_min_stdev_flag  VARCHAR(1),
+    temp_max_normal      REAL,
+    temp_max_normal_flag VARCHAR(1),
+    temp_max_stdev       REAL,
+    temp_max_stdev_flag  VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
+);
+
+/*
+ * The Months table is just a list of months given by their number and name.
+ */
+CREATE TABLE Months
+(
+    num  INTEGER PRIMARY KEY,
+    name TEXT
+);
 
 
 -- ##################################################
@@ -55,11 +101,11 @@ CREATE TABLE Stations
  */
 CREATE TABLE MonthlyPrecipitationMedians
 (
-    id     VARCHAR(11),
-    month  INTEGER,
-    inches REAL,
-    flag   VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    inches     REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -69,11 +115,11 @@ CREATE TABLE MonthlyPrecipitationMedians
  */
 CREATE TABLE MonthlyPrecipitationDaysH
 (
-    id    VARCHAR(11),
-    month INTEGER,
-    days  REAL,
-    flag  VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    days       REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -83,11 +129,11 @@ CREATE TABLE MonthlyPrecipitationDaysH
  */
 CREATE TABLE MonthlyPrecipitationDaysT
 (
-    id    VARCHAR(11),
-    month INTEGER,
-    days  REAL,
-    flag  VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    days       REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -97,11 +143,11 @@ CREATE TABLE MonthlyPrecipitationDaysT
  */
 CREATE TABLE MonthlyPrecipitationNormals
 (
-    id     VARCHAR(11),
-    month  INTEGER,
-    normal REAL,
-    flag   VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    normal     REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -111,11 +157,11 @@ CREATE TABLE MonthlyPrecipitationNormals
  */
 CREATE TABLE MonthlySnowfallMedians
 (
-    id     VARCHAR(11),
-    month  INTEGER,
-    inches REAL,
-    flag   VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    inches     REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -125,11 +171,11 @@ CREATE TABLE MonthlySnowfallMedians
  */
 CREATE TABLE MonthlySnowfallDaysT
 (
-    id    VARCHAR(11),
-    month INTEGER,
-    days  REAL,
-    flag  VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    days       REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -138,11 +184,11 @@ CREATE TABLE MonthlySnowfallDaysT
  */
 CREATE TABLE MonthlySnowfallDaysI
 (
-    id    VARCHAR(11),
-    month INTEGER,
-    days  REAL,
-    flag  VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    days       REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -152,11 +198,11 @@ CREATE TABLE MonthlySnowfallDaysI
  */
 CREATE TABLE MonthlySnowDepthDays
 (
-    id    VARCHAR(11),
-    month INTEGER,
-    days  REAL,
-    flag  VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    days       REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -166,11 +212,11 @@ CREATE TABLE MonthlySnowDepthDays
  */
 CREATE TABLE MonthlySnowfallNormals
 (
-    id     VARCHAR(11),
-    month  INTEGER,
-    normal REAL,
-    flag   VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    normal     REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 
@@ -190,11 +236,11 @@ CREATE TABLE MonthlySnowfallNormals
  */
 CREATE TABLE MonthlyTempMaxNormals
 (
-    id     VARCHAR(11),
-    month  INTEGER,
-    normal REAL,
-    flag   VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    normal     REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -203,11 +249,11 @@ CREATE TABLE MonthlyTempMaxNormals
  */
 CREATE TABLE MonthlyTempMaxStdev
 (
-    id    VARCHAR(11),
-    month INTEGER,
-    stdev REAL,
-    flag  VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    stdev      REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -216,11 +262,11 @@ CREATE TABLE MonthlyTempMaxStdev
  */
 CREATE TABLE MonthlyTempMinNormals
 (
-    id     VARCHAR(11),
-    month  INTEGER,
-    normal REAL,
-    flag   VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    normal     REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
 /*
@@ -229,9 +275,9 @@ CREATE TABLE MonthlyTempMinNormals
  */
 CREATE TABLE MonthlyTempMinStdev
 (
-    id    VARCHAR(11),
-    month INTEGER,
-    stdev REAL,
-    flag  VARCHAR(1),
-    FOREIGN KEY (id) REFERENCES Stations (id)
+    station_id VARCHAR(11),
+    month      INTEGER,
+    stdev      REAL,
+    flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
