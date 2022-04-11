@@ -64,7 +64,7 @@ WHERE MD.prcp_median IS NOT NULL
    OR MD.snow_depth_days_flag IS NOT NULL
    OR MD.snow_normal IS NOT NULL
    OR MD.snow_normal_flag IS NOT NULL
-   OR MD.temp_min_norma IS NOT NULL
+   OR MD.temp_min_normal IS NOT NULL
    OR MD.temp_min_normal_flag IS NOT NULL
    OR MD.temp_min_stdev IS NOT NULL
    OR MD.temp_min_stdev_flag IS NOT NULL
