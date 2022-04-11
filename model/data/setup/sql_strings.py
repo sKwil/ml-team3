@@ -6,19 +6,6 @@ ADD_STATION = 'INSERT INTO Stations (id, latitude, longitude, elevation, ' \
               'state, name, gsn_flag, hcn_flag, wmo_id) ' \
               'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'
 
-ADD_WEATHER_TEMPERATURE = 'INSERT INTO Weather (datetime, city, temperature) ' \
-                          'VALUES (?,?,?);'
-
-UPDATE_WEATHER_HUMIDITY = 'UPDATE Weather ' \
-                          'SET humidity = ? ' \
-                          'WHERE datetime = ? AND ' \
-                          'city = ?;'
-
-ADD_WEATHER_DATA = 'INSERT INTO Weather ' \
-                   '(datetime, city, temperature, humidity, pressure, ' \
-                   'weather_description, wind_direction, wind_speed) ' \
-                   'VALUES (?, ?, ?, ?, ?, ?, ?, ?);'
-
 ADD_PRECIPITATION_MEDIAN = 'INSERT INTO MonthlyPrecipitationMedians ' \
                            '(id, month, inches, flag) VALUES (?, ?, ?, ?);'
 
@@ -45,3 +32,15 @@ ADD_SNOW_DEPTH_DAYS = 'INSERT INTO MonthlySnowDepthDays ' \
 
 ADD_SNOWFALL_NORMALS = 'INSERT INTO MonthlySnowfallNormals ' \
                        '(id, month, normal, flag) VALUES (?, ?, ?, ?);'
+
+ADD_TEMP_MAX_NORMAL = 'INSERT INTO MonthlyTempMaxNormals ' \
+                      '(id, month, normal, flag) VALUES (?, ?, ?, ?);'
+
+ADD_TEMP_MAX_STDEV = 'INSERT INTO MonthlyTempMaxStdev ' \
+                     '(id, month, stdev, flag) VALUES (?, ?, ?, ?);'
+
+ADD_TEMP_MIN_NORMAL = 'INSERT INTO MonthlyTempMinNormals ' \
+                      '(id, month, normal, flag) VALUES (?, ?, ?, ?);'
+
+ADD_TEMP_MIN_STDEV = 'INSERT INTO MonthlyTempMinStdev ' \
+                     '(id, month, stdev, flag) VALUES (?, ?, ?, ?);'

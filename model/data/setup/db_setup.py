@@ -41,7 +41,7 @@ def install():
     print('  Added', loader.get_stations_rows(), 'stations to SQL database')
 
     print('Loading Precipitation Data...')
-    load_precipitation_data()
+    load_monthly_data()
 
     """
     print('Loading Weather data...')
@@ -116,41 +116,48 @@ def load_stations():
     progress_bar.close()
 
 
-def load_precipitation_data():
+def load_monthly_data():
     """
     Load all the weather data from products/precipitation/* files.
     """
 
-    # List the data files and their corresponding SQL statements (and the
-    # multiplying factor for correcting the units)
+    p = df.PRECIPITATION_DIR
+    t = df.TEMPERATURE_DIR
+
+    # List the directory, data files, their corresponding SQL statements, and
+    # the multiplying factor for correcting the units
     files = [
-        ('mly-prcp-50pctl.txt', sql.ADD_PRECIPITATION_MEDIAN, 0.01),
-        ('mly-prcp-avgnds-ge001hi.txt', sql.ADD_PRECIPITATION_DAYS_H, 1),
-        ('mly-prcp-avgnds-ge010hi.txt', sql.ADD_PRECIPITATION_DAYS_T, 1),
-        ('mly-prcp-normal.txt', sql.ADD_PRECIPITATION_NORMALS, 0.01),
-        ('mly-snow-50pctl.txt', sql.ADD_SNOWFALL_MEDIAN, 0.1),
-        ('mly-snow-avgnds-ge001ti.txt', sql.ADD_SNOWFALL_DAYS_T, 1),
-        ('mly-snow-avgnds-ge010ti.txt', sql.ADD_SNOWFALL_DAYS_I, 1),
-        ('mly-snow-normal.txt', sql.ADD_SNOWFALL_NORMALS, 0.1),
-        ('mly-snwd-avgnds-ge001wi.txt', sql.ADD_SNOW_DEPTH_DAYS, 1)
+        (p, 'mly-prcp-50pctl.txt', sql.ADD_PRECIPITATION_MEDIAN, 0.01),
+        (p, 'mly-prcp-avgnds-ge001hi.txt', sql.ADD_PRECIPITATION_DAYS_H, 1),
+        (p, 'mly-prcp-avgnds-ge010hi.txt', sql.ADD_PRECIPITATION_DAYS_T, 1),
+        (p, 'mly-prcp-normal.txt', sql.ADD_PRECIPITATION_NORMALS, 0.01),
+        (p, 'mly-snow-50pctl.txt', sql.ADD_SNOWFALL_MEDIAN, 0.1),
+        (p, 'mly-snow-avgnds-ge001ti.txt', sql.ADD_SNOWFALL_DAYS_T, 1),
+        (p, 'mly-snow-avgnds-ge010ti.txt', sql.ADD_SNOWFALL_DAYS_I, 1),
+        (p, 'mly-snow-normal.txt', sql.ADD_SNOWFALL_NORMALS, 0.1),
+        (p, 'mly-snwd-avgnds-ge001wi.txt', sql.ADD_SNOW_DEPTH_DAYS, 1),
+        (t, 'mly-tmax-normal.txt', sql.ADD_TEMP_MAX_NORMAL, 0.1),
+        (t, 'mly-tmax-stddev.txt', sql.ADD_TEMP_MAX_STDEV, 0.1),
+        (t, 'mly-tmin-normal.txt', sql.ADD_TEMP_MIN_NORMAL, 0.1),
+        (t, 'mly-tmin-stddev.txt', sql.ADD_TEMP_MIN_STDEV, 0.1)
     ]
 
     # Total iterations is the total number of lines in every file, times 12
     # (for each month)
     total_iterations = sum([
-        ut.get_data_file_lines(os.path.join(df.__PRECIPITATION_DIR, f)) for
-        f, s, u in files
+        ut.get_data_file_lines(os.path.join(d, f)) for
+        d, f, s, u in files
     ]) * 12
 
     progress_bar = tqdm(total=total_iterations,
-                        desc='Reading precipitation data...')
+                        desc='Reading monthly data...')
 
     # Connect to the SQLite database
     with db.get_conn() as conn:
         # Iterate for each data file in the precipitation folder
-        for file_name, sql_script, factor in files:
+        for directory, file_name, sql_script, factor in files:
             # Open the file
-            with open(os.path.join(df.__PRECIPITATION_DIR, file_name)) as file:
+            with open(os.path.join(directory, file_name)) as file:
                 # Process each row in the file
                 for row in file:
                     # Get the station id, and process the data for each month

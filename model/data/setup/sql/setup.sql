@@ -3,7 +3,21 @@
  * transferred ands stored.
  */
 
+-- Drop the tables in case they already exist somehow
 DROP TABLE IF EXISTS Stations;
+DROP TABLE IF EXISTS MonthlyPrecipitationMedians;
+DROP TABLE IF EXISTS MonthlyPrecipitationDaysH;
+DROP TABLE IF EXISTS MonthlyPrecipitationDaysT;
+DROP TABLE IF EXISTS MonthlyPrecipitationNormals;
+DROP TABLE IF EXISTS MonthlySnowfallMedians;
+DROP TABLE IF EXISTS MonthlySnowfallDaysT;
+DROP TABLE IF EXISTS MonthlySnowfallDaysI;
+DROP TABLE IF EXISTS MonthlySnowfallNormals;
+DROP TABLE IF EXISTS MonthlySnowDepthDays;
+DROP TABLE IF EXISTS MonthlyTempMaxNormals;
+DROP TABLE IF EXISTS MonthlyTempMaxStdev;
+DROP TABLE IF EXISTS MonthlyTempMinNormals;
+DROP TABLE IF EXISTS MonthlyTempMinStdev;
 
 /*
  * The Stations table stores the data from stations/allstations.txt. This is
@@ -22,6 +36,17 @@ CREATE TABLE Stations
     hcn_flag  VARCHAR(3),
     wmo_id    VARCHAR(5)
 );
+
+
+
+-- ##################################################
+-- ##################################################
+-- ##################################################
+-- DEFINE TABLES FOR PRECIPITATION DATA
+-- ##################################################
+-- ##################################################
+-- ##################################################
+
 
 /*
  * The MonthlyPrecipitationMedians table stores data for each month from each
@@ -145,5 +170,68 @@ CREATE TABLE MonthlySnowfallNormals
     month  INTEGER,
     normal REAL,
     flag   VARCHAR(1),
+    FOREIGN KEY (id) REFERENCES Stations (id)
+);
+
+
+
+-- ##################################################
+-- ##################################################
+-- ##################################################
+-- DEFINE TABLES FOR TEMPERATURE DATA
+-- ##################################################
+-- ##################################################
+-- ##################################################
+
+
+/*
+ * The MonthlyTempMaxNormals stores data for each month from each station.
+ * It's the long term average max temperature for each month (the 'normal').
+ */
+CREATE TABLE MonthlyTempMaxNormals
+(
+    id     VARCHAR(11),
+    month  INTEGER,
+    normal REAL,
+    flag   VARCHAR(1),
+    FOREIGN KEY (id) REFERENCES Stations (id)
+);
+
+/*
+ * The MonthlyTempMaxStdev stores data for each month from each station.
+ * It's the long term standard deviation of the max temperature for each month.
+ */
+CREATE TABLE MonthlyTempMaxStdev
+(
+    id    VARCHAR(11),
+    month INTEGER,
+    stdev REAL,
+    flag  VARCHAR(1),
+    FOREIGN KEY (id) REFERENCES Stations (id)
+);
+
+/*
+ * The MonthlyTempMinNormals stores data for each month from each station.
+ * It's the long term average min temperature for each month (the 'normal').
+ */
+CREATE TABLE MonthlyTempMinNormals
+(
+    id     VARCHAR(11),
+    month  INTEGER,
+    normal REAL,
+    flag   VARCHAR(1),
+    FOREIGN KEY (id) REFERENCES Stations (id)
+);
+
+/*
+ * The MonthlyTempMinStdev stores data for each month from each station.
+ * It's the long term standard deviation of the min temperature for each month.
+ */
+CREATE TABLE MonthlyTempMinStdev
+(
+    id    VARCHAR(11),
+    month INTEGER,
+    stdev REAL,
+    flag  VARCHAR(1),
     FOREIGN KEY (id) REFERENCES Stations (id)
 );
