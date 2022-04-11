@@ -7,6 +7,8 @@
  * weather data are omitted.
  */
 
+DROP VIEW IF EXISTS MonthlyData;
+
 CREATE VIEW MonthlyData AS
 SELECT MD.station_id,
        S.latitude,

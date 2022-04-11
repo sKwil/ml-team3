@@ -53,6 +53,9 @@ def install():
     print('Create Monthly Data View...')
     ut.run_script(re.DB_MONTHLY_DATA_VIEW)
 
+    print('Cleaning Database...')
+    ut.run_script(re.DB_SETUP_FINISH)
+
     print('Finished SQLite installation')
 
 

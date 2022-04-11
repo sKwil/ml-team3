@@ -18,6 +18,8 @@ DROP TABLE IF EXISTS MonthlyTempMaxNormals;
 DROP TABLE IF EXISTS MonthlyTempMaxStdev;
 DROP TABLE IF EXISTS MonthlyTempMinNormals;
 DROP TABLE IF EXISTS MonthlyTempMinStdev;
+DROP TABLE IF EXISTS MonthlyDataRaw;
+DROP TABLE IF EXISTS Months;
 
 /*
  * The Stations table stores the data from stations/allstations.txt. This is
