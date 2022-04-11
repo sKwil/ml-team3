@@ -182,3 +182,80 @@ VALUES ('WI', 'Wisconsin', 'state');
 
 INSERT INTO States (abbreviation, name, jurisdiction)
 VALUES ('WY', 'Wyoming', 'state');
+
+
+/*
+ * Set regions for continental US states
+ */
+
+-- PACIFIC
+UPDATE States
+SET region = 'pacific'
+WHERE name = 'Washington'
+   OR name = 'Oregon'
+   OR name = 'California';
+
+-- ROCKIES
+UPDATE States
+SET region = 'rockies'
+WHERE name = 'Idaho'
+   OR name = 'Montana'
+   OR name = 'Wyoming'
+   OR name = 'Nevada'
+   OR name = 'Utah'
+   OR name = 'Colorado';
+
+-- MIDWEST
+UPDATE States
+SET region = 'midwest'
+WHERE name = 'North Dakota'
+   OR name = 'South Dakota'
+   OR name = 'Nebraska'
+   OR name = 'Kansas'
+   OR name = 'Minnesota'
+   OR name = 'Iowa'
+   OR name = 'Missouri'
+   OR name = 'Wisconsin'
+   OR name = 'Illinois'
+   OR name = 'Michigan'
+   OR name = 'Indiana'
+   OR name = 'Ohio';
+
+-- NORTH EAST
+UPDATE States
+SET region = 'north east'
+WHERE name = 'Maine'
+   OR name = 'New Hampshire'
+   OR name = 'Vermont'
+   OR name = 'New York'
+   OR name = 'Massachusetts'
+   OR name = 'Connecticut'
+   OR name = 'Rhode Island'
+   OR name = 'Pennsylvania'
+   OR name = 'New Jersey'
+   OR name = 'Delaware'
+   OR name = 'Maryland';
+
+-- SOUTH WEST
+UPDATE States
+SET region = 'south west'
+WHERE name = 'Arizona'
+   OR name = 'New Mexico'
+   OR name = 'Texas'
+   OR name = 'Oklahoma';
+
+-- SOUTH EAST
+UPDATE States
+SET region = 'south east'
+WHERE name = 'Arkansas'
+   OR name = 'Louisiana'
+   OR name = 'Mississippi'
+   OR name = 'Alabama'
+   OR name = 'Tennessee'
+   OR name = 'Kentucky'
+   OR name = 'West Virginia'
+   OR name = 'Virginia'
+   OR name = 'North Carolina'
+   OR name = 'South Carolina'
+   OR name = 'Georgia'
+   OR name = 'Florida';

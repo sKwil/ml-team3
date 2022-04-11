@@ -36,7 +36,8 @@ CREATE TABLE Stations
     name      VARCHAR(30),
     gsn_flag  VARCHAR(3),
     hcn_flag  VARCHAR(3),
-    wmo_id    VARCHAR(5)
+    wmo_id    VARCHAR(5),
+    FOREIGN KEY (state) REFERENCES States (abbreviation)
 );
 
 /*
@@ -47,8 +48,9 @@ CREATE TABLE Stations
 CREATE TABLE States
 (
     abbreviation TEXT PRIMARY KEY,
-    name         TEXT,
-    jurisdiction TEXT
+    name         TEXT NOT NULL,
+    jurisdiction TEXT NOT NULL,
+    region       TEXT
 );
 
 
