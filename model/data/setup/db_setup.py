@@ -46,6 +46,10 @@ def install():
     print('Loading Precipitation Data...')
     load_monthly_data()
 
+    print('Merging monthly data...')
+    print('  Loading...')
+    ut.run_script(re.DB_MERGE_MONTHLY)
+
     """
     print('Loading Weather data...')
     load_weather_data()
