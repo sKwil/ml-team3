@@ -18,7 +18,6 @@ DB_MONTHS = os.path.join(SETUP_SQL_DIR, 'months.sql')
 DB_MERGE_MONTHLY = os.path.join(SETUP_SQL_DIR, 'merge_monthly_data.sql')
 DB_CLEAN_DATA_SCRIPT = os.path.join(SETUP_SQL_DIR, 'clean_data.sql')
 DB_DAY_PHASE_SCRIPT = os.path.join(SETUP_SQL_DIR, 'day_phase.sql')
-DB_CREATE_VIEWS_SCRIPT = os.path.join(SETUP_SQL_DIR, 'views.sql')
 
 # The standard time format for the database
 DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'

@@ -50,24 +50,6 @@ def install():
     print('  Loading...')
     ut.run_script(re.DB_MERGE_MONTHLY)
 
-    """
-    print('Loading Weather data...')
-    load_weather_data()
-    print('  Successfully loaded', loader.get_weather_rows(), 'weather rows')
-
-    print('Creating DayPhase table...')
-    ut.run_script(re.DB_DAY_PHASE_SCRIPT)
-
-    print('Creating WeatherDesc table...')
-    ut.run_script(re.DB_WEATHER_DESC_SCRIPT)
-
-    print('Cleaning weather data...')
-    ut.run_script(re.DB_CLEAN_DATA_SCRIPT)
-
-    print('Creating SQL views...')
-    ut.run_script(re.DB_CREATE_VIEWS_SCRIPT)
-    """
-
     print('Finished SQLite installation')
 
 
