@@ -39,6 +39,25 @@ CREATE TABLE Stations
     wmo_id    VARCHAR(5)
 );
 
+
+-- ##################################################
+-- ##################################################
+-- ##################################################
+-- DEFINE TABLES FOR MONTHLY DATA
+-- ##################################################
+-- ##################################################
+-- ##################################################
+
+
+/*
+ * The Months table is just a list of months given by their number and name.
+ */
+CREATE TABLE Months
+(
+    num  INTEGER PRIMARY KEY,
+    name TEXT
+);
+
 /*
  * The MonthlyData table is an aggregate of all of the other monthly data
  * tables. It combines the monthly weather data for each station into one large
@@ -75,15 +94,6 @@ CREATE TABLE MonthlyDataRaw
     temp_max_stdev       REAL,
     temp_max_stdev_flag  VARCHAR(1),
     FOREIGN KEY (station_id) REFERENCES Stations (id)
-);
-
-/*
- * The Months table is just a list of months given by their number and name.
- */
-CREATE TABLE Months
-(
-    num  INTEGER PRIMARY KEY,
-    name TEXT
 );
 
 
