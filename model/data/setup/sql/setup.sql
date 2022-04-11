@@ -1,27 +1,24 @@
--- This file initializes the weather database, preparing the Cities and
--- Weather tables for data entry.
+/*
+ * This file initializes the weather database, where all the raw data will be
+ * transferred ands stored.
+ */
 
-DROP TABLE IF EXISTS Cities;
-DROP TABLE IF EXISTS Weather;
+DROP TABLE IF EXISTS Stations;
 
-CREATE TABLE Cities
+/*
+ * The Stations table stores the data from stations/allstations.txt. This is
+ * a list of every station that may appear in the weather data somewhere,
+ * primary used for lookups.
+ */
+CREATE TABLE Stations
 (
-    name      TEXT PRIMARY KEY,
-    country   TEXT,
+    id        VARCHAR(11) PRIMARY KEY,
     latitude  REAL,
-    longitude REAL
-);
-
-CREATE TABLE Weather
-(
-    datetime            TIMESTAMP,
-    city                TEXT NOT NULL,
-    temperature         REAL,
-    humidity            REAL,
-    pressure            REAL,
-    weather_description TEXT,
-    wind_direction      REAL,
-    wind_speed          REAL,
-    PRIMARY KEY (datetime, city),
-    FOREIGN KEY (city) REFERENCES Cities (name)
+    longitude REAL,
+    elevation REAL,
+    state     VARCHAR(2),
+    name      VARCHAR(30),
+    gsn_flag  VARCHAR(3),
+    hcn_flag  VARCHAR(3),
+    wmo_id    VARCHAR(5)
 );

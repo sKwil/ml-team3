@@ -35,10 +35,11 @@ def install():
     print('Configuring weather database...')
     ut.run_script(re.DB_SETUP_SCRIPT)
 
-    print('Loading Cities...')
-    load_cities()
-    print('  Added', loader.get_cities_rows(), 'cities to SQL database')
+    print('Loading Weather Stations...')
+    load_stations()
+    print('  Added', loader.get_stations_rows(), 'cities to SQL database')
 
+    """"
     print('Loading Weather data...')
     load_weather_data()
     print('  Successfully loaded', loader.get_weather_rows(), 'weather rows')
@@ -54,6 +55,7 @@ def install():
 
     print('Creating SQL views...')
     ut.run_script(re.DB_CREATE_VIEWS_SCRIPT)
+    """
 
     print('Finished SQLite installation')
 
@@ -71,7 +73,7 @@ def delete_db():
         os.remove(re.DATABASE)
 
 
-def load_cities():
+def load_stations():
     """
     Load the cities from the city_attributes.csv file and put them in the
     Cities table.
@@ -83,19 +85,31 @@ def load_cities():
     # Open a connection to the sqlite database
     with db.get_conn() as conn:
         # Clear any existing city data
-        conn.execute(sql.CLEAR_CITIES_TABLE)
+        conn.execute(sql.CLEAR_STATIONS_TABLE)
 
-        with ut.get_data_file('city_attributes.csv') as file:
+        with ut.get_data_file('stations', 'allstations.txt') as file:
             # Skip the first row (the column headers)
             next(file)
 
-            rows = ut.get_data_file_lines('city_attributes.csv') - 1
+            rows = ut.get_data_file_lines('stations', 'allstations.txt') - 1
             progress_bar = tqdm(total=rows, desc='Reading data...')
 
             # Read the csv data one row at a time, sending it to the database
-            r = csv.reader(file)
-            for row in r:
-                conn.execute(sql.ADD_CITY, (row[0], row[1], row[2], row[3]))
+            for row in file:
+                # The substring character ranges here come from the readme.txt
+                station_id = row[0:11].strip()
+                latitude = float(row[12:20])
+                longitude = float(row[21:30])
+                elevation = float(row[31:37])
+                state = row[38:40]
+                name = row[41:71].strip()
+                gsn_flag = row[72:75].strip()
+                hcn_flag = row[76:79].strip()
+                wmo_id = row[80:85].strip()
+
+                conn.execute(sql.ADD_STATION,
+                             (station_id, latitude, longitude, elevation,
+                              state, name, gsn_flag, hcn_flag, wmo_id))
                 progress_bar.update(1)
 
             progress_bar.close()
