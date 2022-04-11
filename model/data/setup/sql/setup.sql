@@ -22,3 +22,17 @@ CREATE TABLE Stations
     hcn_flag  VARCHAR(3),
     wmo_id    VARCHAR(5)
 );
+
+/*
+ * The MonthlyPrecipitationMedians table stores data for each month from each
+ * station. It's the 50th percentile of precipitation totals for that month,
+ * given in inches.
+ */
+CREATE TABLE MonthlyPrecipitationMedians
+(
+    id     VARCHAR(11),
+    month  INTEGER,
+    inches REAL,
+    flag   VARCHAR(1),
+    FOREIGN KEY (id) REFERENCES Stations (id)
+);

@@ -18,3 +18,6 @@ ADD_WEATHER_DATA = 'INSERT INTO Weather ' \
                    '(datetime, city, temperature, humidity, pressure, ' \
                    'weather_description, wind_direction, wind_speed) ' \
                    'VALUES (?, ?, ?, ?, ?, ?, ?, ?);'
+
+ADD_PRECIPITATION_MEDIAN = 'INSERT INTO MonthlyPrecipitationMedians ' \
+                           '(id, month, inches, flag) VALUES (?, ?, ?, ?);'

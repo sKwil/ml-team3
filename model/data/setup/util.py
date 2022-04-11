@@ -56,21 +56,18 @@ def format_time(time_str: str) -> dt:
     return dt.strptime(time_str, re.DATE_TIME_FORMAT)
 
 
-def get_data_file_lines(directory: str, file: str) -> int:
+def get_data_file_lines(file: str) -> int:
     """
-    Count the number of lines in the given data file. The file is opened with
-    util.getDataFile().
+    Count the number of lines in the given data file.
 
-    Args:
-        directory: The name of the directory where the specified file is
-                   stored. This should be a subdirectory within /data/raw.
-        file: The name of the data file within the specified directory.
+    Args:raw.
+        file: The complete path to the file (see model.data.data_files.py)
 
     Returns:
          The number of lines in the file.
     """
 
-    with get_data_file(directory, file) as f:
+    with open(file) as f:
         return sum(1 for _ in f)
 
 

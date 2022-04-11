@@ -8,6 +8,7 @@ from model.data import db
 from model.data.load import loader
 from model.data.setup import sql_strings as sql
 from model.data.setup import util as ut
+from model.data import data_files as df
 
 
 def install():
@@ -37,9 +38,12 @@ def install():
 
     print('Loading Weather Stations...')
     load_stations()
-    print('  Added', loader.get_stations_rows(), 'cities to SQL database')
+    print('  Added', loader.get_stations_rows(), 'stations to SQL database')
 
-    """"
+    print('Loading Precipitation Data...')
+    load_precipitation_data()
+
+    """
     print('Loading Weather data...')
     load_weather_data()
     print('  Successfully loaded', loader.get_weather_rows(), 'weather rows')
@@ -87,14 +91,11 @@ def load_stations():
         # Clear any existing city data
         conn.execute(sql.CLEAR_STATIONS_TABLE)
 
-        with ut.get_data_file('stations', 'allstations.txt') as file:
-            # Skip the first row (the column headers)
-            next(file)
+        with open(df.ALL_STATIONS) as file:
+            rows = ut.get_data_file_lines(df.ALL_STATIONS)
+            progress_bar = tqdm(total=rows, desc='Reading stations...')
 
-            rows = ut.get_data_file_lines('stations', 'allstations.txt') - 1
-            progress_bar = tqdm(total=rows, desc='Reading data...')
-
-            # Read the csv data one row at a time, sending it to the database
+            # Read the data one row at a time, sending it to the database
             for row in file:
                 # The substring character ranges here come from the readme.txt
                 station_id = row[0:11].strip()
@@ -113,6 +114,29 @@ def load_stations():
                 progress_bar.update(1)
 
             progress_bar.close()
+
+
+def load_precipitation_data():
+    """
+    Load all the weather data from products/precipitation/* files.
+    """
+
+    with db.get_conn() as conn:
+        rows = ut.get_data_file_lines(df.MLY_PRCP_MEDIANS)
+        with open(df.MLY_PRCP_MEDIANS) as file:
+            progress_bar = tqdm(total=rows * 12, desc='Reading data...')
+
+            # Read the data one row at a time, sending it to the database
+            for row in file:
+                # The substring character ranges here come from the readme.txt
+                station_id = row[0:11].strip()
+                # Add the data for each month from this station
+                for i in range(1, 13):
+                    progress_bar.update(1)
+                    value = float(row[11 + 7 * i:16 + 7 * i]) / 100
+                    flag = row[16 + 7 * i].strip()
+                    conn.execute(sql.ADD_PRECIPITATION_MEDIAN,
+                                 (station_id, i, value, flag))
 
 
 def load_weather_data():
