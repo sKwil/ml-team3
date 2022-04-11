@@ -19,6 +19,7 @@ SELECT MD.station_id,
        S.name,
        S.state,
        S.wmo_id,
+       S2.jurisdiction,
        MD.month,
        ROUND(MD.prcp_median, 3)     as prcp_median,
        MD.prcp_median_flag,
@@ -48,6 +49,7 @@ SELECT MD.station_id,
        MD.temp_max_stdev_flag
 FROM MonthlyDataRaw MD
          LEFT JOIN Stations S on MD.station_id = S.id
+         LEFT JOIN States S2 on S.state = S2.abbreviation
 WHERE MD.prcp_median IS NOT NULL
    OR MD.prcp_median_flag IS NOT NULL
    OR MD.prcp_days_h IS NOT NULL
