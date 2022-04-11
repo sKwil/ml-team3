@@ -39,6 +39,9 @@ def install():
     print('Populating Months Table...')
     ut.run_script(re.DB_MONTHS)
 
+    print('Populating States Table...')
+    ut.run_script(re.DB_STATES)
+
     print('Loading Weather Stations...')
     load_stations()
     print('  Added', loader.get_stations_rows(), 'stations to SQL database')

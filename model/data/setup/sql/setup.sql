@@ -39,6 +39,18 @@ CREATE TABLE Stations
     wmo_id    VARCHAR(5)
 );
 
+/*
+ * The states table contains additional information about each state that is not
+ * listed in the source data set. This allows for easily filtering weather
+ * stations based on their jurisdiction.
+ */
+CREATE TABLE States
+(
+    abbreviation TEXT PRIMARY KEY,
+    name         TEXT,
+    jurisdiction TEXT
+);
+
 
 -- ##################################################
 -- ##################################################
