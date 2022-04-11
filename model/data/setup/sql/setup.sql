@@ -52,8 +52,8 @@ CREATE TABLE MonthlyDataRaw
     prcp_days_h_flag     VARCHAR(1),
     prcp_days_t          REAL,
     prcp_days_t_flag     VARCHAR(1),
-    prcp_normals         REAL,
-    prcp_normals_flag    VARCHAR(1),
+    prcp_normal          REAL,
+    prcp_normal_flag     VARCHAR(1),
     snow_median          REAL,
     snow_median_flag     VARCHAR(1),
     snow_days_t          REAL,
@@ -62,8 +62,8 @@ CREATE TABLE MonthlyDataRaw
     snow_days_i_flag     VARCHAR(1),
     snow_depth_days      REAL,
     snow_depth_days_flag VARCHAR(1),
-    snow_normals         REAL,
-    snow_normals_flag    VARCHAR(1),
+    snow_normal          REAL,
+    snow_normal_flag     VARCHAR(1),
     temp_min_normal      REAL,
     temp_min_normal_flag VARCHAR(1),
     temp_min_stdev       REAL,
@@ -145,7 +145,7 @@ CREATE TABLE MonthlyPrecipitationNormals
 (
     station_id VARCHAR(11),
     month      INTEGER,
-    normal     REAL,
+    inches     REAL,
     flag       VARCHAR(1),
     FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
@@ -214,7 +214,7 @@ CREATE TABLE MonthlySnowfallNormals
 (
     station_id VARCHAR(11),
     month      INTEGER,
-    normal     REAL,
+    inches     REAL,
     flag       VARCHAR(1),
     FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
@@ -236,10 +236,10 @@ CREATE TABLE MonthlySnowfallNormals
  */
 CREATE TABLE MonthlyTempMaxNormals
 (
-    station_id VARCHAR(11),
-    month      INTEGER,
-    normal     REAL,
-    flag       VARCHAR(1),
+    station_id  VARCHAR(11),
+    month       INTEGER,
+    normal_temp REAL,
+    flag        VARCHAR(1),
     FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
@@ -262,10 +262,10 @@ CREATE TABLE MonthlyTempMaxStdev
  */
 CREATE TABLE MonthlyTempMinNormals
 (
-    station_id VARCHAR(11),
-    month      INTEGER,
-    normal     REAL,
-    flag       VARCHAR(1),
+    station_id  VARCHAR(11),
+    month       INTEGER,
+    normal_temp REAL,
+    flag        VARCHAR(1),
     FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 

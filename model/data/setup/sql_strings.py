@@ -19,7 +19,7 @@ ADD_PRECIPITATION_DAYS_T = 'INSERT INTO MonthlyPrecipitationDaysT ' \
                            'VALUES (?, ?, ?, ?);'
 
 ADD_PRECIPITATION_NORMALS = 'INSERT INTO MonthlyPrecipitationNormals ' \
-                            '(station_id, month, normal, flag) ' \
+                            '(station_id, month, inches, flag) ' \
                             'VALUES (?, ?, ?, ?);'
 
 ADD_SNOWFALL_MEDIAN = 'INSERT INTO MonthlySnowfallMedians ' \
@@ -35,16 +35,18 @@ ADD_SNOW_DEPTH_DAYS = 'INSERT INTO MonthlySnowDepthDays ' \
                       '(station_id, month, days, flag) VALUES (?, ?, ?, ?);'
 
 ADD_SNOWFALL_NORMALS = 'INSERT INTO MonthlySnowfallNormals ' \
-                       '(station_id, month, normal, flag) VALUES (?, ?, ?, ?);'
+                       '(station_id, month, inches, flag) VALUES (?, ?, ?, ?);'
 
 ADD_TEMP_MAX_NORMAL = 'INSERT INTO MonthlyTempMaxNormals ' \
-                      '(station_id, month, normal, flag) VALUES (?, ?, ?, ?);'
+                      '(station_id, month, normal_temp, flag) ' \
+                      'VALUES (?, ?, ?, ?);'
 
 ADD_TEMP_MAX_STDEV = 'INSERT INTO MonthlyTempMaxStdev ' \
                      '(station_id, month, stdev, flag) VALUES (?, ?, ?, ?);'
 
 ADD_TEMP_MIN_NORMAL = 'INSERT INTO MonthlyTempMinNormals ' \
-                      '(station_id, month, normal, flag) VALUES (?, ?, ?, ?);'
+                      '(station_id, month, normal_temp, flag) ' \
+                      'VALUES (?, ?, ?, ?);'
 
 ADD_TEMP_MIN_STDEV = 'INSERT INTO MonthlyTempMinStdev ' \
                      '(station_id, month, stdev, flag) VALUES (?, ?, ?, ?);'

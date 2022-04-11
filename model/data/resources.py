@@ -16,6 +16,7 @@ SETUP_SQL_DIR = os.path.join(MODEL_DIR, 'data', 'setup', 'sql')
 DB_SETUP_SCRIPT = os.path.join(SETUP_SQL_DIR, 'setup.sql')
 DB_MONTHS = os.path.join(SETUP_SQL_DIR, 'months.sql')
 DB_MERGE_MONTHLY = os.path.join(SETUP_SQL_DIR, 'merge_monthly_data.sql')
+DB_MONTHLY_DATA_VIEW = os.path.join(SETUP_SQL_DIR, 'monthly_data_view.sql')
 DB_CLEAN_DATA_SCRIPT = os.path.join(SETUP_SQL_DIR, 'clean_data.sql')
 DB_DAY_PHASE_SCRIPT = os.path.join(SETUP_SQL_DIR, 'day_phase.sql')
 

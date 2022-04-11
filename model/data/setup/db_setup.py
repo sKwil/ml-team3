@@ -46,9 +46,12 @@ def install():
     print('Loading Precipitation Data...')
     load_monthly_data()
 
-    print('Merging monthly data...')
+    print('Merging Monthly Data Raw...')
     print('  Loading...')
     ut.run_script(re.DB_MERGE_MONTHLY)
+
+    print('Create Monthly Data View...')
+    ut.run_script(re.DB_MONTHLY_DATA_VIEW)
 
     print('Finished SQLite installation')
 
