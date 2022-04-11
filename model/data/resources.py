@@ -14,6 +14,7 @@ DATABASE = os.path.join(SQL_DIR, 'weather.db')
 # SQL scripts for data cleaning
 SETUP_SQL_DIR = os.path.join(MODEL_DIR, 'data', 'setup', 'sql')
 DB_SETUP_SCRIPT = os.path.join(SETUP_SQL_DIR, 'setup.sql')
+DB_MONTHS = os.path.join(SETUP_SQL_DIR, 'months.sql')
 DB_CLEAN_DATA_SCRIPT = os.path.join(SETUP_SQL_DIR, 'clean_data.sql')
 DB_DAY_PHASE_SCRIPT = os.path.join(SETUP_SQL_DIR, 'day_phase.sql')
 DB_CREATE_VIEWS_SCRIPT = os.path.join(SETUP_SQL_DIR, 'views.sql')

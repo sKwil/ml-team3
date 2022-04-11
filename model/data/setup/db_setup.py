@@ -36,6 +36,9 @@ def install():
     print('Configuring weather database...')
     ut.run_script(re.DB_SETUP_SCRIPT)
 
+    print('Populating Months Table...')
+    ut.run_script(re.DB_MONTHS)
+
     print('Loading Weather Stations...')
     load_stations()
     print('  Added', loader.get_stations_rows(), 'stations to SQL database')
