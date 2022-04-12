@@ -7,8 +7,6 @@ import pandas as pd
 from model.data.pipeline import utils as ut
 from model.data.pipeline import sql_strings as sql
 
-__INDEX = ['city', 'year', 'month']
-
 
 def get_agg_data_frame() -> pd.DataFrame:
     """
