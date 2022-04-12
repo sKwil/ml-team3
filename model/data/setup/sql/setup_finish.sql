@@ -23,4 +23,4 @@ DROP TABLE IF EXISTS HourlyCloudsClear;
 DROP TABLE IF EXISTS HourlyCloudsFew;
 DROP TABLE IF EXISTS HourlyCloudsOvercast;
 DROP TABLE IF EXISTS HourlyCloudsScattered;
---DROP TABLE IF EXISTS HourlyAggregateData;
+DROP TABLE IF EXISTS HourlyAggregateData;
