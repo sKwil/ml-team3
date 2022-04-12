@@ -39,6 +39,9 @@ def install():
     print('Populating Months Table...')
     ut.run_script(re.DB_MONTHS)
 
+    print('Populating Regions Table...')
+    ut.run_script(re.DB_REGIONS)
+
     print('Populating States Table...')
     ut.run_script(re.DB_STATES)
 

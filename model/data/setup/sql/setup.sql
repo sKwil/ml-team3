@@ -41,7 +41,16 @@ CREATE TABLE Stations
 );
 
 /*
- * The states table contains additional information about each state that is not
+ * The Regions table contains a list of all the regions that each state can
+ * be found in.
+ */
+CREATE TABLE Regions
+(
+    name TEXT PRIMARY KEY
+);
+
+/*
+ * The States table contains additional information about each state that is not
  * listed in the source data set. This allows for easily filtering weather
  * stations based on their jurisdiction.
  */
@@ -50,7 +59,8 @@ CREATE TABLE States
     abbreviation TEXT PRIMARY KEY,
     name         TEXT NOT NULL,
     jurisdiction TEXT NOT NULL,
-    region       TEXT
+    region       TEXT,
+    FOREIGN KEY (region) references Regions (name)
 );
 
 
