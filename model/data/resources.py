@@ -24,7 +24,6 @@ DB_STATES = os.path.join(SETUP_SQL_DIR, 'states.sql')
 DB_REGIONS = os.path.join(SETUP_SQL_DIR, 'regions.sql')
 DB_JURISDICTIONS = os.path.join(SETUP_SQL_DIR, 'jurisdictions.sql')
 DB_CLEAN_DATA_SCRIPT = os.path.join(SETUP_SQL_DIR, 'clean_data.sql')
-DB_DAY_PHASE_SCRIPT = os.path.join(SETUP_SQL_DIR, 'day_phase.sql')
 
 # The standard time format for the database
 DATE_TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
