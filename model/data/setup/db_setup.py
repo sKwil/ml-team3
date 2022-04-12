@@ -45,6 +45,9 @@ def install():
     print('Populating Regions Table...')
     ut.run_script(re.DB_REGIONS)
 
+    print('Populating Jurisdictions Table...')
+    ut.run_script(re.DB_JURISDICTIONS)
+
     print('Populating States Table...')
     ut.run_script(re.DB_STATES)
 

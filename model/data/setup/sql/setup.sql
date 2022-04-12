@@ -72,6 +72,15 @@ CREATE TABLE Regions
 );
 
 /*
+ * The Jurisdictions table contains a list of all the jurisdictions that a
+ * weather station can be classified as based on its state.
+ */
+CREATE TABLE Jurisdictions
+(
+    name TEXT PRIMARY KEY
+);
+
+/*
  * The States table contains additional information about each state that is not
  * listed in the source data set. This allows for easily filtering weather
  * stations based on their jurisdiction.

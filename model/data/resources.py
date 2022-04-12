@@ -22,6 +22,7 @@ DB_MONTHLY_DATA_VIEW = os.path.join(SETUP_SQL_DIR, 'monthly_data_view.sql')
 DB_SETUP_FINISH = os.path.join(SETUP_SQL_DIR, 'setup_finish.sql')
 DB_STATES = os.path.join(SETUP_SQL_DIR, 'states.sql')
 DB_REGIONS = os.path.join(SETUP_SQL_DIR, 'regions.sql')
+DB_JURISDICTIONS = os.path.join(SETUP_SQL_DIR, 'jurisdictions.sql')
 DB_CLEAN_DATA_SCRIPT = os.path.join(SETUP_SQL_DIR, 'clean_data.sql')
 DB_DAY_PHASE_SCRIPT = os.path.join(SETUP_SQL_DIR, 'day_phase.sql')
 
