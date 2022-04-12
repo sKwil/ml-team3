@@ -259,3 +259,15 @@ WHERE name = 'Arkansas'
    OR name = 'South Carolina'
    OR name = 'Georgia'
    OR name = 'Florida';
+
+
+-- Alaska
+UPDATE States
+SET region = 'alaska'
+WHERE name = 'Alaska';
+
+
+-- Hawaii
+UPDATE States
+SET region = 'hawaii'
+WHERE name = 'Hawaii';
