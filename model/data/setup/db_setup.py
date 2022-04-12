@@ -36,6 +36,9 @@ def install():
     print('Configuring weather database...')
     ut.run_script(re.DB_SETUP_SCRIPT)
 
+    print('Populating Flags Table...')
+    ut.run_script(re.DB_FLAGS)
+
     print('Populating Months Table...')
     ut.run_script(re.DB_MONTHS)
 
@@ -49,8 +52,15 @@ def install():
     load_stations()
     print('  Added', loader.get_stations_rows(), 'stations to SQL database')
 
-    print('Loading Precipitation Data...')
+    print('Loading Raw Monthly Data...')
     load_monthly_data()
+
+    print('Loading Raw Hourly Data...')
+    load_hourly_data()
+
+    print('Aggregating Hourly Data...')
+    print('  Loading...')
+    ut.run_script(re.DB_MERGE_HOURLY)
 
     print('Merging Monthly Data Raw...')
     print('  Loading...')
@@ -119,7 +129,8 @@ def load_stations():
 
 def load_monthly_data():
     """
-    Load all the weather data from products/precipitation/* files.
+    Load all the weather data from products/precipitation/* and
+    products/temperature/* files.
     """
 
     p = df.PRECIPITATION_DIR
@@ -168,4 +179,55 @@ def load_monthly_data():
                         value = float(row[11 + 7 * i:16 + 7 * i]) * factor
                         flag = row[16 + 7 * i].strip()
                         conn.execute(sql_script, (station_id, i, value, flag))
+
+    progress_bar.close()
+
+
+def load_hourly_data():
+    """
+    Load all the data from products/hourly/* files.
+    """
+
+    # List the data files, their corresponding SQL statements, and
+    # the multiplying factor for correcting the units
+    files = [
+        ('hly-clod-pctbkn.txt', sql.ADD_CLOUD_BROKEN, 0.1),
+        ('hly-clod-pctclr.txt', sql.ADD_CLOUD_CLEAR, 0.1),
+        ('hly-clod-pctfew.txt', sql.ADD_CLOUD_FEW, 0.1),
+        ('hly-clod-pctovc.txt', sql.ADD_CLOUD_OVERCAST, 0.1),
+        ('hly-clod-pctsct.txt', sql.ADD_CLOUD_SCATTERED, 0.1)
+    ]
+
+    # Total iterations is the total number of lines in every file, times 24
+    # (for each hour of the day)
+    total_iterations = sum([
+        ut.get_data_file_lines(os.path.join(df.HOURLY_DIR, f)) for
+        f, s, u in files
+    ]) * 24
+
+    progress_bar = tqdm(total=total_iterations,
+                        desc='Reading hourly data...')
+
+    # Connect to the SQLite database
+    with db.get_conn() as conn:
+        # Iterate for each data file in the precipitation folder
+        for file_name, sql_script, factor in files:
+            # Open the file
+            with open(os.path.join(df.HOURLY_DIR, file_name)) as file:
+                # Process each row in the file
+                for row in file:
+                    progress_bar.update(24)
+
+                    # Get the station id, month, and date, and process the data
+                    # for each hour
+                    station_id = row[0:11].strip()
+                    month = int(row[12:14])
+                    day = int(row[15:17])
+
+                    for i in range(1, 25):
+                        value = int(row[11 + 7 * i:16 + 7 * i]) * factor
+                        flag = row[16 + 7 * i]
+                        conn.execute(sql_script,
+                                     (station_id, month, day, i, value, flag))
+
     progress_bar.close()

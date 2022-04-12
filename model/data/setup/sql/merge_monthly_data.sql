@@ -5,59 +5,72 @@
  */
 
 INSERT INTO MonthlyDataRaw
-SELECT S.id             as station_id,
-       M.num            as month,
-       PM.inches        as prcp_median,
-       PM.flag          as prcp_median_flag,
-       PDH.days         as prcp_h,
-       PDH.flag         as prcp_days_h_flag,
-       PDT.days         as prcp_days_t,
-       PDT.flag         as prcp_days_t_flag,
-       PN.inches        as prcp_normal,
-       PN.flag          as prcp_normal_flag,
-       SM.inches        as snow_median,
-       SM.flag          as snow_median_flag,
-       SDT.days         as snow_days_t,
-       SDT.flag         as snow_days_t_flag,
-       SDI.days         as snow_days_i,
-       SDI.flag         as snow_days_i_flag,
-       SDD.days         as snow_depth_days,
-       SDD.flag         as snow_depth_days_flag,
-       SN.inches        as snow_normals,
-       SN.flag          as snow_normals_flag,
-       TMIN.normal_temp as temp_min_normal,
-       TMIN.flag        as temp_min_normal_flag,
-       TMIS.stdev       as temp_min_stdev,
-       TMIS.flag        as temp_min_stdev_flag,
-       TMAN.normal_temp as temp_max_normal,
-       TMAN.flag        as temp_max_normal_flag,
-       TMAS.stdev       as temp_max_stdev,
-       TMAS.flag        as temp_max_stdev_flag
+SELECT S.id                            as station_id,
+       M.num                           as month,
+       PM.inches                       as prcp_median,
+       PM.flag                         as prcp_median_flag,
+       PDH.days                        as prcp_h,
+       PDH.flag                        as prcp_days_h_flag,
+       PDT.days                        as prcp_days_t,
+       PDT.flag                        as prcp_days_t_flag,
+       PN.inches                       as prcp_normal,
+       PN.flag                         as prcp_normal_flag,
+       SM.inches                       as snow_median,
+       SM.flag                         as snow_median_flag,
+       SDT.days                        as snow_days_t,
+       SDT.flag                        as snow_days_t_flag,
+       SDI.days                        as snow_days_i,
+       SDI.flag                        as snow_days_i_flag,
+       SDD.days                        as snow_depth_days,
+       SDD.flag                        as snow_depth_days_flag,
+       SN.inches                       as snow_normals,
+       SN.flag                         as snow_normals_flag,
+       TMIN.normal_temp                as temp_min_normal,
+       TMIN.flag                       as temp_min_normal_flag,
+       TMIS.stdev                      as temp_min_stdev,
+       TMIS.flag                       as temp_min_stdev_flag,
+       TMAN.normal_temp                as temp_max_normal,
+       TMAN.flag                       as temp_max_normal_flag,
+       TMAS.stdev                      as temp_max_stdev,
+       TMAS.flag                       as temp_max_stdev_flag,
+       HAD.broken_clouds_percentage    as clouds_broken,
+       HAD.broken_clouds_flag          as clouds_broken_flag,
+       HAD.clear_clouds_percentage     as clouds_clear,
+       HAD.clear_clouds_flag           as clouds_clear_flag,
+       HAD.few_clouds_percentage       as clouds_few,
+       HAD.few_clouds_flag             as clouds_few_flag,
+       HAD.overcast_clouds_percentage  as clouds_overcast,
+       HAD.overcast_clouds_flag        as clouds_overcast_flag,
+       HAD.scattered_clouds_percentage as clouds_scattered,
+       HAD.scattered_clouds_flag       as clouds_scattered_flag
+
 FROM Stations as S
-         CROSS JOIN Months as M
+         CROSS JOIN Months AS M
          LEFT JOIN MonthlyPrecipitationMedians PM
-                   on S.id = PM.station_id AND M.num = PM.month
+                   ON S.id = PM.station_id AND M.num = PM.month
          LEFT JOIN MonthlyPrecipitationDaysH PDH
-                   on S.id = PDH.station_id AND M.num = PDH.month
+                   ON S.id = PDH.station_id AND M.num = PDH.month
          LEFT JOIN MonthlyPrecipitationDaysT PDT
-                   on S.id = PDT.station_id AND M.num = PDT.month
+                   ON S.id = PDT.station_id AND M.num = PDT.month
          LEFT JOIN MonthlyPrecipitationNormals PN
-                   on S.id = PN.station_id AND M.num = PN.month
+                   ON S.id = PN.station_id AND M.num = PN.month
          LEFT JOIN MonthlySnowfallMedians SM
-                   on S.id = SM.station_id AND M.num = SM.month
+                   ON S.id = SM.station_id AND M.num = SM.month
          LEFT JOIN MonthlySnowfallDaysT SDT
-                   on S.id = SDT.station_id AND M.num = SDT.month
+                   ON S.id = SDT.station_id AND M.num = SDT.month
          LEFT JOIN MonthlySnowfallDaysI SDI
-                   on S.id = SDI.station_id AND M.num = SDI.month
+                   ON S.id = SDI.station_id AND M.num = SDI.month
          LEFT JOIN MonthlySnowfallNormals SN
-                   on S.id = SN.station_id AND M.num = SN.month
+                   ON S.id = SN.station_id AND M.num = SN.month
          LEFT JOIN MonthlySnowDepthDays SDD
-                   on S.id = SDD.station_id AND M.num = SDD.month
+                   ON S.id = SDD.station_id AND M.num = SDD.month
          LEFT JOIN MonthlyTempMaxNormals TMAN
-                   on S.id = TMAN.station_id AND M.num = TMAN.month
+                   ON S.id = TMAN.station_id AND M.num = TMAN.month
          LEFT JOIN MonthlyTempMaxStdev TMAS
-                   on S.id = TMAS.station_id AND M.num = TMAS.month
+                   ON S.id = TMAS.station_id AND M.num = TMAS.month
          LEFT JOIN MonthlyTempMinNormals TMIN
-                   on S.id = TMIN.station_id AND M.num = TMIN.month
+                   ON S.id = TMIN.station_id AND M.num = TMIN.month
          LEFT JOIN MonthlyTempMinStdev TMIS
-                   on S.id = TMIS.station_id AND M.num = TMIS.month;
+                   ON S.id = TMIS.station_id AND M.num = TMIS.month
+         LEFT JOIN HourlyAggregateData HAD
+                   ON S.id = HAD.station_id AND M.num = HAD.month;

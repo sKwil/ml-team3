@@ -7,8 +7,10 @@
 DROP TABLE IF EXISTS Stations;
 DROP TABLE IF EXISTS Regions;
 DROP TABLE IF EXISTS States;
+
 DROP TABLE IF EXISTS Months;
 DROP TABLE IF EXISTS MonthlyDataRaw;
+
 DROP TABLE IF EXISTS MonthlyPrecipitationMedians;
 DROP TABLE IF EXISTS MonthlyPrecipitationDaysH;
 DROP TABLE IF EXISTS MonthlyPrecipitationDaysT;
@@ -22,11 +24,24 @@ DROP TABLE IF EXISTS MonthlyTempMaxNormals;
 DROP TABLE IF EXISTS MonthlyTempMaxStdev;
 DROP TABLE IF EXISTS MonthlyTempMinNormals;
 DROP TABLE IF EXISTS MonthlyTempMinStdev;
+
+DROP TABLE IF EXISTS HourlyAggregateData;
+
 DROP TABLE IF EXISTS HourlyCloudsBroken;
 DROP TABLE IF EXISTS HourlyCloudsClear;
 DROP TABLE IF EXISTS HourlyCloudsFew;
 DROP TABLE IF EXISTS HourlyCloudsOvercast;
 DROP TABLE IF EXISTS HourlyCloudsScattered;
+
+
+-- ##################################################
+-- ##################################################
+-- ##################################################
+-- DEFINE MAIN TABLES
+-- ##################################################
+-- ##################################################
+-- ##################################################
+
 
 /*
  * The Stations table stores the data from stations/allstations.txt. This is
@@ -71,6 +86,21 @@ CREATE TABLE States
 );
 
 
+/*
+ * The Flags table is used to get a sense of the order to flags. This allows
+ * for proper aggregation of flags when combining numeric values. For
+ * example, if you were to add 10 numbers, where 9 have the C flag and 1 has
+ * the R flag, we would expect the result to have the R flag, as it is the
+ * least complete flag of the group.
+ */
+CREATE TABLE Flags
+(
+    flag        VARCHAR(1) PRIMARY KEY,
+    description TEXT,
+    rank        INTEGER
+);
+
+
 -- ##################################################
 -- ##################################################
 -- ##################################################
@@ -96,34 +126,44 @@ CREATE TABLE Months
  */
 CREATE TABLE MonthlyDataRaw
 (
-    station_id           VARCHAR(11),
-    month                INTEGER,
-    prcp_median          REAL,
-    prcp_median_flag     VARCHAR(1),
-    prcp_days_h          REAL,
-    prcp_days_h_flag     VARCHAR(1),
-    prcp_days_t          REAL,
-    prcp_days_t_flag     VARCHAR(1),
-    prcp_normal          REAL,
-    prcp_normal_flag     VARCHAR(1),
-    snow_median          REAL,
-    snow_median_flag     VARCHAR(1),
-    snow_days_t          REAL,
-    snow_days_t_flag     VARCHAR(1),
-    snow_days_i          REAL,
-    snow_days_i_flag     VARCHAR(1),
-    snow_depth_days      REAL,
-    snow_depth_days_flag VARCHAR(1),
-    snow_normal          REAL,
-    snow_normal_flag     VARCHAR(1),
-    temp_min_normal      REAL,
-    temp_min_normal_flag VARCHAR(1),
-    temp_min_stdev       REAL,
-    temp_min_stdev_flag  VARCHAR(1),
-    temp_max_normal      REAL,
-    temp_max_normal_flag VARCHAR(1),
-    temp_max_stdev       REAL,
-    temp_max_stdev_flag  VARCHAR(1),
+    station_id            VARCHAR(11),
+    month                 INTEGER,
+    prcp_median           REAL,
+    prcp_median_flag      VARCHAR(1),
+    prcp_days_h           REAL,
+    prcp_days_h_flag      VARCHAR(1),
+    prcp_days_t           REAL,
+    prcp_days_t_flag      VARCHAR(1),
+    prcp_normal           REAL,
+    prcp_normal_flag      VARCHAR(1),
+    snow_median           REAL,
+    snow_median_flag      VARCHAR(1),
+    snow_days_t           REAL,
+    snow_days_t_flag      VARCHAR(1),
+    snow_days_i           REAL,
+    snow_days_i_flag      VARCHAR(1),
+    snow_depth_days       REAL,
+    snow_depth_days_flag  VARCHAR(1),
+    snow_normal           REAL,
+    snow_normal_flag      VARCHAR(1),
+    temp_min_normal       REAL,
+    temp_min_normal_flag  VARCHAR(1),
+    temp_min_stdev        REAL,
+    temp_min_stdev_flag   VARCHAR(1),
+    temp_max_normal       REAL,
+    temp_max_normal_flag  VARCHAR(1),
+    temp_max_stdev        REAL,
+    temp_max_stdev_flag   VARCHAR(1),
+    clouds_broken         REAL,
+    clouds_broken_flag    VARCHAR(1),
+    clouds_clear          REAL,
+    clouds_clear_flag     VARCHAR(1),
+    clouds_few            REAL,
+    clouds_few_flag       VARCHAR(1),
+    clouds_overcast       REAL,
+    clouds_overcast_flag  VARCHAR(1),
+    clouds_scattered      REAL,
+    clouds_scattered_flag VARCHAR(1),
     FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
 
@@ -333,6 +373,31 @@ CREATE TABLE MonthlyTempMinStdev
 -- ##################################################
 -- ##################################################
 -- ##################################################
+
+
+/*
+ * The HourlyAggregateData table is where all of the hourly data from the
+ * other hourly tables is transferred. All of the hourly data is aggregated by
+ * month and stored here. Later, it will be merged into the MonthlyDataRaw
+ * table, and this table will be dropped.
+ */
+CREATE TABLE HourlyAggregateData
+(
+    station_id                  VARCHAR(11),
+    month                       INTEGER,
+    broken_clouds_percentage    REAL,
+    broken_clouds_flag          VARCHAR(1),
+    clear_clouds_percentage     REAL,
+    clear_clouds_flag           VARCHAR(1),
+    few_clouds_percentage       REAL,
+    few_clouds_flag             VARCHAR(1),
+    overcast_clouds_percentage  REAL,
+    overcast_clouds_flag        VARCHAR(1),
+    scattered_clouds_percentage REAL,
+    scattered_clouds_flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
+);
 
 
 /*

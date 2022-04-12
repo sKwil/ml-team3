@@ -50,3 +50,23 @@ ADD_TEMP_MIN_NORMAL = 'INSERT INTO MonthlyTempMinNormals ' \
 
 ADD_TEMP_MIN_STDEV = 'INSERT INTO MonthlyTempMinStdev ' \
                      '(station_id, month, stdev, flag) VALUES (?, ?, ?, ?);'
+
+ADD_CLOUD_BROKEN = 'INSERT INTO HourlyCloudsBroken ' \
+                   '(station_id, month, day, hour, percentage, flag) ' \
+                   'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_CLOUD_CLEAR = 'INSERT INTO HourlyCloudsClear ' \
+                  '(station_id, month, day, hour, percentage, flag) ' \
+                  'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_CLOUD_FEW = 'INSERT INTO HourlyCloudsFew ' \
+                '(station_id, month, day, hour, percentage, flag) ' \
+                'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_CLOUD_OVERCAST = 'INSERT INTO HourlyCloudsOvercast ' \
+                     '(station_id, month, day, hour, percentage, flag) ' \
+                     'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_CLOUD_SCATTERED = 'INSERT INTO HourlyCloudsScattered ' \
+                      '(station_id, month, day, hour, percentage, flag) ' \
+                      'VALUES (?, ?, ?, ?, ?, ?);'
