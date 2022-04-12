@@ -260,12 +260,10 @@ WHERE name = 'Arkansas'
    OR name = 'Georgia'
    OR name = 'Florida';
 
-
 -- Alaska
 UPDATE States
 SET region = 'alaska'
 WHERE name = 'Alaska';
-
 
 -- Hawaii
 UPDATE States
