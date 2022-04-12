@@ -5,6 +5,10 @@
 
 -- Drop the tables in case they already exist somehow
 DROP TABLE IF EXISTS Stations;
+DROP TABLE IF EXISTS Regions;
+DROP TABLE IF EXISTS States;
+DROP TABLE IF EXISTS Months;
+DROP TABLE IF EXISTS MonthlyDataRaw;
 DROP TABLE IF EXISTS MonthlyPrecipitationMedians;
 DROP TABLE IF EXISTS MonthlyPrecipitationDaysH;
 DROP TABLE IF EXISTS MonthlyPrecipitationDaysT;
@@ -18,8 +22,11 @@ DROP TABLE IF EXISTS MonthlyTempMaxNormals;
 DROP TABLE IF EXISTS MonthlyTempMaxStdev;
 DROP TABLE IF EXISTS MonthlyTempMinNormals;
 DROP TABLE IF EXISTS MonthlyTempMinStdev;
-DROP TABLE IF EXISTS MonthlyDataRaw;
-DROP TABLE IF EXISTS Months;
+DROP TABLE IF EXISTS HourlyCloudsBroken;
+DROP TABLE IF EXISTS HourlyCloudsClear;
+DROP TABLE IF EXISTS HourlyCloudsFew;
+DROP TABLE IF EXISTS HourlyCloudsOvercast;
+DROP TABLE IF EXISTS HourlyCloudsScattered;
 
 /*
  * The Stations table stores the data from stations/allstations.txt. This is
@@ -124,7 +131,7 @@ CREATE TABLE MonthlyDataRaw
 -- ##################################################
 -- ##################################################
 -- ##################################################
--- DEFINE TABLES FOR PRECIPITATION DATA
+-- DEFINE TABLES FOR MONTHLY PRECIPITATION DATA
 -- ##################################################
 -- ##################################################
 -- ##################################################
@@ -260,7 +267,7 @@ CREATE TABLE MonthlySnowfallNormals
 -- ##################################################
 -- ##################################################
 -- ##################################################
--- DEFINE TABLES FOR TEMPERATURE DATA
+-- DEFINE TABLES FOR MONTHLY TEMPERATURE DATA
 -- ##################################################
 -- ##################################################
 -- ##################################################
@@ -315,5 +322,96 @@ CREATE TABLE MonthlyTempMinStdev
     month      INTEGER,
     stdev      REAL,
     flag       VARCHAR(1),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
+);
+
+
+-- ##################################################
+-- ##################################################
+-- ##################################################
+-- DEFINE TABLES FOR HOURLY DATA
+-- ##################################################
+-- ##################################################
+-- ##################################################
+
+
+/*
+ * The HourlyCloudsBroken table contains the hourly percent frequency of
+ * broken cloud conditions. It's calculated from a 7-day-normal-average-
+ * climatological-whatever-thingamajig-don't-worry-about-it.
+ */
+CREATE TABLE HourlyCloudsBroken
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    percentage REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
+);
+
+/*
+ * The HourlyCloudsClear table contains the hourly percent frequency of
+ * clean cloud conditions.
+ */
+CREATE TABLE HourlyCloudsClear
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    percentage REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
+);
+
+/*
+ * The HourlyCloudsFew table contains the hourly percent frequency of
+ * few cloud conditions.
+ */
+CREATE TABLE HourlyCloudsFew
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    percentage REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
+);
+
+/*
+ * The HourlyCloudsOvercast table contains the hourly percent frequency of
+ * overcast cloud conditions.
+ */
+CREATE TABLE HourlyCloudsOvercast
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    percentage REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id)
+);
+
+/*
+ * The HourlyCloudsScattered table contains the hourly percent frequency of
+ * scattered cloud conditions.
+ */
+CREATE TABLE HourlyCloudsScattered
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    percentage REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id)
 );
