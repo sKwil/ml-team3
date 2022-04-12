@@ -1,11 +1,44 @@
 /*
- * This script replaces blank cells with null in the Weather table
+ * This script looks for empty cells in the MonthlyDataRaw table and replaces
+ * them with <null>.
  */
 
-UPDATE Weather
-SET temperature         = nullif(temperature, ''),
-    humidity            = nullif(humidity, ''),
-    pressure            = nullif(pressure, ''),
-    weather_description = nullif(weather_description, ''),
-    wind_direction      = nullif(wind_direction, ''),
-    wind_speed          = nullif(wind_speed, '');
+UPDATE MonthlyDataRaw
+SET station_id            = nullif(station_id, ''),
+    month                 = nullif(month, ''),
+    prcp_median           = nullif(prcp_median, ''),
+    prcp_median_flag      = nullif(prcp_median_flag, ''),
+    prcp_days_h           = nullif(prcp_days_h, ''),
+    prcp_days_h_flag      = nullif(prcp_days_h_flag, ''),
+    prcp_days_t           = nullif(prcp_days_t, ''),
+    prcp_days_t_flag      = nullif(prcp_days_t_flag, ''),
+    prcp_normal           = nullif(prcp_normal, ''),
+    prcp_normal_flag      = nullif(prcp_normal_flag, ''),
+    snow_median           = nullif(snow_median, ''),
+    snow_median_flag      = nullif(snow_median_flag, ''),
+    snow_days_t           = nullif(snow_days_t, ''),
+    snow_days_t_flag      = nullif(snow_days_t_flag, ''),
+    snow_days_i           = nullif(snow_days_i, ''),
+    snow_days_i_flag      = nullif(snow_days_i_flag, ''),
+    snow_depth_days       = nullif(snow_depth_days, ''),
+    snow_depth_days_flag  = nullif(snow_depth_days_flag, ''),
+    snow_normal           = nullif(snow_normal, ''),
+    snow_normal_flag      = nullif(snow_normal_flag, ''),
+    temp_min_normal       = nullif(temp_min_normal, ''),
+    temp_min_normal_flag  = nullif(temp_min_normal_flag, ''),
+    temp_min_stdev        = nullif(temp_min_stdev, ''),
+    temp_min_stdev_flag   = nullif(temp_min_stdev_flag, ''),
+    temp_max_normal       = nullif(temp_max_normal, ''),
+    temp_max_normal_flag  = nullif(temp_max_normal_flag, ''),
+    temp_max_stdev        = nullif(temp_max_stdev, ''),
+    temp_max_stdev_flag   = nullif(temp_max_stdev_flag, ''),
+    clouds_broken         = nullif(clouds_broken, ''),
+    clouds_broken_flag    = nullif(clouds_broken_flag, ''),
+    clouds_clear          = nullif(clouds_clear, ''),
+    clouds_clear_flag     = nullif(clouds_clear_flag, ''),
+    clouds_few            = nullif(clouds_few, ''),
+    clouds_few_flag       = nullif(clouds_few_flag, ''),
+    clouds_overcast       = nullif(clouds_overcast, ''),
+    clouds_overcast_flag  = nullif(clouds_overcast_flag, ''),
+    clouds_scattered      = nullif(clouds_scattered, ''),
+    clouds_scattered_flag = nullif(clouds_scattered_flag, '');
