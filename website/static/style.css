@@ -13,6 +13,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: serif;
     color: #377ba8;
     margin: 1rem 0;
+    text-align: center;
 }
 
 a {
@@ -39,3 +40,5 @@ nav h1 {
 .content {
     padding: 0 1rem 1rem;
 }
+
+
