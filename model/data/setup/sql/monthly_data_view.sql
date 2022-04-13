@@ -1,5 +1,5 @@
 /*
- * This script creates the MonthlyData and MonthlyDataNotNull views.
+ * This script creates the MonthlyData, MonthlyDataNotNull, and MonthlyDataModel views.
  *
  * MonthlyData is a selection of the MonthlyDataRaw table, where additional
  * information about the stations is included, and rows with null values for
@@ -10,10 +10,15 @@
  * it is dependent on MonthlyData), except that it removes rows with *any*
  * null values, along with rows that contain invalid weather values (such as
  * -9999).
+ *
+ * MonthlyDataModel is a view based on MonthlyData that only includes columns
+ * relevant to the ML model and removes observations with jurisdictions other
+ * than 'state'.
  */
 
 DROP VIEW IF EXISTS MonthlyData;
 DROP VIEW IF EXISTS MonthlyDataNotNull;
+DROP VIEW IF EXISTS MonthlyDataModel;
 
 
 CREATE VIEW MonthlyData AS
@@ -138,3 +143,23 @@ WHERE MD.prcp_median IS NOT NULL
   AND MD.clouds_few IS NOT NULL
   AND MD.clouds_overcast IS NOT NULL
   AND MD.clouds_scattered IS NOT NULL;
+
+
+
+CREATE VIEW MonthlyDataModel AS
+SELECT latitude,
+       longitude,
+       elevation,
+       state,
+       region,
+       month,
+       prcp_normal,
+       prcp_days_t,
+       prcp_normal,
+       temp_max_normal,
+       temp_min_normal,
+       snow_depth_days,
+       snow_days_t,
+       clouds_overcast + clouds_broken as clouds
+FROM MonthlyData
+WHERE jurisdiction = 'state';
