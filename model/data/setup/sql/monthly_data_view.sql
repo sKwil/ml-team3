@@ -155,7 +155,6 @@ SELECT latitude,
        month,
        prcp_normal,
        prcp_days_t,
-       prcp_normal,
        temp_max_normal,
        temp_min_normal,
        snow_depth_days,
@@ -163,3 +162,16 @@ SELECT latitude,
        clouds_overcast + clouds_broken as clouds
 FROM MonthlyData
 WHERE jurisdiction = 'state';
+
+CREATE VIEW MonthlyAverages AS
+SELECT month,
+       AVG(prcp_normal)     as prcpInt,
+       AVG(prcp_days_t)     as prcpFreq,
+       AVG(temp_max_normal) as temp_max_normal,
+       AVG(temp_min_normal) as temp_min_normal,
+       AVG(snow_depth_days) as snowInt,
+       AVG(snow_days_t)     as snowFreq,
+       AVG(clouds)          as clouds
+FROM MonthlyDataModel
+GROUP BY month;
+
