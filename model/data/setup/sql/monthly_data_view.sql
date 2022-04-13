@@ -163,6 +163,7 @@ SELECT latitude,
 FROM MonthlyData
 WHERE jurisdiction = 'state';
 
+
 CREATE VIEW MonthlyAverages AS
 SELECT month,
        AVG(prcp_normal)     as prcpInt,
