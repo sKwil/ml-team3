@@ -32,6 +32,11 @@ DROP TABLE IF EXISTS HourlyCloudsClear;
 DROP TABLE IF EXISTS HourlyCloudsFew;
 DROP TABLE IF EXISTS HourlyCloudsOvercast;
 DROP TABLE IF EXISTS HourlyCloudsScattered;
+DROP TABLE IF EXISTS HourlyDewPointNormal;
+DROP TABLE IF EXISTS HourlyHeadIndexNormal;
+DROP TABLE IF EXISTS HourlyPressureNormal;
+DROP TABLE IF EXISTS HourlyWindSpeedAvg;
+DROP TABLE IF EXISTS HourlyPercentCalm;
 
 
 -- ##################################################
@@ -512,6 +517,92 @@ CREATE TABLE HourlyCloudsOvercast
  * scattered cloud conditions.
  */
 CREATE TABLE HourlyCloudsScattered
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    percentage REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id),
+    FOREIGN KEY (month) REFERENCES Months (num)
+);
+
+/*
+ * The HourlyDewPointNormal table stores the climatological normal dew point
+ * for every hour of every calendar day at every station.
+ */
+CREATE TABLE HourlyDewPointNormal
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    dew_point  REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id),
+    FOREIGN KEY (month) REFERENCES Months (num)
+);
+
+/*
+ * The HourlyHeadIndexNormal table stores the climatological normal heat index
+ * for every hour of every calendar day at every station.
+ */
+CREATE TABLE HourlyHeadIndexNormal
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    heat_index REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id),
+    FOREIGN KEY (month) REFERENCES Months (num)
+);
+
+/*
+ * The HourlyPressureNormal table stores the climatological normal pressure at
+ * sea level for every hour of every calendar day at every station. This is
+ * given in millibars.
+ */
+CREATE TABLE HourlyPressureNormal
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    pressure   REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id),
+    FOREIGN KEY (month) REFERENCES Months (num)
+);
+
+/*
+ * The HourlyWindSpeedAvg table stores the average wind speed for every hour
+ * of every calendar day at every station. This is in miles per hour.
+ */
+CREATE TABLE HourlyWindSpeedAvg
+(
+    station_id VARCHAR(11),
+    month      INTEGER,
+    day        INTEGER,
+    hour       INTEGER,
+    wind_speed REAL,
+    flag       VARCHAR(1),
+    PRIMARY KEY (station_id, month, day, hour),
+    FOREIGN KEY (station_id) REFERENCES Stations (id),
+    FOREIGN KEY (month) REFERENCES Months (num)
+);
+
+/*
+ * The HourlyPercentCalm table stores the percentage of hours where the wind
+ * reading was "calm" for every hour of every calendar day at every station.
+ */
+CREATE TABLE HourlyPercentCalm
 (
     station_id VARCHAR(11),
     month      INTEGER,

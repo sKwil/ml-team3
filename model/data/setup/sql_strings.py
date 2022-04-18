@@ -70,3 +70,23 @@ ADD_CLOUD_OVERCAST = 'INSERT INTO HourlyCloudsOvercast ' \
 ADD_CLOUD_SCATTERED = 'INSERT INTO HourlyCloudsScattered ' \
                       '(station_id, month, day, hour, percentage, flag) ' \
                       'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_DEW_POINT_NORMAL = 'INSERT INTO HourlyDewPointNormal ' \
+                       '(station_id, month, day, hour, dew_point, flag) ' \
+                       'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_HEAT_INDEX_NORMAL = 'INSERT INTO HourlyHeadIndexNormal ' \
+                        '(station_id, month, day, hour, heat_index, flag) ' \
+                        'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_PRESSURE_NORMAL = 'INSERT INTO HourlyPressureNormal ' \
+                      '(station_id, month, day, hour, pressure, flag) ' \
+                      'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_AVG_WIND_SPEED = 'INSERT INTO HourlyWindSpeedAvg ' \
+                     '(station_id, month, day, hour, wind_speed, flag) ' \
+                     'VALUES (?, ?, ?, ?, ?, ?);'
+
+ADD_WIND_PERCENT_CALM = 'INSERT INTO HourlyPercentCalm ' \
+                        '(station_id, month, day, hour, percentage, flag) ' \
+                        'VALUES (?, ?, ?, ?, ?, ?);'

@@ -201,7 +201,12 @@ def load_hourly_data():
         ('hly-clod-pctclr.txt', sql.ADD_CLOUD_CLEAR, 0.1),
         ('hly-clod-pctfew.txt', sql.ADD_CLOUD_FEW, 0.1),
         ('hly-clod-pctovc.txt', sql.ADD_CLOUD_OVERCAST, 0.1),
-        ('hly-clod-pctsct.txt', sql.ADD_CLOUD_SCATTERED, 0.1)
+        ('hly-clod-pctsct.txt', sql.ADD_CLOUD_SCATTERED, 0.1),
+        ('hly-dewp-normal.txt', sql.ADD_DEW_POINT_NORMAL, 0.1),
+        ('hly-hidx-normal.txt', sql.ADD_HEAT_INDEX_NORMAL, 0.1),
+        ('hly-pres-normal.txt', sql.ADD_PRESSURE_NORMAL, 0.1),
+        ('hly-wind-avgspd.txt', sql.ADD_AVG_WIND_SPEED, 0.1),
+        ('hly-wind-pctclm.txt', sql.ADD_WIND_PERCENT_CALM, 0.1)
     ]
 
     # Total iterations is the total number of lines in every file, times 24
