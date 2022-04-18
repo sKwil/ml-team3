@@ -42,7 +42,17 @@ SELECT S.id                            as station_id,
        HAD.overcast_clouds_percentage  as clouds_overcast,
        HAD.overcast_clouds_flag        as clouds_overcast_flag,
        HAD.scattered_clouds_percentage as clouds_scattered,
-       HAD.scattered_clouds_flag       as clouds_scattered_flag
+       HAD.scattered_clouds_flag       as clouds_scattered_flag,
+       HAD.dew_point_avg               as dew_point,
+       HAD.dew_point_avg_flag          as dew_point_flag,
+       HAD.heat_index_avg              as heat_index,
+       HAD.heat_index_avg_flag         as heat_index_avg,
+       HAD.pressure_avg                as pressure,
+       HAD.pressure_avg_flag           as pressure_flag,
+       HAD.wind_speed_avg              as wind_speed,
+       HAD.wind_speed_avg_flag         as wind_speed_flag,
+       HAD.wind_calm_percentage        as wind_calm_percentage,
+       HAD.wind_calm_percentage_flag   as wind_calm_percentage_flag
 
 FROM Stations as S
          CROSS JOIN Months AS M

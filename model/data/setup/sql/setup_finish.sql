@@ -24,3 +24,8 @@ DROP TABLE IF EXISTS HourlyCloudsFew;
 DROP TABLE IF EXISTS HourlyCloudsOvercast;
 DROP TABLE IF EXISTS HourlyCloudsScattered;
 DROP TABLE IF EXISTS HourlyAggregateData;
+DROP TABLE IF EXISTS HourlyDewPointNormal;
+DROP TABLE IF EXISTS HourlyHeadIndexNormal;
+DROP TABLE IF EXISTS HourlyPressureNormal;
+DROP TABLE IF EXISTS HourlyWindSpeedAvg;
+DROP TABLE IF EXISTS HourlyPercentCalm;
