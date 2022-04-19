@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS HourlyCloudsFew;
 DROP TABLE IF EXISTS HourlyCloudsOvercast;
 DROP TABLE IF EXISTS HourlyCloudsScattered;
 DROP TABLE IF EXISTS HourlyDewPointNormal;
-DROP TABLE IF EXISTS HourlyHeadIndexNormal;
+DROP TABLE IF EXISTS HourlyHeatIndexNormal;
 DROP TABLE IF EXISTS HourlyPressureNormal;
 DROP TABLE IF EXISTS HourlyWindSpeedAvg;
 DROP TABLE IF EXISTS HourlyPercentCalm;
@@ -567,10 +567,10 @@ CREATE TABLE HourlyDewPointNormal
 );
 
 /*
- * The HourlyHeadIndexNormal table stores the climatological normal heat index
+ * The HourlyHeatIndexNormal table stores the climatological normal heat index
  * for every hour of every calendar day at every station.
  */
-CREATE TABLE HourlyHeadIndexNormal
+CREATE TABLE HourlyHeatIndexNormal
 (
     station_id VARCHAR(11),
     month      INTEGER,

@@ -75,7 +75,7 @@ ADD_DEW_POINT_NORMAL = 'INSERT INTO HourlyDewPointNormal ' \
                        '(station_id, month, day, hour, dew_point, flag) ' \
                        'VALUES (?, ?, ?, ?, ?, ?);'
 
-ADD_HEAT_INDEX_NORMAL = 'INSERT INTO HourlyHeadIndexNormal ' \
+ADD_HEAT_INDEX_NORMAL = 'INSERT INTO HourlyHeatIndexNormal ' \
                         '(station_id, month, day, hour, heat_index, flag) ' \
                         'VALUES (?, ?, ?, ?, ?, ?);'
 

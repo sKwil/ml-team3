@@ -177,7 +177,7 @@ WITH BrokenClouds as (
      HeatIndex as (
          WITH J as (
              SELECT H.*, F.rank
-             FROM HourlyHeadIndexNormal H
+             FROM HourlyHeatIndexNormal H
                       LEFT JOIN Flags F on H.flag = F.flag
          ),
               P as (
