@@ -190,7 +190,29 @@ CREATE TABLE MonthlyDataRaw
     wind_calm_percentage_flag VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (prcp_median_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (prcp_days_h_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (prcp_days_t_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (prcp_normal_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (snow_median_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (snow_days_t_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (snow_days_i_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (snow_depth_days_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (snow_normal_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (temp_min_normal_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (temp_min_stdev_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (temp_max_normal_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (temp_max_stdev_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (clouds_broken_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (clouds_few_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (clouds_overcast_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (clouds_scattered_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (dew_point_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (heat_index_avg) REFERENCES Flags (flag),
+    FOREIGN KEY (pressure_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (wind_speed_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (wind_calm_percentage_flag) REFERENCES Flags (flag)
 );
 
 
@@ -216,7 +238,8 @@ CREATE TABLE MonthlyPrecipitationMedians
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -232,7 +255,8 @@ CREATE TABLE MonthlyPrecipitationDaysH
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -248,7 +272,8 @@ CREATE TABLE MonthlyPrecipitationDaysT
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -264,7 +289,8 @@ CREATE TABLE MonthlyPrecipitationNormals
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -280,7 +306,8 @@ CREATE TABLE MonthlySnowfallMedians
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -296,7 +323,8 @@ CREATE TABLE MonthlySnowfallDaysT
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -311,7 +339,8 @@ CREATE TABLE MonthlySnowfallDaysI
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -327,7 +356,8 @@ CREATE TABLE MonthlySnowDepthDays
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -343,7 +373,8 @@ CREATE TABLE MonthlySnowfallNormals
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 
@@ -369,7 +400,8 @@ CREATE TABLE MonthlyTempMaxNormals
     flag        VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -384,7 +416,8 @@ CREATE TABLE MonthlyTempMaxStdev
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -399,7 +432,8 @@ CREATE TABLE MonthlyTempMinNormals
     flag        VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -414,7 +448,8 @@ CREATE TABLE MonthlyTempMinStdev
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 
@@ -459,7 +494,17 @@ CREATE TABLE HourlyAggregateData
     wind_calm_percentage_flag   VARCHAR(1),
     PRIMARY KEY (station_id, month),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (broken_clouds_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (clear_clouds_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (few_clouds_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (overcast_clouds_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (scattered_clouds_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (dew_point_avg_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (heat_index_avg_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (pressure_avg_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (wind_speed_avg_flag) REFERENCES Flags (flag),
+    FOREIGN KEY (wind_calm_percentage_flag) REFERENCES Flags (flag)
 );
 
 
@@ -478,7 +523,8 @@ CREATE TABLE HourlyCloudsBroken
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -495,7 +541,8 @@ CREATE TABLE HourlyCloudsClear
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -512,7 +559,8 @@ CREATE TABLE HourlyCloudsFew
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -529,7 +577,8 @@ CREATE TABLE HourlyCloudsOvercast
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -546,7 +595,8 @@ CREATE TABLE HourlyCloudsScattered
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -563,7 +613,8 @@ CREATE TABLE HourlyDewPointNormal
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -580,7 +631,8 @@ CREATE TABLE HourlyHeatIndexNormal
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -598,7 +650,8 @@ CREATE TABLE HourlyPressureNormal
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -615,7 +668,8 @@ CREATE TABLE HourlyWindSpeedAvg
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
 
 /*
@@ -632,5 +686,6 @@ CREATE TABLE HourlyPercentCalm
     flag       VARCHAR(1),
     PRIMARY KEY (station_id, month, day, hour),
     FOREIGN KEY (station_id) REFERENCES Stations (id),
-    FOREIGN KEY (month) REFERENCES Months (num)
+    FOREIGN KEY (month) REFERENCES Months (num),
+    FOREIGN KEY (flag) REFERENCES Flags (flag)
 );
