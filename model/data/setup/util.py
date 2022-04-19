@@ -6,15 +6,20 @@ import model.data.resources as re
 from model.data import db
 
 
-def get_data_file(fileName: str) -> IO:
+def get_data_file(directory: str, file: str) -> IO:
     """
     Open a csv data file from the raw data directory.
 
-    :param fileName: the full name of the file to load (with the extension)
-    :return: the opened file
+    Args:
+        directory: The name of the directory where the specified file is
+                   stored. This should be a subdirectory within /data/raw.
+        file: The name of the data file within the specified directory.
+
+    Returns:
+         The opened file.
     """
 
-    return open(os.path.join(re.DATA_RAW_DIR, fileName))
+    return open(os.path.join(re.DATA_RAW_DIR, directory, file))
 
 
 def is_homogeneous(items: List) -> bool:
@@ -53,14 +58,16 @@ def format_time(time_str: str) -> dt:
 
 def get_data_file_lines(file: str) -> int:
     """
-    Count the number of lines in the given data file. The file is opened with
-    util.getDataFile().
+    Count the number of lines in the given data file.
 
-    :param file: the name of the data file to count
-    :return: the number of lines in the file
+    Args:raw.
+        file: The complete path to the file (see model.data.data_files.py)
+
+    Returns:
+         The number of lines in the file.
     """
 
-    with get_data_file(file) as f:
+    with open(file) as f:
         return sum(1 for _ in f)
 
 

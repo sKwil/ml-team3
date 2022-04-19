@@ -1,0 +1,32 @@
+Complete alphabetical listing of Files in Subdirectory products/hourly
+
+The below list provides a synopsis of each hourly normals file. For a more general
+description of the file naming conventions used for all normals files, see the 
+readme.txt file in the main directory.
+
+hly-cldh-normal.txt  cooling degree hours
+hly-clod-pctbkn.txt  clouds broken percentage
+hly-clod-pctclr.txt  clouds clear percentage
+hly-clod-pctfew.txt  clouds few percentage
+hly-clod-pctovc.txt  clouds overcast percentage
+hly-clod-pctsct.txt  clouds scattered percentage
+hly-dewp-10pctl.txt  dew point 10th percentile
+hly-dewp-90pctl.txt  dew point 90th percentile 
+hly-dewp-normal.txt  dew point mean
+hly-hidx-normal.txt  heat index mean
+hly-htdh-normal.txt  heating degree hours
+hly-pres-10pctl.txt  sea level pressure 10th percentile
+hly-pres-90pctl.txt  sea level pressure 90th percentile
+hly-pres-normal.txt  sea level pressure mean
+hly-temp-10pctl.txt  temperature 10th percentile
+hly-temp-90pctl.txt  temperature 90th percentile
+hly-temp-normal.txt  temperature mean
+hly-wchl-normal.txt  wind chill mean
+hly-wind-1stdir.txt  prevailing wind direction (1-8)
+hly-wind-1stpct.txt  prevailing wind percentage
+hly-wind-2nddir.txt  secondary wind direction (1-8)
+hly-wind-2ndpct.txt  secondary wind percentage
+hly-wind-avgspd.txt  average wind speed
+hly-wind-pctclm.txt  percentage calm
+hly-wind-vctdir.txt  mean wind vector direction
+hly-wind-vctspd.txt  mean wind vector magnitude

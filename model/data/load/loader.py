@@ -31,13 +31,13 @@ def get_weather_rows() -> int:
     return get_row_count('Weather')
 
 
-def get_cities_rows() -> int:
+def get_stations_rows() -> int:
     """
     Retrieve the number of rows in the Cities table.
     :return: the number of rows in the Cities table
     """
 
-    return get_row_count('Cities')
+    return get_row_count('Stations')
 
 
 def get_row_count(table_name: str) -> int:

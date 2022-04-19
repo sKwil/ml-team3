@@ -1,0 +1,265 @@
+Complete alphabetical listing of Files in Subdirectory products/precipitation
+
+The below list provides a synopsis of each precipitation/snowfall/snow depth
+normals file.  For a more general description of the file naming conventions
+used for all normals files, see the readme.txt file in the main directory.
+
+ann-*.txt (annual) files
+
+ann-prcp-avgnds-ge001hi.txt  Long-term averages of number of days during the year
+                             with precipitation >= 0.01 inches
+ann-prcp-avgnds-ge010hi.txt  Long-term averages of number of days during the year
+                             with precipitation >= 0.10 inches
+ann-prcp-avgnds-ge050hi.txt  Long-term averages of number of days during the year
+                             with precipitation >= 0.50 inches
+ann-prcp-avgnds-ge100hi.txt  Long-term averages of number of days during the year
+                             with precipitation >= 1.00 inches
+ann-prcp-normal.txt          Long-term averages of annual precipitation totals
+ann-snow-avgnds-ge001ti.txt  Long-term averages of number of days during the year
+                             with snowfall >= 0.1 inches
+ann-snow-avgnds-ge010ti.txt  Long-term averages of number of days during the year
+                             with snowfall >= 1.0 inches
+ann-snow-avgnds-ge030ti.txt  Long-term averages of number of days during the year
+                             with snowfall >= 3.0 inches
+ann-snow-avgnds-ge050ti.txt  Long-term averages of number of days during the year
+                             with snowfall >= 5.0 inches
+ann-snow-avgnds-ge100ti.txt  Long-term averages of number of days during the year
+                             with snowfall >= 10.0 inches
+ann-snow-normal.txt          Long-term averages of annual snowfall totals
+ann-snwd-avgnds-ge001wi.txt  Long-term averages of number of days during the year
+                             with snow depth >= 1 inch
+ann-snwd-avgnds-ge003wi.txt  Long-term averages of number of days during the year
+                             with snow depth >= 3 inches
+ann-snwd-avgnds-ge005wi.txt  Long-term averages of number of days during the year
+                             with snow depth >= 5 inches
+ann-snwd-avgnds-ge010wi.txt  Long-term averages of number of days during the year
+                             with snow depth >= 10 inches
+
+djf-*.txt (December-February) files
+
+djf-prcp-avgnds-ge001hi.txt  Long-term averages of number of days during 
+                             December-February with precipitation >= 0.01 inches
+djf-prcp-avgnds-ge010hi.txt  Long-term averages of number of days during 
+                             December-February with precipitation >= 0.10 inches
+djf-prcp-avgnds-ge050hi.txt  Long-term averages of number of days during 
+                             December-February with precipitation >= 0.50 inches
+djf-prcp-avgnds-ge100hi.txt  Long-term averages of number of days during 
+                             December-February with precipitation >= 1.00 inches
+djf-prcp-normal.txt          Long-term averages of seasonal precipitation 
+                             totals forDecember-February
+djf-snow-avgnds-ge001ti.txt  Long-term averages of number of days during 
+                             December-February with snowfall >= 0.1 inches
+djf-snow-avgnds-ge010ti.txt  Long-term averages of number of days during 
+                             December-February with snowfall >= 1.0 inches
+djf-snow-avgnds-ge030ti.txt  Long-term averages of number of days during 
+                             December-February with snowfall >= 3.0 inches
+djf-snow-avgnds-ge050ti.txt  Long-term averages of number of days during 
+                             December-February with snowfall >= 5.0 inches
+djf-snow-avgnds-ge100ti.txt  Long-term averages of number of days during 
+                             December-February with snowfall >= 10.0 inches
+djf-snow-normal.txt          Long-term averages of seasonal snowfall totals for 
+                             December-February
+djf-snwd-avgnds-ge001wi.txt  Long-term averages of number of days during 
+                             December-February with snow depth >= 1 inch
+djf-snwd-avgnds-ge003wi.txt  Long-term averages of number of days during 
+                             December-February with snow depth >= 3 inches
+djf-snwd-avgnds-ge005wi.txt  Long-term averages of number of days during 
+                             December-February with snow depth >= 5 inches
+djf-snwd-avgnds-ge010wi.txt  Long-term averages of number of days during 
+                             December-February with snow depth >= 10 inches
+
+dly-*.txt (daily) files
+
+dly-prcp-25pctl.txt          25th percentiles of daily nonzero precipitation 
+                             totals for 29-day windows centered on each day of 
+			     the year
+dly-prcp-50pctl.txt          50th percentiles of daily nonzero precipitation 
+                             totals for 29-day windows centered on each day of 
+			     the year
+dly-prcp-75pctl.txt          75th percentiles of daily nonzero precipitation 
+                             totals for 29-day windows centered on each day of 
+			     the year
+dly-prcp-pctall-ge001hi.txt  Probability of precipitation >= 0.01 inches for 
+                             29-day windows centered on each day of the year
+dly-prcp-pctall-ge010hi.txt  Probability of precipitation >= 0.10 inches for 
+                             29-day windows centered on each day of the year
+dly-prcp-pctall-ge050hi.txt  Probability of precipitation >= 0.50 inches for 
+                             29-day windows centered on each day of the year
+dly-prcp-pctall-ge100hi.txt  Probability of precipitation >= 1.00 inches for 
+                             29-day windows centered on each day of the year
+dly-snow-25pctl.txt          25th percentiles of daily nonzero snowfall totals 
+                             for 29-day windows centered on each day of the year
+dly-snow-50pctl.txt          50th percentiles of daily nonzero snowfall totals 
+                             for 29-day windows centered on each day of the year
+dly-snow-75pctl.txt          75th percentiles of daily nonzero snowfall totals 
+                             for 29-day windows centered on each day of the year
+dly-snow-pctall-ge001ti.txt  Probability of snowfall >= 0.1 inches for 29-day 
+                             windows centered on each day of the year
+dly-snow-pctall-ge010ti.txt  Probability of snowfall >= 1.0 inches for 29-day 
+                             windows centered on each day of the year
+dly-snow-pctall-ge030ti.txt  Probability of snowfall >= 3.0 inches for 29-day 
+                             windows centered on each day of the year
+dly-snow-pctall-ge050ti.txt  Probability of snowfall >= 5.0 inches for 29-day 
+                             windows centered on each day of the year
+dly-snow-pctall-ge100ti.txt  Probability of snowfall >= 10 inches for 29-day 
+                             windows centered on each day of the year
+dly-snwd-25pctl.txt          25th percentiles of daily nonzero snow depth for 
+                             29-day windows centered on each day of the year
+dly-snwd-50pctl.txt          50th percentiles of daily nonzero snow depth for 
+                             29-day windows centered on each day of the year
+dly-snwd-75pctl.txt          75th percentiles of daily nonzero snow depth for 
+                             29-day windows centered on each day of the year
+dly-snwd-pctall-ge001wi.txt  Probability of snow depth >= 1 inch for 29-day 
+                             windows centered on each day of the year
+dly-snwd-pctall-ge003wi.txt  Probability of snow depth >= 3 inches for 29-day 
+                             windows centered on each day of the year
+dly-snwd-pctall-ge005wi.txt  Probability of snow depth >= 5 inches for 29-day 
+                             windows centered on each day of the year
+dly-snwd-pctall-ge010wi.txt  Probability of snow depth >= 10 inches for 29-day 
+                             windows centered on each day of the year
+
+jja-*.txt (June-August) files
+
+jja-prcp-avgnds-ge001hi.txt  Long-term averages of number of days during 
+                             June-August with precipitation >= 0.01 inches
+jja-prcp-avgnds-ge010hi.txt  Long-term averages of number of days during 
+                             June-August with precipitation >= 0.10 inches
+jja-prcp-avgnds-ge050hi.txt  Long-term averages of number of days during 
+                             June-August with precipitation >= 0.50 inches
+jja-prcp-avgnds-ge100hi.txt  Long-term averages of number of days during 
+                             June-August with precipitation >= 1.00 inches
+jja-prcp-normal.txt          Long-term averages of seasonal precipitation totals 
+                             for June-August
+jja-snow-avgnds-ge001ti.txt  Long-term averages of number of days during 
+                             June-August with snowfall >= 0.1 inches
+jja-snow-avgnds-ge010ti.txt  Long-term averages of number of days during 
+                             June-August with snowfall >= 1.0 inches
+jja-snow-avgnds-ge030ti.txt  Long-term averages of number of days during 
+                             June-August with snowfall >= 3.0 inches
+jja-snow-avgnds-ge050ti.txt  Long-term averages of number of days during 
+                             June-August with snowfall >= 5.0 inches
+jja-snow-avgnds-ge100ti.txt  Long-term averages of number of days during 
+                             June-August with snowfall >= 10.0 inches
+jja-snow-normal.txt          Long-term averages of seasonal snowfall totals for 
+                             June-August
+jja-snwd-avgnds-ge001wi.txt  Long-term averages of number of days during 
+                             June-August with snow depth >= 1 inch
+jja-snwd-avgnds-ge003wi.txt  Long-term averages of number of days during 
+                             June-August with snow depth >= 3 inches
+jja-snwd-avgnds-ge005wi.txt  Long-term averages of number of days during 
+                             June-August with snow depth >= 5 inches
+jja-snwd-avgnds-ge010wi.txt  Long-term averages of number of days during 
+                             June-August with snow depth >= 10 inches
+
+mam-*.txt (March-May) files
+
+mam-prcp-avgnds-ge001hi.txt  Long-term averages of number of days during March-May 
+                             with precipitation >= 0.01 inches
+mam-prcp-avgnds-ge010hi.txt  Long-term averages of number of days during March-May 
+                             with precipitation >= a 0.10 inches
+mam-prcp-avgnds-ge050hi.txt  Long-term averages of number of days during March-May 
+                             with precipitation >= 0.50 inches
+mam-prcp-avgnds-ge100hi.txt  Long-term averages of number of days during March-May 
+                             with precipitation >= 1.00 inches
+mam-prcp-normal.txt          Long-term averages of seasonal precipitation totals 
+                             for March-May
+mam-snow-avgnds-ge001ti.txt  Long-term averages of number of days during March-May 
+                             with snowfall >= 0.1 inches
+mam-snow-avgnds-ge010ti.txt  Long-term averages of number of days during March-May 
+                             with snowfall >= 1.0 inches
+mam-snow-avgnds-ge030ti.txt  Long-term averages of number of days during March-May 
+                             with snowfall >= 3.0 inches
+mam-snow-avgnds-ge050ti.txt  Long-term averages of number of days during March-May 
+                             with snowfall >= 5.0 inches
+mam-snow-avgnds-ge100ti.txt  Long-term averages of number of days during March-May 
+                             with snowfall >= 10.0 inches
+mam-snow-normal.txt          Long-term averages of seasonal snowfall totals for 
+                             March-May
+mam-snwd-avgnds-ge001wi.txt  Long-term averages of number of days during March-May 
+                             with snow depth >= 1 inche
+mam-snwd-avgnds-ge003wi.txt  Long-term averages of number of days during March-May 
+                             with snow depth >= 3 inches
+mam-snwd-avgnds-ge005wi.txt  Long-term averages of number of days during March-May 
+                             with snow depth >= 5 inches
+mam-snwd-avgnds-ge010wi.txt  Long-term averages of number of days during March-May 
+                             with snow depth >= 10 inches
+
+mly-*.txt  (monthly) files
+
+mly-prcp-25pctl.txt          25th percentiles of monthly precipitation totals
+mly-prcp-50pctl.txt          50th percentiles of monthly precipitation totals
+mly-prcp-75pctl.txt          75th percentiles of monthly precipitation totals
+mly-prcp-avgnds-ge001hi.txt  Long-term averages of number of days per month with 
+                             precipitation >= 0.01 inches
+mly-prcp-avgnds-ge010hi.txt  Long-term averages of number of days per month with 
+                             precipitation >= 0.10 inches
+mly-prcp-avgnds-ge050hi.txt  Long-term averages of number of days per month with 
+                             precipitation >= 0.50 inches
+mly-prcp-avgnds-ge100hi.txt  Long-term averages of number of days per month with 
+                             precipitation >= 1.00 inches
+mly-prcp-normal.txt          Long-term averages of monthly precipitation totals
+mly-snow-25pctl.txt          25th percentiles of monthly snowfall totals
+mly-snow-50pctl.txt          50th percentiles of monthly snowfall totals
+mly-snow-75pctl.txt          75th percentiles of monthly snowfall totals
+mly-snow-avgnds-ge001ti.txt  Long-term averages of number of days per month with 
+                             Snowfall >= 0.1 inches
+mly-snow-avgnds-ge010ti.txt  Long-term averages of number of days per month with 
+                             Snowfall >= 1.0 inches
+mly-snow-avgnds-ge030ti.txt  Long-term averages of number of days per month with 
+                             Snowfall >= 3.0 inches
+mly-snow-avgnds-ge050ti.txt  Long-term averages of number of days per month with 
+                             Snowfall >= 5.0 inches
+mly-snow-avgnds-ge100ti.txt  Long-term averages of number of days per month with 
+                             Snowfall >= 10.0 inches
+mly-snow-normal.txt          Long-term averages of monthly snowfall totals
+mly-snwd-avgnds-ge001wi.txt  Long-term averages of number of days per month with 
+                             snow depth >= 1 inch
+mly-snwd-avgnds-ge003wi.txt  Long-term averages of number of days per month with 
+                             snow depth >= 3 inches
+mly-snwd-avgnds-ge005wi.txt  Long-term averages of number of days per month with 
+                             snow depth >= 5 inches
+mly-snwd-avgnds-ge010wi.txt  Long-term averages of number of days per month with 
+                             snow depth >= 10 inches
+
+mtd-*.txt  (month-to-date) files
+
+mtd-prcp-normal.txt          Long-term average month-to-date precipitation totals
+mtd-snow-normal.txt          Long-term average month-to-date snowfall totals
+
+son-*.txt  (September-November) files
+
+son-prcp-avgnds-ge001hi.txt  Long-term averages of number of days during 
+                             September-November with precipitation >= 0.01 inches
+son-prcp-avgnds-ge010hi.txt  Long-term averages of number of days during 
+                             September-November with precipitation >= 0.10 inches
+son-prcp-avgnds-ge050hi.txt  Long-term averages of number of days during 
+                             September-November with precipitation >= 0.50 inches
+son-prcp-avgnds-ge100hi.txt  Long-term averages of number of days during 
+                             September-November with precipitation >= 1.00 inches
+son-prcp-normal.txt          Long-term averages of seasonal precipitation totals 
+                             for September-November
+son-snow-avgnds-ge001ti.txt  Long-term averages of number of days during 
+                             September-November with snowfall >= 0.1 inches
+son-snow-avgnds-ge010ti.txt  Long-term averages of number of days during 
+                             September-November with snowfall >= 1.0 inches
+son-snow-avgnds-ge030ti.txt  Long-term averages of number of days during 
+                             September-November with snowfall >= 3.0 inches
+son-snow-avgnds-ge050ti.txt  Long-term averages of number of days during 
+                             September-November with snowfall >= 5.0 inches
+son-snow-avgnds-ge100ti.txt  Long-term averages of number of days during 
+                             September-November with snowfall >= 10.0 inches
+son-snow-normal.txt          Long-term averages of seasonal snowfall totals for 
+                             September-November
+son-snwd-avgnds-ge001wi.txt  Long-term averages of number of days during 
+                             September-November with snow depth >= 1 inch
+son-snwd-avgnds-ge003wi.txt  Long-term averages of number of days during 
+                             September-November with snow depth >= 3 inches
+son-snwd-avgnds-ge005wi.txt  Long-term averages of number of days during 
+                             September-November with snow depth >= 5 inches
+son-snwd-avgnds-ge010wi.txt  Long-term averages of number of days during 
+                             September-November with snow depth >= 10 inches
+
+ytd-*.txt  (year-to-date) files
+                                     
+ytd-prcp-normal.txt          Long-term average year-to-date precipitation totals
+ytd-snow-normal.txt          Long-term average year-to-date snowfall totals

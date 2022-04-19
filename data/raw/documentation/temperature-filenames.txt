@@ -1,0 +1,474 @@
+Complete alphabetical listing of Files in Subdirectory products/temperature
+
+The below list provides a synopsis of each temperature-related normals file. For 
+a more general description of the file naming conventions used for all normals 
+files, see the readme.txt file in the main directory.
+
+ann-*.txt (annual) files
+
+ann-cldd-base45.txt	     Long-term averages of annual cooling degree days with 
+                             base 45F
+ann-cldd-base50.txt	     Long-term averages of annual cooling degree days with 
+                             base 50F
+ann-cldd-base55.txt	     Long-term averages of annual cooling degree days with 
+                             base 55F
+ann-cldd-base57.txt	     Long-term averages of annual cooling degree days with 
+                             base 57F
+ann-cldd-base60.txt	     Long-term averages of annual cooling degree days with 
+                             base 60F
+ann-cldd-base70.txt	     Long-term averages of annual cooling degree days with 
+                             base 70F
+ann-cldd-base72.txt	     Long-term averages of annual cooling degree days with 
+                             base 72F
+ann-cldd-normal.txt	     Long-term averages of annual cooling degree days with 
+                             base 65F
+ann-dutr-normal.txt 	     Long-term averages of annual diurnal temperature range
+ann-htdd-base40.txt	     Long-term averages of annual heating degree days with 
+                             base 40F
+ann-htdd-base45.txt	     Long-term averages of annual heating degree days with 
+                             base 45F
+ann-htdd-base50.txt	     Long-term averages of annual heating degree days with 
+                             base 50F
+ann-htdd-base55.txt	     Long-term averages of annual heating degree days with 
+                             base 55F
+ann-htdd-base57.txt	     Long-term averages of annual heating degree days with 
+                             base 57F
+ann-htdd-base60.txt	     Long-term averages of annual heating degree days with 
+                             base 60F
+ann-htdd-normal.txt	     Long-term averages of annual heating degree days with 
+                             base 65F
+ann-tavg-normal.txt 	     Long-term averages of annual average temperature
+ann-tmax-avgnds-grth040.txt  Long-term average number of days per year where tmax 
+                             is greater than or equal to 40F
+ann-tmax-avgnds-grth050.txt  Long-term average number of days per year where tmax 
+                             is greater than or equal to 50F
+ann-tmax-avgnds-grth060.txt  Long-term average number of days per year where tmax 
+                             is greater than or equal to 60F
+ann-tmax-avgnds-grth070.txt  Long-term average number of days per year where tmax 
+                             is greater than or equal to 70F
+ann-tmax-avgnds-grth080.txt  Long-term average number of days per year where tmax 
+                             is greater than or equal to 80F
+ann-tmax-avgnds-grth090.txt  Long-term average number of days per year where tmax 
+                             is greater than or equal to 90F
+ann-tmax-avgnds-grth100.txt  Long-term average number of days per year where tmax 
+                             is greater than or equal to 100F
+ann-tmax-avgnds-lsth032.txt  Long-term average number of days per year where tmax 
+                             is less than or equal to 32F
+ann-tmax-normal.txt 	     Long-term averages of annual maximum temperature
+ann-tmin-avgnds-lsth000.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 0F
+ann-tmin-avgnds-lsth010.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 10F
+ann-tmin-avgnds-lsth020.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 20F
+ann-tmin-avgnds-lsth032.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 32F
+ann-tmin-avgnds-lsth040.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 40F
+ann-tmin-avgnds-lsth050.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 50F
+ann-tmin-avgnds-lsth060.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 60F
+ann-tmin-avgnds-lsth070.txt  Long-term average number of days per year where tmin 
+                             is less than or equal to 70F
+ann-tmin-normal.txt 	     Long-term averages of annual minimum temperature
+
+djf-*.txt (December-February) files
+
+djf-cldd-base45.txt	     Long-term averages of winter cooling degree days with 
+base 45F
+djf-cldd-base50.txt	     Long-term averages of winter cooling degree days with 
+base 50F
+djf-cldd-base55.txt	     Long-term averages of winter cooling degree days with 
+base 55F
+djf-cldd-base57.txt	     Long-term averages of winter cooling degree days with 
+base 57F
+djf-cldd-base60.txt	     Long-term averages of winter cooling degree days with 
+base 60F
+djf-cldd-base70.txt	     Long-term averages of winter cooling degree days with 
+base 70F
+djf-cldd-base72.txt	     Long-term averages of winter cooling degree days with 
+base 72F
+djf-cldd-normal.txt	     Long-term averages of winter cooling degree days with 
+base 65F
+djf-dutr-normal.txt 	     Long-term averages of winter diurnal temperature range
+djf-htdd-base40.txt	     Long-term averages of winter heating degree days with 
+base 40F
+djf-htdd-base45.txt	     Long-term averages of winter heating degree days with 
+base 45F
+djf-htdd-base50.txt	     Long-term averages of winter heating degree days with 
+base 50F
+djf-htdd-base55.txt	     Long-term averages of winter heating degree days with 
+base 55F
+djf-htdd-base57.txt	     Long-term averages of winter heating degree days with 
+base 57F
+djf-htdd-base60.txt	     Long-term averages of winter heating degree days with 
+base 60F
+djf-htdd-normal.txt	     Long-term averages of winter heating degree days with 
+base 65F
+djf-tavg-normal.txt 	     Long-term averages of winter average temperature
+djf-tmax-avgnds-grth040.txt  Long-term average number of days per winter where tmax 
+                             is greater than or equal to 40F
+djf-tmax-avgnds-grth050.txt  Long-term average number of days per winter where tmax 
+                             is greater than or equal to 50F
+djf-tmax-avgnds-grth060.txt  Long-term average number of days per winter where tmax 
+                             is greater than or equal to 60F
+djf-tmax-avgnds-grth070.txt  Long-term average number of days per winter where tmax 
+                             is greater than or equal to 70F
+djf-tmax-avgnds-grth080.txt  Long-term average number of days per winter where tmax 
+                             is greater than or equal to 80F
+djf-tmax-avgnds-grth090.txt  Long-term average number of days per winter where tmax 
+                             is greater than or equal to 90F
+djf-tmax-avgnds-grth100.txt  Long-term average number of days per winter where tmax 
+                             is greater than or equal to 100F
+djf-tmax-avgnds-lsth032.txt  Long-term average number of days per winter where tmax 
+                             is less than or equal to 32F
+djf-tmax-normal.txt 	     Long-term averages of winter maximum temperature
+djf-tmin-avgnds-lsth000.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 0F
+djf-tmin-avgnds-lsth010.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 10F
+djf-tmin-avgnds-lsth020.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 20F
+djf-tmin-avgnds-lsth032.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 32F
+djf-tmin-avgnds-lsth040.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 40F
+djf-tmin-avgnds-lsth050.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 50F
+djf-tmin-avgnds-lsth060.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 60F
+djf-tmin-avgnds-lsth070.txt  Long-term average number of days per winter where tmin 
+                             is less than or equal to 70F
+djf-tmin-normal.txt 	     Long-term averages of winter minimum temperature
+
+dly-*.txt (daily) files
+
+dly-cldd-base45.txt	     Long-term averages of daily cooling degree days with 
+                             base 45F
+dly-cldd-base50.txt	     Long-term averages of daily cooling degree days with 
+                             base 50F
+dly-cldd-base55.txt	     Long-term averages of daily cooling degree days with 
+                             base 55F
+dly-cldd-base57.txt	     Long-term averages of daily cooling degree days with 
+                             base 57F
+dly-cldd-base60.txt	     Long-term averages of daily cooling degree days with 
+                             base 60F
+dly-cldd-base70.txt	     Long-term averages of daily cooling degree days with 
+                             base 70F
+dly-cldd-base72.txt	     Long-term averages of daily cooling degree days with 
+                             base 72F
+dly-cldd-normal.txt	     Long-term averages of daily cooling degree days with 
+                             base 65F
+dly-dutr-normal.txt 	     Long-term averages of daily diurnal temperature range
+dly-dutr-stddev.txt 	     Long-term standard deviations of daily diurnal 
+                             temperature range
+dly-htdd-base40.txt	     Long-term averages of daily heating degree days with 
+                             base 40F
+dly-htdd-base45.txt	     Long-term averages of daily heating degree days with 
+                             base 45F
+dly-htdd-base50.txt	     Long-term averages of daily heating degree days with 
+                             base 50F
+dly-htdd-base55.txt	     Long-term averages of daily heating degree days with 
+                             base 55F
+dly-htdd-base57.txt	     Long-term averages of daily heating degree days with 
+                             base 57F
+dly-htdd-base60.txt	     Long-term averages of daily heating degree days with 
+                             base 60F
+dly-htdd-normal.txt	     Long-term averages of daily heating degree days with 
+                             base 65F
+dly-tavg-normal.txt 	     Long-term averages of daily average temperature
+dly-tavg-stddev.txt 	     Long-term standard deviations of daily average 
+                             temperature
+dly-tmax-normal.txt 	     Long-term averages of daily maximum 
+                             temperature
+dly-tmax-stddev.txt 	     Long-term standard deviations of daily maximum 
+                             temperature
+dly-tmin-normal.txt 	     Long-term averages of daily minimum temperature
+dly-tmin-stddev.txt 	     Long-term standard deviations of daily minimum 
+                             temperature
+
+jja-*.txt (June-August) files
+
+jja-cldd-base45.txt	     Long-term averages of summer cooling degree days 
+                             with base 45F
+jja-cldd-base50.txt	     Long-term averages of summer cooling degree days 
+                             with base 50F
+jja-cldd-base55.txt	     Long-term averages of summer cooling degree days 
+                             with base 55F
+jja-cldd-base57.txt	     Long-term averages of summer cooling degree days 
+                             with base 57F
+jja-cldd-base60.txt	     Long-term averages of summer cooling degree days 
+                             with base 60F
+jja-cldd-base70.txt	     Long-term averages of summer cooling degree days 
+                             with base 70F
+jja-cldd-base72.txt	     Long-term averages of summer cooling degree days 
+                             with base 72F
+jja-cldd-normal.txt	     Long-term averages of summer cooling degree days 
+                             with base 65F
+jja-dutr-normal.txt 	     Long-term averages of summer diurnal temperature 
+                             range
+jja-htdd-base40.txt	     Long-term averages of summer heating degree days 
+                             with base 40F
+jja-htdd-base45.txt	     Long-term averages of summer heating degree days 
+                             with base 45F
+jja-htdd-base50.txt	     Long-term averages of summer heating degree days 
+                             with base 50F
+jja-htdd-base55.txt	     Long-term averages of summer heating degree days 
+                             with base 55F
+jja-htdd-base57.txt	     Long-term averages of summer heating degree days 
+                             with base 57F
+jja-htdd-base60.txt	     Long-term averages of summer heating degree days 
+                             with base 60F
+jja-htdd-normal.txt	     Long-term averages of summer heating degree days 
+                             with base 65F
+jja-tavg-normal.txt 	     Long-term averages of summer average temperature
+jja-tmax-avgnds-grth040.txt  Long-term average number of days per summer where 
+                             tmax is greater than or equal to 40F
+jja-tmax-avgnds-grth050.txt  Long-term average number of days per summer where 
+                             tmax is greater than or equal to 50F
+jja-tmax-avgnds-grth060.txt  Long-term average number of days per summer where 
+                             tmax is greater than or equal to 60F
+jja-tmax-avgnds-grth070.txt  Long-term average number of days per summer where 
+                             tmax is greater than or equal to 70F
+jja-tmax-avgnds-grth080.txt  Long-term average number of days per summer where 
+                             tmax is greater than or equal to 80F
+jja-tmax-avgnds-grth090.txt  Long-term average number of days per summer where 
+                             tmax is greater than or equal to 90F
+jja-tmax-avgnds-grth100.txt  Long-term average number of days per summer where 
+                             tmax is greater than or equal to 100F
+jja-tmax-avgnds-lsth032.txt  Long-term average number of days per summer where 
+                             tmax is less than or equal to 32F
+jja-tmax-normal.txt 	     Long-term averages of summer maximum temperature
+jja-tmin-avgnds-lsth000.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 0F
+jja-tmin-avgnds-lsth010.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 10F
+jja-tmin-avgnds-lsth020.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 20F
+jja-tmin-avgnds-lsth032.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 32F
+jja-tmin-avgnds-lsth040.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 40F
+jja-tmin-avgnds-lsth050.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 50F
+jja-tmin-avgnds-lsth060.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 60F
+jja-tmin-avgnds-lsth070.txt  Long-term average number of days per summer where 
+                             tmin is less than or equal to 70F
+jja-tmin-normal.txt 	     Long-term averages of summer minimum temperature
+
+mam-*.txt (March-May) files
+
+mam-cldd-base45.txt	     Long-term averages of spring cooling degree days with 
+                             base 45F
+mam-cldd-base50.txt	     Long-term averages of spring cooling degree days with 
+                             base 50F
+mam-cldd-base55.txt	     Long-term averages of spring cooling degree days with 
+                             base 55F
+mam-cldd-base57.txt   	     Long-term averages of spring cooling degree days with 
+                             base 57F
+mam-cldd-base60.txt	     Long-term averages of spring cooling degree days with 
+                             base 60F
+mam-cldd-base70.txt	     Long-term averages of spring cooling degree days with 
+                             base 70F
+mam-cldd-base72.txt	     Long-term averages of spring cooling degree days with 
+                             base 72F
+mam-cldd-normal.txt	     Long-term averages of spring cooling degree days with 
+                             base 65F
+mam-dutr-normal.txt 	     Long-term averages of spring diurnal temperature range
+mam-htdd-base40.txt	     Long-term averages of spring heating degree days with
+                             base 40F
+mam-htdd-base45.txt	     Long-term averages of spring heating degree days with 
+                             base 45F
+mam-htdd-base50.txt	     Long-term averages of spring heating degree days with 
+                             base 50F
+mam-htdd-base55.txt	     Long-term averages of spring heating degree days with 
+                             base 55F
+mam-htdd-base57.txt	     Long-term averages of spring heating degree days with 
+                             base 57F
+mam-htdd-base60.txt	     Long-term averages of spring heating degree days with 
+                             base 60F
+mam-htdd-normal.txt	     Long-term averages of spring heating degree days with 
+                             base 65F
+mam-tavg-normal.txt 	     Long-term averages of spring average temperature
+mam-tmax-avgnds-grth040.txt  Long-term average number of days per spring where tmax 
+                             is greater than or equal to 40F
+mam-tmax-avgnds-grth050.txt  Long-term average number of days per spring where tmax 
+                             is greater than or equal to 50F
+mam-tmax-avgnds-grth060.txt  Long-term average number of days per spring where tmax 
+                             is greater than or equal to 60F
+mam-tmax-avgnds-grth070.txt  Long-term average number of days per spring where tmax 
+                             is greater than or equal to 70F
+mam-tmax-avgnds-grth080.txt  Long-term average number of days per spring where tmax 
+                             is greater than or equal to 80F
+mam-tmax-avgnds-grth090.txt  Long-term average number of days per spring where tmax 
+                             is greater than or equal to 90F
+mam-tmax-avgnds-grth100.txt  Long-term average number of days per spring where tmax 
+                             is greater than or equal to 100F
+mam-tmax-avgnds-lsth032.txt  Long-term average number of days per spring where tmax 
+                             is less than or equal to 32F
+mam-tmax-normal.txt 	     Long-term averages of spring maximum temperature
+mam-tmin-avgnds-lsth000.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 0F
+mam-tmin-avgnds-lsth010.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 10F
+mam-tmin-avgnds-lsth020.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 20F
+mam-tmin-avgnds-lsth032.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 32F
+mam-tmin-avgnds-lsth040.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 40F
+mam-tmin-avgnds-lsth050.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 50F
+mam-tmin-avgnds-lsth060.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 60F
+mam-tmin-avgnds-lsth070.txt  Long-term average number of days per spring where tmin 
+                             is less than or equal to 70F
+mam-tmin-normal.txt 	     Long-term averages of spring minimum temperature 
+
+mly-*.txt  (monthly) files
+
+mly-cldd-base45.txt	     Long-term averages of monthly cooling degree days with 
+                             base 45F
+mly-cldd-base50.txt	     Long-term averages of monthly cooling degree days with 
+                             base 50F
+mly-cldd-base55.txt	     Long-term averages of monthly cooling degree days with 
+                             base 55F
+mly-cldd-base57.txt	     Long-term averages of monthly cooling degree days with 
+                             base 57F
+mly-cldd-base60.txt	     Long-term averages of monthly cooling degree days with 
+                             base 60F
+mly-cldd-base70.txt	     Long-term averages of monthly cooling degree days with 
+                             base 70F
+mly-cldd-base72.txt	     Long-term averages of monthly cooling degree days with 
+                             base 72F
+mly-cldd-normal.txt	     Long-term averages of monthly cooling degree days with 
+                             base 65F
+mly-dutr-normal.txt 	     Long-term averages of monthly diurnal temperature range
+mly-dutr-stddev.txt 	     Long-term standard deviations of monthly diurnal 
+                             temperature range
+mly-htdd-base40.txt	     Long-term averages of monthly heating degree days with 
+                             base 40F
+mly-htdd-base45.txt	     Long-term averages of monthly heating degree days with 
+                             base 45F
+mly-htdd-base50.txt	     Long-term averages of monthly heating degree days with 
+                             base 50F
+mly-htdd-base55.txt	     Long-term averages of monthly heating degree days with 
+                             base 55F
+mly-htdd-base57.txt	     Long-term averages of monthly heating degree days with 
+                             base 57F
+mly-htdd-base60.txt	     Long-term averages of monthly heating degree days with 
+                             base 60F
+mly-htdd-normal.txt	     Long-term averages of monthly heating degree days with 
+                             base 65F
+mly-tavg-normal.txt 	     Long-term averages of monthly average temperature
+mly-tavg-stddev.txt 	     Long-term standard deviations of monthly average 
+                             temperature
+mly-tmax-avgnds-grth040.txt  Long-term average number of days per month where tmax 
+                             is greater than or equal to 40F
+mly-tmax-avgnds-grth050.txt  Long-term average number of days per month where tmax 
+                             is greater than or equal to 50F
+mly-tmax-avgnds-grth060.txt  Long-term average number of days per month where tmax 
+                             is greater than or equal to 60F
+mly-tmax-avgnds-grth070.txt  Long-term average number of days per month where tmax 
+                             is greater than or equal to 70F
+mly-tmax-avgnds-grth080.txt  Long-term average number of days per month where tmax 
+                             is greater than or equal to 80F
+mly-tmax-avgnds-grth090.txt  Long-term average number of days per month where tmax 
+                             is greater than or equal to 90F
+mly-tmax-avgnds-grth100.txt  Long-term average number of days per month where tmax 
+                             is greater than or equal to 100F
+mly-tmax-avgnds-lsth032.txt  Long-term average number of days per month where tmax 
+                             is less than or equal to 32F
+mly-tmax-normal.txt 	     Long-term averages of monthly maximum temperature
+mly-tmax-stddev.txt 	     Long-term standard deviations of monthly maximum 
+                             temperature
+mly-tmin-avgnds-lsth000.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 0F
+mly-tmin-avgnds-lsth010.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 10F
+mly-tmin-avgnds-lsth020.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 20F
+mly-tmin-avgnds-lsth032.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 32F
+mly-tmin-avgnds-lsth040.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 40F
+mly-tmin-avgnds-lsth050.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 50F
+mly-tmin-avgnds-lsth060.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 60F
+mly-tmin-avgnds-lsth070.txt  Long-term average number of days per month where tmin 
+                             is less than or equal to 70F
+mly-tmin-normal.txt 	     Long-term averages of monthly minimum temperature
+mly-tmin-stddev.txt 	     Long-term standard deviations of monthly minimum 
+                             temperature
+
+son-*.txt  (September-November) files
+
+son-cldd-base45.txt	     Long-term averages of autumn cooling degree days with 
+                             base 45F
+son-cldd-base50.txt	     Long-term averages of autumn cooling degree days with 
+                             base 50F
+son-cldd-base55.txt	     Long-term averages of autumn cooling degree days with 
+                             base 55F
+son-cldd-base57.txt	     Long-term averages of autumn cooling degree days with 
+                             base 57F
+son-cldd-base60.txt	     Long-term averages of autumn cooling degree days with 
+                             base 60F
+son-cldd-base70.txt	     Long-term averages of autumn cooling degree days with 
+                             base 70F
+son-cldd-base72.txt	     Long-term averages of autumn cooling degree days with 
+                             base 72F
+son-cldd-normal.txt	     Long-term averages of autumn cooling degree days with 
+                             base 65F
+son-dutr-normal.txt 	     Long-term averages of autumn diurnal temperature range
+son-htdd-base40.txt	     Long-term averages of autumn heating degree days with 
+                             base 40F
+son-htdd-base45.txt	     Long-term averages of autumn heating degree days with 
+                             base 45F
+son-htdd-base50.txt	     Long-term averages of autumn heating degree days with 
+                             base 50F
+son-htdd-base55.txt	     Long-term averages of autumn heating degree days with 
+                             base 55F
+son-htdd-base57.txt	     Long-term averages of autumn heating degree days with 
+                             base 57F
+son-htdd-base60.txt	     Long-term averages of autumn heating degree days with 
+                             base 60F
+son-htdd-normal.txt	     Long-term averages of autumn heating degree days with 
+                             base 65F
+son-tavg-normal.txt 	     Long-term averages of autumn average temperature
+son-tmax-avgnds-grth040.txt  Long-term average number of days per autumn where tmax 
+                             is greater than or equal to 40F
+son-tmax-avgnds-grth050.txt  Long-term average number of days per autumn where tmax 
+                             is greater than or equal to 50F
+son-tmax-avgnds-grth060.txt  Long-term average number of days per autumn where tmax 
+                             is greater than or equal to 60F
+son-tmax-avgnds-grth070.txt  Long-term average number of days per autumn where tmax 
+                             is greater than or equal to 70F
+son-tmax-avgnds-grth080.txt  Long-term average number of days per autumn where tmax 
+                             is greater than or equal to 80F
+son-tmax-avgnds-grth090.txt  Long-term average number of days per autumn where tmax 
+                             is greater than or equal to 90F
+son-tmax-avgnds-grth100.txt  Long-term average number of days per autumn where tmax 
+                             is greater than or equal to 100F
+son-tmax-avgnds-lsth032.txt  Long-term average number of days per autumn where tmax 
+                             is less than or equal to 32F
+son-tmax-normal.txt 	     Long-term averages of autumn maximum temperature
+son-tmin-avgnds-lsth000.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 0F
+son-tmin-avgnds-lsth010.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 10F
+son-tmin-avgnds-lsth020.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 20F
+son-tmin-avgnds-lsth032.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 32F
+son-tmin-avgnds-lsth040.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 40F
+son-tmin-avgnds-lsth050.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 50F
+son-tmin-avgnds-lsth060.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 60F
+son-tmin-avgnds-lsth070.txt  Long-term average number of days per autumn where tmin 
+                             is less than or equal to 70F
+son-tmin-normal.txt 	     Long-term averages of autumn minimum temperature
