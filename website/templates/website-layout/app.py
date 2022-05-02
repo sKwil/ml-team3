@@ -20,6 +20,12 @@ def preprocessDataAndPredict(month, prcp_days_tRay, temp_max_normalRay, temp_min
     # open file for data
     file = open("finalModel.pkl", "rb")
 
+    # loading trained model based on file location (file = location of data file)
+    trained_model = joblib.load(file)
+
+
+    prediction = trained_model.predict(data)
+
     # Connection both the py data and form data from user to output predictions
     @app.route('/predict', methods=['GET', 'POST'])
     def predict():

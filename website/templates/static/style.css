@@ -1,41 +1,35 @@
-html {
-    font-family: sans-serif;
-    padding: 1rem;
+body
+{
+    font-family: Arial;
 }
 
-body {
-    max-width: 960px;
-    margin: 0 auto;
-    background: blue;
+/* Adding a background color too task bar */
+.navbar {
+    background-color: black;
+    overflow: hidden;
+
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: serif;
-    color: #377ba8;
-    margin: 1rem 0;
+/* Creating the style Links in navbar */
+.navbar a {
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 16px; /*increasing spacing of each individual word and the blue background*/
+    float:left;
+    font-size: 17px;
+    color: white;
 }
 
-a {
-    color: #377ba8
+/* Color changes when you hover over a link in navbar*/
+.navbar a:hover {
+    background-color: #316cc5;
+    color:white;
+
 }
 
-hr {
-    border: none;
-    border-top: 1px solid lightgray;
-}
 
-nav {
-    background: lightgray;
-    display: flex;
-    align-items: center;
-    padding: 0 0.5rem;
-}
+/* Weather Form Design */
 
-nav h1 {
-    flex: auto;
-    margin: 0;
-}
+{
 
-.content {
-    padding: 0 1rem 1rem;
 }
