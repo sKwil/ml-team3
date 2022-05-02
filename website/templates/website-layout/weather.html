@@ -20,24 +20,54 @@
 								<a href = "trenton"> Trenton </a>
 								<a href = "#"> Choose Your State </a> <!--- Current Directory -->
 						</nav>
-								<! --- Form to input weather that -->
+			</header>
+<!-- Explaining which each question is looking for in terms of answer-->
+
+								<!--- Form to input weather that -->
 			<div class = "weather-form" >
-				<form class = "form">
+				<form class = "form-container" method = "post" action = /predict>
 					<h1 class = "form-title">Choose Your Weather </h1>
-					<!-- temperature are based on the cities presented in the data  -->
-						<h4 class = "question-one"> Enter in preferred temperature </h4>
-					<input value = "state">
-					<!-- Weather are based on the cities presented in the data, options will be added later -->
-						<h4 class = "question-two"> Enter in preferred Weather </h4>
-					<input value = "city">
-					<!-- Weather conditions is based on the weather data so needs to be changed later-->
-						<h4 class = "question-three"> Enter in your preferred weather condition. </h4>
-							<select name = weather-condition>
-								<option value = "sunny"> Sunny </option>
-								<option value = "cloudy"> Cloudy </option>
-								<option value = "cloudy"> Rainy </option>
-								<option value = "snowy"> Snowy </option>
-							</select>
+
+					<!-- Choosing of desired month -->
+					<label class="control-label col-sm-2" for="month">Desired Month:</label>
+              			<div class="col-sm-4">
+                			<input type="text" class="form-control" id="month" name="month">
+              			</div>
+
+					<!-- Choosing desired Freq. of Rain in desired state -->
+					<label class="control-label col-sm-2" for="prcp_days_tRay">Desired Freq. of Rain: </label>
+              			<div class="col-sm-4">
+                			<input type="text" class="form-control" id="prcp_days_tRay" name="prcp_days_tRay">
+              			</div>
+
+					<!-- Choosing of desired maximum temperature in preferred state  -->
+					<label class="control-label col-sm-2" for="temp_max_normalRay">Maximum Temperature: </label>
+              			<div class="col-sm-4">
+                			<input type="text" class="form-control" id="temp_max_normalRay" name="temp_max_normalRay">
+              			</div>
+
+					<!-- Choosing of desired minimum temperature in preferred state  -->
+					<label class="control-label col-sm-2" for="temp_min_normalRay">Minimum Temperature: </label>
+              			<div class="col-sm-4">
+                			<input type="text" class="form-control" id="temp_min_normalRay" name="temp_min_normalRay">
+              			</div>
+
+
+					<!-- Choosing desired amount of snow days -->
+					<label class="control-label col-sm-2" for="snow_daysRay">Snow days:</label>
+              			<div class="col-sm-4">
+                			<input type="text" class="form-control" id="snow_daysRay" name="snow_daysRay">
+              			</div>
+
+
+					<!-- Choosing desired amount of cloudy days -->
+					<label class="control-label col-sm-2" for="cloudsRay">Cloudy days:</label>
+              			<div class="col-sm-4">
+                			<input type="text" class="form-control" id="cloudsRay" name="cloudsRay">
+              			</div>
+
+
+
 					<!-- Space between the formssss -->
 					<br>
 					<br>
@@ -45,7 +75,7 @@
 				</form>
 			</div>
 				</div>
-			</header>
+
         </body>
     </main>
 </html>
