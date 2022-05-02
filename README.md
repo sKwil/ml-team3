@@ -22,3 +22,10 @@ I.   CONTENTS
     
     requirements.txt - has all of the python requirements for the project
 		 
+II. FUNCTIONALITY
+    
+    This site was made as a destination finder. A user is able to input the time of year and their preferred weather
+    specifications and the model will suggest locations for the user to go to that match these specifications. The model
+    does this by using a Voting classifier compiled of a handful of different models all optimized for this task. The models
+    are trained on a large weather dataset that includes specific locations, temperature, time of year, time of day, and other
+    more specific weather features (pressure, humidity, precipitation, etc.).
