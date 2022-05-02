@@ -35,3 +35,14 @@ def process() -> None:
 
     # Save the trained model in the pickle file
     joblib.dump(model, constants.MODEL_FILE_PATH)
+
+
+def load_model():
+    """
+    Load the ML model from the file and return it. If the model does not
+    exist, an error will be thrown.
+
+    :return: the ML model loaded from the pickle file
+    """
+
+    return joblib.load(constants.MODEL_FILE_PATH)
