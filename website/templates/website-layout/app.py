@@ -4,9 +4,9 @@ import joblib
 
 
 
-def preprocessDataAndPredict(month, prcp_days_tRay, curr_occ, occ_24, occ_week, occ_month):
+def preprocessDataAndPredict(month, prcp_days_tRay, temp_max_normalRay, temp_min_normalRay, snow_daysRay, cloudsRay):
     # keep all inputs in array
-    data = [month, prcp_days_tRay, curr_occ, occ_24, occ_week, occ_month]
+    data = [month, prcp_days_tRay, temp_max_normalRay, temp_min_normalRay, snow_daysRay, cloudsRay]
 
     # Create Data Frame
     data = pd.DataFrame({'Month': [month],
@@ -25,16 +25,16 @@ def preprocessDataAndPredict(month, prcp_days_tRay, curr_occ, occ_24, occ_week, 
     def predict():
         if request.method == "POST":
             # get form data
-            curr_day = request.form.get('curr_day')
-            curr_time = request.form.get('curr_time')
-            curr_occ = request.form.get('curr_occ')
-            occ_24 = request.form.get('occ_24')
-            occ_week = request.form.get('occ_week')
-            occ_month = request.form.get('occ_month')
+            month = request.form.get('month')
+            prcp_days_tRay = request.form.get('prcp_days_tRay')
+            temp_max_normalRay = request.form.get('temp_max_normalRay')
+            temp_min_normalRay = request.form.get('temp_min_normalRay')
+            snow_daysRay = request.form.get('snow_daysRay')
+            cloudsRay = request.form.get('cloudsRay')
 
             # call preprocessDataAndPredict and pass inputs
             try:
-                prediction = preprocessDataAndPredict(curr_day, curr_time, curr_occ, occ_24, occ_week, occ_month)
+                prediction = preprocessDataAndPredict(month, prcp_days_tRay, temp_max_normalRay, temp_min_normalRay, snow_daysRay, cloudsRay)
                 # pass prediction to template
                 return render_template('weather.html', prediction=prediction)
 
