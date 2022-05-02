@@ -3,6 +3,8 @@ import pandas as pd
 
 from model.data import db
 
+__BAD_VALUES = [-9999, -8888, -7777, -6666, -5555, -4444]
+
 
 def get_cleaned_data() -> pd.DataFrame:
     """
@@ -67,20 +69,6 @@ def _clean_station_data(station_data: pd.DataFrame,
     :return: the cleaned station data
     """
 
-    # Get stuff from the monthly average data frame
-    prcp_int_m = monthly_data['prcpInt'].to_numpy()
-    prcp_freq_m = monthly_data['prcpFreq'].to_numpy()
-    temp_max_normal_m = monthly_data['temp_max_normal'].to_numpy()
-    temp_min_normal_m = monthly_data['temp_min_normal'].to_numpy()
-    snow_depth_m = monthly_data['snowInt'].to_numpy()
-    snow_days_m = monthly_data['snowFreq'].to_numpy()
-    clouds_m = monthly_data['clouds'].to_numpy()
-    dew_m = monthly_data['dew_point'].to_numpy()
-    heat_m = monthly_data['heat_index'].to_numpy()
-    pressure_m = monthly_data['pressure'].to_numpy()
-    wind_m = monthly_data['wind_speed'].to_numpy()
-    wind_calm_m = monthly_data['wind_calm_percentage'].to_numpy()
-
     # Get stuff from the station_data dataframe
     months_array = station_data['month'].to_numpy()
     prcp_norm_array = station_data['prcp_normal'].to_numpy()
@@ -96,25 +84,37 @@ def _clean_station_data(station_data: pd.DataFrame,
     wind_array = station_data['wind_speed'].to_numpy()
     wind_calm_array = station_data['wind_calm_percentage'].to_numpy()
 
-    bad_values = [None, -9999, -8888, -7777, -6666, -5555, -4444]
+    # Get stuff from the monthly average data frame
+    prcp_int_m = monthly_data['prcpInt'].to_numpy()
+    prcp_freq_m = monthly_data['prcpFreq'].to_numpy()
+    temp_max_normal_m = monthly_data['temp_max_normal'].to_numpy()
+    temp_min_normal_m = monthly_data['temp_min_normal'].to_numpy()
+    snow_depth_m = monthly_data['snowInt'].to_numpy()
+    snow_days_m = monthly_data['snowFreq'].to_numpy()
+    clouds_m = monthly_data['clouds'].to_numpy()
+    dew_m = monthly_data['dew_point'].to_numpy()
+    heat_m = monthly_data['heat_index'].to_numpy()
+    pressure_m = monthly_data['pressure'].to_numpy()
+    wind_m = monthly_data['wind_speed'].to_numpy()
+    wind_calm_m = monthly_data['wind_calm_percentage'].to_numpy()
 
     # Replace all bad values
     for i in range(len(months_array)):
-        if prcp_days_t_array[i] in bad_values:
+        if is_bad(prcp_days_t_array[i]):
             prcp_days_t_array[i] = prcp_freq_m[months_array[i] - 1]
-        if temp_max_normal_array[i] in bad_values:
+        if is_bad(temp_max_normal_array[i]):
             temp_max_normal_array[i] = temp_max_normal_m[months_array[i] - 1]
-        if temp_min_normal_array[i] in bad_values:
+        if is_bad(temp_min_normal_array[i]):
             temp_min_normal_array[i] = temp_min_normal_m[months_array[i] - 1]
-        if snow_days_array[i] in bad_values:
+        if is_bad(snow_days_array[i]):
             snow_days_array[i] = snow_days_m[months_array[i] - 1]
-        if clouds_array[i] in bad_values:
+        if is_bad(clouds_array[i]):
             clouds_array[i] = clouds_m[months_array[i] - 1]
-        if dew_array[i] in bad_values:
-            dewRay[i] = dew_m[months_array[i] - 1]
-        if heat_array[i] in bad_values:
-            heatRay[i] = heat_m[months_array[i] - 1]
-        if wind_array[i] in bad_values:
+        if is_bad(dew_array[i]):
+            dew_array[i] = dew_m[months_array[i] - 1]
+        if is_bad(heat_array[i]):
+            heat_array[i] = heat_m[months_array[i] - 1]
+        if is_bad(wind_array[i]):
             wind_array[i] = wind_m[months_array[i] - 1]
 
     # Recreate dataframe from newly cleaned arrays
@@ -138,3 +138,16 @@ def _clean_station_data(station_data: pd.DataFrame,
     cleaned.fillna(method="ffill", inplace=True)
 
     return cleaned
+
+
+def is_bad(value: any) -> bool:
+    """
+    Determine if a value is "bad" (meaning it's null, na, or one of the
+    -9999/-8888/etc. error codes). If it's bad, return true; otherwise,
+    return false.
+
+    :param value: the value to check.
+    :return: true if and only if the value is bad.
+    """
+
+    return value in __BAD_VALUES or pd.isna(value)
