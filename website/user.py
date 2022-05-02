@@ -5,24 +5,29 @@ bp = Blueprint('user', __name__)
 
 @bp.route('/')
 def index():
-    return render_template('user/home.html')
+    return render_template('website-layout/base2.html')
 
 
 @bp.route('/simon')
 def simon_index():
-    return render_template('user/simon.html')
+    return render_template('website-layout/simon.html')
 
 
 @bp.route('/trenton')
 def trenton_index():
-    return render_template('user/trenton.html')
+    return render_template('website-layout/trenton.html')
 
 
 @bp.route('/sean')
 def sean_index():
-    return render_template('user/sean.html')
+    return render_template('website-layout/sean.html')
 
 
 @bp.route('/jermaine')
 def jermaine_index():
-    return render_template('user/jermaine.html')
+    return render_template('website-layout/jermaine.html')
+
+@bp.route('/weather')
+def weather_index():
+    return render_template('website-layout/weather.html')
+
