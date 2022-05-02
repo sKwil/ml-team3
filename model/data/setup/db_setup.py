@@ -1,11 +1,9 @@
-import csv
 import os
 
 from tqdm import tqdm
 
 import model.data.resources as re
 from model.data import db
-from model.data.load import loader
 from model.data.setup import sql_strings as sql
 from model.data.setup import util as ut
 from model.data import data_files as df
@@ -53,7 +51,7 @@ def install():
 
     print('Loading Weather Stations...')
     load_stations()
-    print('  Added', loader.get_stations_rows(), 'stations to SQL database')
+    print('  Added', ut.get_stations_rows(), 'stations to SQL database')
 
     print('Loading Raw Monthly Data...')
     load_monthly_data()
