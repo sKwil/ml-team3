@@ -96,7 +96,7 @@ def _clean_station_data(station_data: pd.DataFrame,
     wind_array = station_data['wind_speed'].to_numpy()
     wind_calm_array = station_data['wind_calm_percentage'].to_numpy()
 
-    bad_values = [np.NaN, -9999, -8888, -7777, -6666, -5555, -4444]
+    bad_values = [None, -9999, -8888, -7777, -6666, -5555, -4444]
 
     # Replace all bad values
     for i in range(len(months_array)):
