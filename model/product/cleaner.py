@@ -117,9 +117,40 @@ def _clean_station_data(station_data: pd.DataFrame,
         if is_bad(wind_array[i]):
             wind_array[i] = wind_m[months_array[i] - 1]
 
+    stateNump = station_data['state'].to_numpy()
+
+    mount = stateNump.copy()
+    ocean = stateNump.copy()
+
+    mountSwitcher = {
+        'AL': 1, 'AR': 2, 'AZ': 0, 'AK': 2, 'CA': 0, 'CO': 2, 'CT': 0,
+        'DE': 0, 'FL': 0, 'GA': 1, 'HI': 0, 'IA': 2, 'ID': 2, 'IL': 2,
+        'IN': 2, 'KS': 2, 'KY': 2, 'LA': 0, 'MA': 0, 'MD': 0, 'ME': 0,
+        'MI': 1, 'MN': 1, 'MO': 2, 'MS': 1, 'MT': 2, 'NC': 0, 'ND': 2,
+        'NE': 2, 'NH': 1, 'NJ': 0, 'NM': 1, 'NV': 2, 'NY': 1, 'OH': 1,
+        'OK': 2, 'OR': 0, 'PA': 1, 'RI': 0, 'SC': 0, 'SD': 2, 'TN': 2,
+        'TX': 0, 'UT': 2, 'VA': 1, 'VT': 1, 'WA': 0, 'WI': 1, 'WV': 2, 'WY': 2
+    }
+
+    oceanSwitcher = {
+        'AL': 0, 'AR': 0, 'AZ': 2, 'AK': 0, 'CA': 1, 'CO': 2, 'CT': 1,
+        'DE': 1, 'FL': 0, 'GA': 1, 'HI': 1, 'IA': 0, 'ID': 2, 'IL': 0,
+        'IN': 0, 'KS': 0, 'KY': 0, 'LA': 0, 'MA': 1, 'MD': 0, 'ME': 1,
+        'MI': 0, 'MN': 0, 'MO': 0, 'MS': 0, 'MT': 2, 'NC': 1, 'ND': 0,
+        'NE': 0, 'NH': 1, 'NJ': 0, 'NM': 2, 'NV': 2, 'NY': 1, 'OH': 1,
+        'OK': 0, 'OR': 1, 'PA': 1, 'RI': 0, 'SC': 0, 'SD': 0, 'TN': 1,
+        'TX': 0, 'UT': 2, 'VA': 0, 'VT': 1, 'WA': 2, 'WI': 0, 'WV': 1, 'WY': 2
+    }
+
+    for i in range(len(stateNump)):
+        mount[i] = mountSwitcher[stateNump[i]]
+        ocean[i] = oceanSwitcher[stateNump[i]]
+
     # Recreate dataframe from newly cleaned arrays
     cleaned = pd.DataFrame({
         'state': station_data['state'],
+        'mountains_prox': mount,
+        'ocean_prox': ocean,
         'longitude': station_data['longitude'],
         'month': months_array,
         'prcp_days_t_array': prcp_days_t_array,

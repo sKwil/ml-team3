@@ -1,9 +1,13 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
+from sklearn.ensemble import VotingClassifier
 
 
 def train(training_features: pd.DataFrame,
-          training_labels: pd.DataFrame) -> RandomForestClassifier:
+          training_labels: pd.DataFrame) -> VotingClassifier:
     """
     Train the final ML model using the ideal hyper parameters found through
     testing elsewhere.
@@ -14,14 +18,21 @@ def train(training_features: pd.DataFrame,
     """
 
     # Create the model with the proper hyper parameters
-    clf = RandomForestClassifier(max_depth=15,
-                                 max_features='sqrt',
-                                 min_samples_leaf=1,
-                                 n_estimators=13,
-                                 random_state=42)
+    mplN = MLPClassifier(batch_size='auto', warm_start=True, max_iter=400, activation='tanh', alpha=0.02, solver='adam',
+                         hidden_layer_sizes=(60, 80, 100, 120))
+    mplA = MLPClassifier(batch_size='auto', warm_start=True, activation='tanh', solver='adam', max_iter=400,
+                         early_stopping=True, beta_1=0.5, beta_2=0.6, alpha=0.000005,
+                         hidden_layer_sizes=(60, 80, 100, 120))
+    svc = SVC(C=5, gamma=2, kernel='rbf')
+    rf = RandomForestClassifier(warm_start=False, bootstrap=False, max_depth=16, max_features='auto',
+                                min_samples_leaf=2, n_estimators=12)
+    kn = KNeighborsClassifier(algorithm='brute', leaf_size=9, metric='euclidean', n_neighbors=7, p=4,
+                              weights='distance')
 
     # Train the model
-    clf.fit(training_features, training_labels)
+    voting_clf = VotingClassifier(estimators=[('mplN', mplN), ('mplA', mplA), ('svc', svc), ('rf', rf),
+                                              ('kn', kn)], voting='soft')
+    voting_clf.fit(training_features, training_labels)
 
     # Return the trained model
-    return clf
+    return voting_clf
