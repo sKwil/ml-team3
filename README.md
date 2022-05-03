@@ -80,3 +80,7 @@ Since we were largely constrained by time, we were unable to make highly refined
 We added a product Python module to the model code, which contains a refined pipeline for training the final machine learning model. This pipeline loads the newest data from the SQLite database, runs extensive data cleaning on it to remove and replace null and invalid data points, divides the data into separate training and testing datasets, scales the training data so that it will conform to the standards expected by the ML models, trains a model using preprogrammed hyperparmeters selected during the research phase, and finally saves the state of the trained model to a pickle file in the data directory.
 
 In the future, we can use this pickle file to quickly import and read the models with its fully trained parameters. From there, we can easily make predictions for incoming data and test our model's accuracy against testing data.
+
+## Flask Website
+
+We created a Flask website to deploy the finished ML model.
