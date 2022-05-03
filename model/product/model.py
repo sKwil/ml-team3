@@ -22,18 +22,23 @@ def process() -> None:
     """
 
     # Load the training data and labels
+    print('# Obtaining Cleaned Data')
     station_df = cleaner.get_cleaned_data()
 
     # Perform a train-test-split
+    print('# Performing Train-Test-Split')
     train_feat, test_feat, train_lab, test_lab = splitter.split(station_df)
 
     # Scale the training features
+    print('# Scaling Training Features')
     train_feat = scaler.scale(train_feat)
 
     # Train the model
+    print('# Training Model')
     model = trainer.train(train_feat, train_lab)
 
     # Save the trained model in the pickle file
+    print('# Saving Model')
     joblib.dump(model, constants.MODEL_FILE_PATH)
 
 
