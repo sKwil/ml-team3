@@ -18,20 +18,38 @@ def train(training_features: pd.DataFrame,
     """
 
     # Create the model with the proper hyper parameters
-    mplN = MLPClassifier(batch_size='auto', warm_start=True, max_iter=400, activation='tanh', alpha=0.02, solver='adam',
-                         hidden_layer_sizes=(60, 80, 100, 120))
-    mplA = MLPClassifier(batch_size='auto', warm_start=True, activation='tanh', solver='adam', max_iter=400,
-                         early_stopping=True, beta_1=0.5, beta_2=0.6, alpha=0.000005,
-                         hidden_layer_sizes=(60, 80, 100, 120))
+    print('Creating MLPClassifier n')
+    mpl_n = MLPClassifier(batch_size='auto', warm_start=True, max_iter=400,
+                          activation='tanh', alpha=0.02, solver='adam',
+                          hidden_layer_sizes=(60, 80, 100, 120))
+
+    print('Creating MLPClassifier a')
+    mpl_a = MLPClassifier(batch_size='auto', warm_start=True, activation='tanh',
+                          solver='adam', max_iter=400,
+                          early_stopping=True, beta_1=0.5, beta_2=0.6,
+                          alpha=0.000005,
+                          hidden_layer_sizes=(60, 80, 100, 120))
+
+    print('Creating SVC')
     svc = SVC(C=5, gamma=2, kernel='rbf')
-    rf = RandomForestClassifier(warm_start=False, bootstrap=False, max_depth=16, max_features='auto',
+
+    print('Creating RandomForestClassifier')
+    rf = RandomForestClassifier(warm_start=False, bootstrap=False, max_depth=16,
+                                max_features='auto',
                                 min_samples_leaf=2, n_estimators=12)
-    kn = KNeighborsClassifier(algorithm='brute', leaf_size=9, metric='euclidean', n_neighbors=7, p=4,
+
+    print('Creating KNeighborsClassifier')
+    kn = KNeighborsClassifier(algorithm='brute', leaf_size=9,
+                              metric='euclidean', n_neighbors=7, p=4,
                               weights='distance')
 
     # Train the model
-    voting_clf = VotingClassifier(estimators=[('mplN', mplN), ('mplA', mplA), ('svc', svc), ('rf', rf),
-                                              ('kn', kn)], voting='soft')
+    print('Creating VotingClassifier')
+    voting_clf = VotingClassifier(
+        estimators=[('mplN', mpl_n), ('mplA', mpl_a), ('svc', svc), ('rf', rf),
+                    ('kn', kn)], voting='soft')
+
+    print('Training full classifier...')
     voting_clf.fit(training_features, training_labels)
 
     # Return the trained model
