@@ -21,6 +21,34 @@ does this by using a Voting classifier compiled of a handful of different models
 are trained on a large weather dataset that includes specific locations, temperature, time of year, time of day, and other
 more specific weather features (pressure, humidity, precipitation, etc.).
 
+## Authors
+
+Each member of the group contributed separate but related work towards the final project:
+
+**Simon Kwilinski**
+- Organizing GitHub, managing branches, and setting up group members
+- Establishing cohesive project structure and Python modules
+- Creating initial Flask framework and organizing webpage
+- Locating and downloading dataset
+- Creating SQLite database and manipulating raw data
+- Finalizing ML pipeline to load, clean, scale, train, and save the final model
+- Writing this README
+
+**Trenton Metcalfe**
+- Researching dataset and reading documentation
+- Selecting best model features and adding additional features
+- Training and managing suite of ML models
+- Identifying hyperparameters for final model
+
+**Sean Maher**
+- Training select models
+- Finalizing Flask website
+- Adding group member resumes to individual webpages
+
+**Jermaine Presbery**
+- Working on Flask website
+- Refactoring website structure
+
 ## Finding a Dataset
 
 This project started when we downloaded a [dataset](https://www.kaggle.com/datasets/selfishgene/historical-hourly-weather-data?select=humidity.csv) of historical weather data from 2012-2017 from kaggle. The data contained many useful features, including humidity, pressure, temperature, a weather description, the wind direction, and the wind speed. Each feature was recorded for around 30 cities, most of which were in the U.S., and the data was very clean.
