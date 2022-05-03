@@ -17,9 +17,9 @@
     
 This site was made as a destination finder. A user is able to input the time of year and their preferred weather
 specifications and the model will suggest locations for the user to go to that match these specifications. The model
-does this by using a Voting classifier compiled of a handful of different models all optimized for this task. The models
-are trained on a large weather dataset that includes specific locations, temperature, time of year, time of day, and other
-more specific weather features (pressure, humidity, precipitation, etc.).
+does this by using an optimized RandomForrest Classifier. The model is trained on a large weather dataset that includes
+specific locations, temperature, time of year, time of day, and other more specific weather features (pressure, humidity, precipitation, etc.).
+If we had more time we would have used a VotingClassifier to produce a more accurate model.
 
 ## Authors
 
@@ -28,7 +28,7 @@ Each member of the group contributed separate but related work towards the final
 **Simon Kwilinski**
 - Organizing GitHub, managing branches, and setting up group members
 - Establishing cohesive project structure and Python modules
-- Creating initial Flask framework and organizing webpage
+- Initializing Flask framework
 - Locating and downloading dataset
 - Creating SQLite database and manipulating raw data
 - Finalizing ML pipeline to load, clean, scale, train, and save the final model
@@ -41,9 +41,12 @@ Each member of the group contributed separate but related work towards the final
 - Identifying hyperparameters for final model
 
 **Sean Maher**
+- Organizing the indiviual webpages
 - Training select models
-- Finalizing Flask website
 - Adding group member resumes to individual webpages
+- Finalizing Flask website
+- Deploying final product on AWS
+- Finalizing this README
 
 **Jermaine Presbery**
 - Working on Flask website
@@ -83,4 +86,5 @@ In the future, we can use this pickle file to quickly import and read the models
 
 ## Flask Website
 
-We created a Flask website to deploy the finished ML model.
+We created a Flask web application to deploy the finished ML model. The final product was then launched and can be found with the link below.
+Statepredictor-env.eba-wgmmyi66.us-east-1.elasticbeanstalk.com 
