@@ -1,7 +1,7 @@
 # Location Prediction with ML
 ### ml-team3
 
-**Authors:** Trenton Metcalfe, Sean Maher, Simon Kwilinski, Jermaine Presbery
+**Authors:** Trenton Metcalfe, Jermaine Presbery, Sean Maher, Simon Kwilinski
 
 ## Contents
 
@@ -51,6 +51,10 @@ Each member of the group contributed separate but related work towards the final
 **Jermaine Presbery**
 - Working on Flask website
 - Refactoring website structure
+- Created the Frontend structure with the use of HTML/CSS
+- Created indiviudal tabs for each individual
+- Created Weather from to send results for preferred weather condtions
+- Attempted connection between backend database to Frontend form results 
 
 ## Finding a Dataset
 
